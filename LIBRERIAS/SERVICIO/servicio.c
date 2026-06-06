@@ -41,6 +41,15 @@ void darDeAltaUnaNominacion(char nombreArchivo[], Nominacion registroDeseado)
 
 	Nominacion aux;
 
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		if (aux.juego.idJuego == registroDeseado.juego.idJuego)
+		{
+
+		}
+	}
+
 
 	fclose(fp);
 }
+
