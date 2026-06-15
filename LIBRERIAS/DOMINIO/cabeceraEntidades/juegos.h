@@ -10,23 +10,11 @@ typedef struct stJuego
 
 } Juego;
 
-typedef struct	stPuntaje
-{
-	float valorPuntaje;
 
-} Puntaje;
-
-typedef struct stFechaLanzamiento
-{
-	int dia;
-	int mes;
-	int anio;
-} FechaLanzamiento;
-
-typedef struct stCategoria
-{
-	int idCategoria;
-	char nombre[50];
-} Categoria;
+Juego crearJuego(int id, char nombre[], char estudio[], char genero[]);
+void modificarNombreJuego(Juego* j, char nuevoNombre[]);
+void modificarEstudioJuego(Juego* j, char nuevoEstudio[]);
+void modificarGeneroJuego(Juego* j, char nuevoGenero[]);
+int compararJuegosPorNombre(Juego j1, Juego j2);
 
 #endif

@@ -8,6 +8,9 @@
     <ClCompile Include="LIBRERIAS\Librerias Externas\scanner.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\juegos.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\nominaciones.c" />
+    <ClCompile Include="LIBRERIAS\DOMINIO\cabeceraEntidades\categoria.h" />
+    <ClCompile Include="LIBRERIAS\DOMINIO\entidades\categoria.c" />
+    <ClCompile Include="LIBRERIAS\DOMINIO\entidades\puntajes.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LIBRERIAS\DOMINIO\gestorEventos.h" />
@@ -16,5 +19,6 @@
     <ClInclude Include="LIBRERIAS\Librerias Externas\scanner.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\juegos.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\nominaciones.h" />
+    <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\puntajes.h" />
   </ItemGroup>
 </Project>

@@ -2,17 +2,21 @@
 #define _NOMINACIONES_H_INCLUDED
 
 #include "juegos.h"
+#include "categoria.h"
+#include "puntajes.h"
 
 typedef struct stNominacion
 {
 	int idNominacion;
-	Categoria categoria;
-	Juego juego;
+	int idJuego;
+	int idCategoria;
 	Puntaje puntaje;
 	FechaLanzamiento fecha;
-	int estaNominado;
-
 }Nominacion;
 
-
+Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f);
+void modificarPuntajeNominacion(Nominacion* n, Puntaje nuevoPuntaje);
+void modificarFechaNominacion(Nominacion* n, FechaLanzamiento nuevaFecha);
+int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2);
+	
 #endif

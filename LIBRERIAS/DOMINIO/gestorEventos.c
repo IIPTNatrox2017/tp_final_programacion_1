@@ -2,9 +2,6 @@
 
 #include <stdio.h>
 #include "gestorEventos.h"
-#include "../Librerias Externas/scanner.h"
-#include "cabeceraEntidades/juegos.h"
-#include "cabeceraEntidades/nominaciones.h"
 
 #define DIM_MAX_NOMBRES 50
 
