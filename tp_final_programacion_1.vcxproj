@@ -23,8 +23,11 @@
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\nominaciones.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\gestorEventos.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\menus.c" />
+    <ClCompile Include="LIBRERIAS\Librerias Externas\pila .c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\scanner.c" />
-    <ClCompile Include="LIBRERIAS\SERVICIO\servicio.c" />
+    <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaJuego.c" />
+    <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaCategoria.c" />
+    <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaNominaciones.c" />
     <ClCompile Include="mainTpFinal.c" />
   </ItemGroup>
   <ItemGroup>
@@ -32,8 +35,11 @@
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\nominaciones.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\gestorEventos.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\menus.h" />
+    <ClInclude Include="LIBRERIAS\Librerias Externas\pila .h" />
     <ClInclude Include="LIBRERIAS\Librerias Externas\scanner.h" />
-    <ClInclude Include="LIBRERIAS\SERVICIO\servicio.h" />
+    <ClInclude Include="LIBRERIAS\SERVICIO\cabeceraEntidades\logicaJuego.h" />
+    <ClInclude Include="LIBRERIAS\SERVICIO\cabeceraEntidades\logicaCategoria.h" />
+    <ClInclude Include="LIBRERIAS\SERVICIO\cabeceraEntidades\logicaNominaciones.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>

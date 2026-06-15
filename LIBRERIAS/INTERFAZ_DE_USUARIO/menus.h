@@ -5,7 +5,7 @@
 
 void menuPrincipal();
 void mostrarunaNominacion(Nominacion aux);
-void mostrarGOTYS(char nombreArchivo[])
+void mostrarGOTYS(char nombreArchivo[]);
 void cargarUnJuego();
 
 #endif // !1
