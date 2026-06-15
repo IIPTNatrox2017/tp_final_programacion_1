@@ -1,4 +1,0 @@
-#ifndef SERVICIO_H_INCLUDED
-#define SERVICIO_H_INCLUDED
-
-#endif
