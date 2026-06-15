@@ -7,18 +7,22 @@
 int cargarNuevoJuego(char nombre[], char estudio[], char genero[]) 
 {
 	printf("funcion no implementada\n");
+	return 0;
 }
 Juego* obtenerListadoJuegosDinamico(int* validos)
 {
 	printf("funcion no implementada\n");
+	return NULL;
 }
 int buscarJuegoPorId(int id)
 {
 	printf("funcion no implementada\n");
+	return 0;
 }
 int darDeBajaJuego(int id)
 {
 	printf("funcion no implementada\n");
+	return 0;
 }
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
