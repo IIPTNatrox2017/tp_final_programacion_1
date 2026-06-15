@@ -3,6 +3,7 @@
 #include "menus.h"
 #include "../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include <stdio.h>
+#include "../Librerias Externas/scanner.h"
 
 
 //ESTA CAPA SERA LA UNICA ENCARGADA DE SOLICITAR DATOS AL USUARIO.
@@ -15,6 +16,29 @@ void menuPrincipal()
 {
 	printf("MENU PRINCIPAL.\n");
 }
+
+void mostrarGOTYS(char nombreArchivo[])
+{
+	FILE* fp;
+	fp = fopen(nombreArchivo, "rb");
+
+	if (!fp)
+	{
+		printf("Error no se pudo abrir el archivo.\n");
+		return;
+	}
+
+	Nominacion aux;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		mostrarunaNominacion(aux);
+	}
+
+
+	fclose(fp);
+}
+
 
 void mostrarunaNominacion(Nominacion aux)
 {
@@ -39,5 +63,27 @@ void mostrarunaNominacion(Nominacion aux)
 	printf("| %-*s |\n", ancho - 2, renglonFechaLanzamiento);
 	printf("| %-*s |\n", ancho - 2, renglonPuntaje);
 	printf("+"); for (int i = 0; i < ancho; i++) printf("="); printf("+\n");
+
+}
+
+void cargarUnJuego()
+{
+	int idJuego;
+	char nombre[50];
+	char estudio[50];
+	char genero[50];
+	int cargado = 0;
+
+	printf("Ingrese el ID del juego: ");
+	idJuego = scanInt();
+
+	printf("Ingrese el nombre del juego: ");
+	scanString(nombre, 50);
+
+	printf("Ingrese el estudio del juego: ");
+	scanString(estudio, 50);
+
+	printf("Ingrese el genero del juego: ");
+	scanString(genero, 50);
 
 }

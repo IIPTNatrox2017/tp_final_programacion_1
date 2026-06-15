@@ -25,31 +25,3 @@ void abrirArchivoLimpio(char nombreArchivo[])
 	fclose(fp);
 }
 
-void cargarArchivoConNominaciones(char nombreArchivo[])
-{
-	FILE* fp;
-	fp = fopen(nombreArchivo, "ab");
-	Nominacion nuevo = { 0 };
-
-	int seguir = 1;
-
-	if (!fp)
-	{
-		printf("No se logro abrir el archivo.\n");
-		return;
-	}
-
-	while (seguir == 1)
-	{
-		nuevo = cargarNominacion(nuevo);
-
-		fwrite(&nuevo, sizeof(Nominacion), 1, fp);
-
-		printf("Desea seguir cargando Nominaciones al archivo? [s/n] \n>>> ");
-		seguir = confirmar('s');
-	}
-
-	fclose(fp);
-	
-}
-

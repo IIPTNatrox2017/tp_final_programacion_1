@@ -3,7 +3,7 @@
 
 
 void abrirArchivoLimpio(char nombreArchivo[]);
-void cargarArchivoConNominaciones(char nombreArchivo[]);
+
 
 
 

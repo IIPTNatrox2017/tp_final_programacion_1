@@ -14,6 +14,5 @@ typedef struct stNominacion
 
 }Nominacion;
 
-Nominacion cargarNominacion(Nominacion aux);
 
 #endif

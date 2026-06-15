@@ -29,9 +29,4 @@ typedef struct stCategoria
 	char nombre[50];
 } Categoria;
 
-Juego cargarUnJuego(Juego aux);
-Categoria cargarUnaCategoria(Categoria aux);
-FechaLanzamiento cargarFLanzamiento(FechaLanzamiento aux);
-Puntaje cargarPuntajeJuego(Puntaje aux);
-
 #endif
