@@ -25,7 +25,9 @@
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\nominaciones.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\puntajes.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\gestorEventos.c" />
-    <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\menus.c" />
+    <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazEntrada.c" />
+    <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazSalida.c" />
+    <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\menus.c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\pila .c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\scanner.c" />
     <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaJuego.c" />
@@ -38,7 +40,9 @@
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\nominaciones.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\puntajes.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\gestorEventos.h" />
-    <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\menus.h" />
+    <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazEntrada.h" />
+    <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazSalida.h" />
+    <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\menus.h" />
     <ClInclude Include="LIBRERIAS\Librerias Externas\pila .h" />
     <ClInclude Include="LIBRERIAS\Librerias Externas\scanner.h" />
     <ClInclude Include="LIBRERIAS\SERVICIO\cabeceraEntidades\logicaJuego.h" />
