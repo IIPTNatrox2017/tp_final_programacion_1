@@ -1,13 +1,41 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "../cabeceraEntidades/logicaJuego.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "../cabeceraEntidades/logicaJuego.h"
+#include "../../DOMINIO/cabeceraEntidades/categoria.h"
+#include "../../DOMINIO/cabeceraEntidades/juegos.h"
+#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
+#include "../../DOMINIO/cabeceraEntidades/puntajes.h"
+
+#define ARCHIVO_JUEGOS "juegos.bin"
 
 
 int cargarNuevoJuego(char nombre[], char estudio[], char genero[]) 
 {
-	printf("funcion no implementada\n");
-	return 0;
+	FILE* fp;
+	fp = fopen(ARCHIVO_JUEGOS, "ab");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	fseek(fp, 0, SEEK_END);
+	int cantidadRegistros = ftell(fp) / sizeof(Juego);
+
+	Juego nuevoJuego;
+
+	int idJuego = cantidadRegistros + 1;
+	
+	nuevoJuego = crearJuego(idJuego, nombre, estudio, genero);
+
+	fwrite(&nuevoJuego, sizeof(Juego), 1, fp);
+
+	fclose(fp);
+	
+	return 1;
 }
 Juego* obtenerListadoJuegosDinamico(int* validos)
 {

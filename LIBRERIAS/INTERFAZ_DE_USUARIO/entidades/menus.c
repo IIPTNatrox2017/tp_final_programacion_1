@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include "../../Librerias Externas/scanner.h"
 
+#define DIM_MAX_NOMBRES 50
 
 //ESTA CAPA SERA LA UNICA ENCARGADA DE SOLICITAR DATOS AL USUARIO.
 // SE RECOMIENDA EL USO RESPONSABLE DE IA.
@@ -91,6 +92,7 @@ void ejecutarOpcion(int opcion)
 void subMenuJuegos()
 {
 	printf("Todavia no se implemento esta funcion.\n");
+
 }
 
 void subMenuCategorias()
