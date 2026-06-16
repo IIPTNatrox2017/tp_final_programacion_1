@@ -5,9 +5,9 @@
 
 
 void menuPrincipal();
-void mostrarunaNominacion(Nominacion aux);
-void mostrarGOTYS(char nombreArchivo[]);
-void cargarUnJuego();
+int pedirOpcion();
+void ejecutarOpcion(int opcion);
+void mostrarMenu();
 void subMenuJuegos();
 void subMenuCategorias();
 void subMenuNominaciones();

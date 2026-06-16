@@ -20,6 +20,6 @@ void modificarNombreCategoria(Categoria* c, char nuevoNombre[])
 int compararCategoriasPorNombre(Categoria c1, Categoria c2)
 {
 	int resultado;
-	resultado = strcmpi(c1.nombre, c2.nombre);
+	resultado = _strcmpi(c1.nombre, c2.nombre);
 	return resultado;
 }
