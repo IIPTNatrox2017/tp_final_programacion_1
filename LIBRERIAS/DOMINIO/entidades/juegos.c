@@ -32,6 +32,6 @@ void modificarGeneroJuego(Juego* j, char nuevoGenero[])
 int compararJuegosPorNombre(Juego j1, Juego j2)
 {
 	int resultado = 0;
-	resultado = strcmpi(j1.nombre, j2.nombre);
+	resultado = _strcmpi(j1.nombre, j2.nombre);
 	return resultado;
 }
