@@ -2,19 +2,24 @@
 
 #include <stdio.h>
 #include "../cabeceraEntidades/categoria.h"
+#include <string.h>
+
 
 Categoria crearCategoria(int id, char nombre[])
 {
-	printf("todavia no se implemento la funcion\n");
-	Categoria c = { 0 };
-	return c;
+	Categoria nuevaCategoria;
+	strcpy(nuevaCategoria.nombre, nombre);
+	nuevaCategoria.idCategoria = id;
+
+	return nuevaCategoria;
 }
 void modificarNombreCategoria(Categoria* c, char nuevoNombre[])
 {
-	printf("todavia no se implemento la funcion\n");
+	strcpy(c->nombre, nuevoNombre);
 }
 int compararCategoriasPorNombre(Categoria c1, Categoria c2)
 {
-	printf("todavia no se implemento la funcion\n");
-	return 0;
+	int resultado;
+	resultado = strcmpi(c1.nombre, c2.nombre);
+	return resultado;
 }
