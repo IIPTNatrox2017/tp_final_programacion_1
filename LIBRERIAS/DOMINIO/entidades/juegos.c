@@ -19,15 +19,15 @@ Juego crearJuego(int id, char nombre[], char estudio[], char genero[])
 }
 void modificarNombreJuego(Juego* j, char nuevoNombre[])
 {
-	printf("todavia no se implemento la funcion\n");
+	strcpy(j->nombre, nuevoNombre);
 }
 void modificarEstudioJuego(Juego* j, char nuevoEstudio[])
 {
-	printf("todavia no se implemento la funcion\n");
+	strcpy(j->estudio, nuevoEstudio);
 }
 void modificarGeneroJuego(Juego* j, char nuevoGenero[])
 {
-	printf("todavia no se implemento la funcion\n");
+	strcpy(j->genero, nuevoGenero);
 }
 int compararJuegosPorNombre(Juego j1, Juego j2)
 {
