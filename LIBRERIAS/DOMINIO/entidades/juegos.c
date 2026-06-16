@@ -2,14 +2,20 @@
 #include "../cabeceraEntidades/juegos.h"
 #include "../../Librerias Externas/scanner.h"
 #include <stdio.h>
+#include <string.h>
 
 #define DIM_MAX_NOMBRES 50
 
 Juego crearJuego(int id, char nombre[], char estudio[], char genero[])
 {
-	printf("todavia no se implemento la funcion\n");
-	Juego j = { 0 };
-	return j;
+	Juego nuevoJuego;
+
+	nuevoJuego.idJuego = id;
+	strcpy(nuevoJuego.nombre, nombre);
+	strcpy(nuevoJuego.estudio, estudio);
+	strcpy(nuevoJuego.genero, genero);
+
+	return nuevoJuego;
 }
 void modificarNombreJuego(Juego* j, char nuevoNombre[])
 {

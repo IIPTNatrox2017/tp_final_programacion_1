@@ -37,7 +37,7 @@ FechaLanzamiento crearFecha(int dia, int mes, int anio)
 
 	if (mes < 1 || mes > 12)
 	{
-		nuevaFecha.esValido =0
+		nuevaFecha.esValido = 0;
 	}
 	else
 	{
