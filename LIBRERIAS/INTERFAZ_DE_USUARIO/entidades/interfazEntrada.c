@@ -1,10 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
+#include <string.h>
 #include "../cabeceraEntidades/interfazEntrada.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
+#include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #define DIM_MAX_NOMBRES 50
 
 
@@ -38,7 +40,26 @@ void formularioAltaJuego()
 
 void formularioAltaCategoria()
 {
-	printf("Formulario de alta de categoria.\n");
+	char categoria[DIM_MAX_NOMBRES];
+
+	do
+	{
+		printf("Ingrese nombre de la categoria\n >>> ");
+		scanString(categoria, DIM_MAX_NOMBRES);
+
+	} while (strlen(categoria) == 0);
+
+	int control = cargarNuevaCategoria(categoria);
+
+	if (control == 1)
+	{
+		printf("\nCategoria guardada con exito!\n");
+	}
+	else
+	{
+		printf("\nError al intentar cargar la categoria.\n");
+	}
+
 }
 
 void formularioRegistrarNominacion()
