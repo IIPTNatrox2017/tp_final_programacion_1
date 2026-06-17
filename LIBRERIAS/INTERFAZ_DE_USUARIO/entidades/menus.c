@@ -5,7 +5,6 @@
 #include "../cabeceraEntidades/menus.h"
 #include <stdio.h>
 #include "../../Librerias Externas/scanner.h"
-#include "../cabeceraEntidades/interfazEntrada.h"
 
 #define DIM_MAX_NOMBRES 50
 
@@ -29,7 +28,10 @@ void menuPrincipal()
 void mostrarMenu()
 {
 	system("cls");
-	printf("=====MENU PRINCIPAL=====\n");
+	printf("===========================\n");
+	printf("      MENU PRINCIPAL\n");
+	printf("===========================\n");
+
 	printf("1. Juegos.\n");
 	printf("2. Categorias.\n");
 	printf("3. Nominaciones.\n");
@@ -53,7 +55,6 @@ void ejecutarOpcion(int opcion)
 		case 1:
 		{
 			system("cls");
-			printf("\n=====MENU JUEGOS=====\n");
 			subMenuJuegos();
 			formularioAltaJuego();
 			system("pause");
@@ -62,7 +63,6 @@ void ejecutarOpcion(int opcion)
 		case 2:
 		{
 			system("cls");
-			printf("\n=====MENU CATEGORIAS=====\n");
 			subMenuCategorias();
 			
 			system("pause");
@@ -71,7 +71,6 @@ void ejecutarOpcion(int opcion)
 		case 3:
 		{
 			system("cls");
-			printf("\n=====MENU NOMINACIONES=====\n");
 			subMenuNominaciones();
 			system("pause");
 			break;
@@ -94,16 +93,144 @@ void ejecutarOpcion(int opcion)
 
 void subMenuJuegos()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	int opcion;
 
+	do
+	{
+		system("cls");
+		printf("===========================\n");
+		printf("      MENU JUEGOS\n");
+		printf("===========================\n");
+
+		printf("1. Alta Juego\n");
+		printf("2. Listado de Juegos\n");
+		printf("0. Volver al Menu Principal\n");
+		printf("Ingrese una opcion>> ");
+		opcion = scanInt();
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls");
+			formularioAltaJuego();
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			mostrarListadoJuegos();
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			printf("Volviendo al menu principal...\n");
+			break;
+		}
+		default:
+		{
+			system("cls");
+			printf("Opcion invalida. Por favor, intente de nuevo.\n");
+			break;
+		}
+
+		} 
+	}
+	while (opcion != 0);
 }
+
 
 void subMenuCategorias()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	int opcion;
+
+	do
+	{
+		printf("===========================\n");
+		printf("      MENU CATEGORIAS\n");
+		printf("===========================\n");
+
+		printf("1. Alta Categoria.\n");
+		printf("2. Listado Categorias.\n");
+		printf("0. Volver al Menu Principal\n");
+		printf("Ingrese una opcion>> ");
+		opcion = scanInt();
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls");
+			formularioAltaCategoria();
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			mostrarListadoCategorias();
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			printf("Volviendo al menu principal...\n");
+			break;
+		}
+		default:
+		{
+			system("cls");
+			printf("Opcion invalidad. Por favor, intente de nuevo.\n");
+			break;
+		}
+
+		}
+
+	} while (opcion != 0);
 }
 
 void subMenuNominaciones()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	int opcion;
+
+	do
+	{
+		printf("===========================\n");
+		printf("      MENU NOMINACIONES\n");
+		printf("===========================\n");
+
+		printf("1. Registrar Nominacion.\n");
+		printf("2. Ranking Nominaciones.\n");
+		printf("0. Volver al Menu Principal\n");
+		printf("Ingrese una opcion>> ");
+		opcion = scanInt();
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls");
+			formularioRegistrarNominacion();
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			mostrarRankingNominacionesUI();
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			printf("Volviendo al menu principal...\n");
+			break;
+		}
+		default:
+		{
+			system("cls");
+			printf("Opcion invalida. Por favor, intente de nuevo.\n");
+			break;
+		}
+		}
+	} while (opcion != 0);
 }

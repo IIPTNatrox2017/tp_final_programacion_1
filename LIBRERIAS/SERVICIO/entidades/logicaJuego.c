@@ -39,22 +39,135 @@ int cargarNuevoJuego(char nombre[], char estudio[], char genero[])
 }
 Juego* obtenerListadoJuegosDinamico(int* validos)
 {
-	printf("funcion no implementada\n");
-	return NULL;
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+	if (fp == NULL)
+	{
+		*validos = 0;
+		return NULL;
+	}
+	int indice;
+
+	Juego* arregloJuegos;
+
+	fseek(fp, 0, SEEK_END);
+	 
+	*validos = ftell(fp) / sizeof(Juego);
+
+	arregloJuegos = (Juego*)malloc(*validos * sizeof(Juego));
+	if (arregloJuegos == NULL)
+	{
+		fclose(fp);
+		*validos = 0;
+		return NULL;
+	}
+	
+	fseek(fp, 0, SEEK_SET);
+
+	for (indice = 0; indice < *validos; indice++)
+	{
+		fread(&arregloJuegos[indice], sizeof(Juego), 1, fp);
+	}
+	
+	fclose(fp);
+
+	return arregloJuegos;
+
+
 }
 int buscarJuegoPorId(int id)
 {
-	printf("funcion no implementada\n");
-	return 0;
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+	if (fp == NULL)
+	{
+		return -1;
+	}
+	
+	int pos = 0;
+	Juego juego;
+	while(fread(&juego, sizeof(juego), 1, fp) == 1)
+	{
+		if (juego.idJuego == id)
+		{
+			fclose(fp);
+			return pos;
+		}
+		pos++;
+	}
+		fclose(fp);
+		return -1;
 }
 int darDeBajaJuego(int id)
 {
-	printf("funcion no implementada\n");
-	return 0;
+	
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+	if (fp == NULL)
+	{
+		return -1;
+	}
+
+	int	pos = buscarJuegoPorId(id);
+	if (pos == -1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	
+	Juego juego;
+	
+	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
+	{
+		fclose(fp);
+		return -1;
+	}
+
+	if (fread(&juego, sizeof(Juego), 1, fp)  != 1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	juego.idJuego = -1;
+
+	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
+	{
+		fclose(fp);
+		return -1;
+	}
+
+	if(fwrite(&juego, sizeof(Juego), 1, fp) != 1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	
+	fclose(fp);
+	return 1;
+
 }
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
-	printf("funcion no implementada\n");
+	if (arreglo == NULL || validos <= 1)
+	{
+		return;
+	}
+	int i, j, indice;
+	Juego temporal;
+	for (i = 0; i < validos - 1; i++)
+	{
+		indice = i;
+		for(j = i + 1; j < validos; j++)
+		{
+			if (compararJuegosPorNombre(arreglo[j], arreglo[indice]) < 0)
+			{
+				indice = j;
+			}
+		}
+		if(indice != i)
+		{
+			temporal = arreglo[i];
+			arreglo[i] = arreglo[indice];
+			arreglo[indice] = temporal;
+		}
+	}
 }
 void exportarJuegosATexto(char rutaTexto[])
 {
