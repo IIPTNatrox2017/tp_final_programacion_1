@@ -82,25 +82,66 @@ int buscarJuegoPorId(int id)
 		return -1;
 	}
 	
-	
-	Juego idBuscado;
-	while(fread(&idBuscado, sizeof(int), 1, fp) == 1)
+	int pos = 0;
+	Juego juego;
+	while(fread(&juego, sizeof(juego), 1, fp) == 1)
 	{
-		if (id == idBuscado.idJuego)
+		if (juego.idJuego == id)
 		{
 			fclose(fp);
-			return 1;
+			return pos;
 		}
-		
+		pos++;
+	}
 		fclose(fp);
 		return -1;
-		
-	}
 }
 int darDeBajaJuego(int id)
 {
-	printf("funcion no implementada\n");
-	return 0;
+	
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+	if (fp == NULL)
+	{
+		return -1;
+	}
+
+	int	pos = buscarJuegoPorId(id);
+	if (pos == -1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	
+	Juego juego;
+	
+	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
+	{
+		fclose(fp);
+		return -1;
+	}
+
+	if (fread(&juego, sizeof(Juego), 1, fp)  != 1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	juego.idJuego = -1;
+
+	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
+	{
+		fclose(fp);
+		return -1;
+	}
+
+	if(fwrite(&juego, sizeof(Juego), 1, fp) != 1)
+	{
+		fclose(fp);
+		return -1;
+	}
+	
+	fclose(fp);
+	return 1;
+
 }
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
