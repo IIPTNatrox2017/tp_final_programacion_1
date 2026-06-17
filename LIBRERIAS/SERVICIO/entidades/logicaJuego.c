@@ -76,8 +76,26 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 }
 int buscarJuegoPorId(int id)
 {
-	printf("funcion no implementada\n");
-	return 0;
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+	if (fp == NULL)
+	{
+		return -1;
+	}
+	
+	
+	Juego idBuscado;
+	while(fread(&idBuscado, sizeof(int), 1, fp) == 1)
+	{
+		if (id == idBuscado.idJuego)
+		{
+			fclose(fp);
+			return 1;
+		}
+		
+		fclose(fp);
+		return -1;
+		
+	}
 }
 int darDeBajaJuego(int id)
 {
