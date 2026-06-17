@@ -30,7 +30,7 @@ void menuPrincipal()
 void mostrarMenu()
 {
 	system("cls");
-	printf("\n===========================\n");
+	printf("===========================\n");
 	printf("      MENU PRINCIPAL\n");
 	printf("===========================\n");
 
@@ -71,7 +71,6 @@ void ejecutarOpcion(int opcion)
 		case 3:
 		{
 			system("cls");
-			printf("\n=====MENU NOMINACIONES=====\n");
 			subMenuNominaciones();
 			system("pause");
 			break;
@@ -99,7 +98,7 @@ void subMenuJuegos()
 	do
 	{
 		system("cls");
-		printf("\n===========================\n");
+		printf("===========================\n");
 		printf("      MENU JUEGOS\n");
 		printf("===========================\n");
 
@@ -148,7 +147,7 @@ void subMenuCategorias()
 
 	do
 	{
-		printf("\n===========================\n");
+		printf("===========================\n");
 		printf("      MENU CATEGORIAS\n");
 		printf("===========================\n");
 
@@ -192,5 +191,46 @@ void subMenuCategorias()
 
 void subMenuNominaciones()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	int opcion;
+
+	do
+	{
+		printf("===========================\n");
+		printf("      MENU NOMINACIONES\n");
+		printf("===========================\n");
+
+		printf("1. Registrar Nominacion.\n");
+		printf("2. Ranking Nominaciones.\n");
+		printf("0. Volver al Menu Principal\n");
+		printf("Ingrese una opcion>> ");
+		opcion = scanInt();
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls");
+			formularioRegistrarNominacion();
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			mostrarRankingNominacionesUI();
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			printf("Volviendo al menu principal...\n");
+			break;
+		}
+		default:
+		{
+			system("cls");
+			printf("Opcion invalida. Por favor, intente de nuevo.\n");
+			break;
+		}
+		}
+	} while (opcion != 0);
 }
