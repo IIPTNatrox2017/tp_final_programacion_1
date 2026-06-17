@@ -64,7 +64,6 @@ void ejecutarOpcion(int opcion)
 		case 2:
 		{
 			system("cls");
-			printf("\n=====MENU CATEGORIAS=====\n");
 			subMenuCategorias();
 			system("pause");
 			break;
@@ -145,7 +144,50 @@ void subMenuJuegos()
 
 void subMenuCategorias()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	int opcion;
+
+	do
+	{
+		printf("\n===========================\n");
+		printf("      MENU CATEGORIAS\n");
+		printf("===========================\n");
+
+		printf("1. Alta Categoria.\n");
+		printf("2. Listado Categorias.\n");
+		printf("0. Volver al Menu Principal\n");
+		printf("Ingrese una opcion>> ");
+		opcion = scanInt();
+
+		switch (opcion)
+		{
+		case 1:
+		{
+			system("cls");
+			formularioAltaCategoria();
+			break;
+		}
+		case 2:
+		{
+			system("cls");
+			mostrarListadoCategorias();
+			break;
+		}
+		case 0:
+		{
+			system("cls");
+			printf("Volviendo al menu principal...\n");
+			break;
+		}
+		default:
+		{
+			system("cls");
+			printf("Opcion invalidad. Por favor, intente de nuevo.\n");
+			break;
+		}
+
+		}
+
+	} while (opcion != 0);
 }
 
 void subMenuNominaciones()
