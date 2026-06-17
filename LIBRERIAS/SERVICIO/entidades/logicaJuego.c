@@ -145,7 +145,29 @@ int darDeBajaJuego(int id)
 }
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
-	printf("funcion no implementada\n");
+	if (arreglo == NULL || validos <= 1)
+	{
+		return;
+	}
+	int i, j, indice;
+	Juego temporal;
+	for (i = 0; i < validos - 1; i++)
+	{
+		indice = i;
+		for(j = i + 1; j < validos; j++)
+		{
+			if (compararJuegosPorNombre(arreglo[j], arreglo[indice]) < 0)
+			{
+				indice = j;
+			}
+		}
+		if(indice != i)
+		{
+			temporal = arreglo[i];
+			arreglo[i] = arreglo[indice];
+			arreglo[indice] = temporal;
+		}
+	}
 }
 void exportarJuegosATexto(char rutaTexto[])
 {
