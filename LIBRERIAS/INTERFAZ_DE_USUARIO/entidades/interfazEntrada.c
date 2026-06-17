@@ -5,6 +5,7 @@
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
+#include <string.h>
 #define DIM_MAX_NOMBRES 50
 
 
@@ -16,13 +17,33 @@ void formularioAltaJuego()
 
 	printf("Ingrese nombre\n >>> ");
 	scanString(nombre, DIM_MAX_NOMBRES);
+	int cantLetras = strlen(nombre);
+
+	if (cantLetras < 1)
+	{
+		printf("\nNombre no valido\n");
+		return;
+	}
 
 	printf("Ingrese genero\n >>> ");
 	scanString(genero, DIM_MAX_NOMBRES);
+	cantLetras = strlen(genero);
+
+	if (cantLetras < 1)
+	{
+		printf("\nGenero no valido\n");
+		return;
+	}
 
 	printf("Ingrese estudio\n >>> ");
 	scanString(estudio, DIM_MAX_NOMBRES);
+	cantLetras = strlen(estudio);
 
+	if (cantLetras < 1)
+	{
+		printf("\nEstudio no valido\n");
+		return;
+	}
 	int control = cargarNuevoJuego(nombre, estudio, genero);
 
 	if (control == 1)

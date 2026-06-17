@@ -5,6 +5,7 @@
 #include "../cabeceraEntidades/menus.h"
 #include <stdio.h>
 #include "../../Librerias Externas/scanner.h"
+#include "../cabeceraEntidades/interfazEntrada.h"
 
 #define DIM_MAX_NOMBRES 50
 
@@ -54,6 +55,7 @@ void ejecutarOpcion(int opcion)
 			system("cls");
 			printf("\n=====MENU JUEGOS=====\n");
 			subMenuJuegos();
+			formularioAltaJuego();
 			system("pause");
 			break;
 		}
@@ -62,6 +64,7 @@ void ejecutarOpcion(int opcion)
 			system("cls");
 			printf("\n=====MENU CATEGORIAS=====\n");
 			subMenuCategorias();
+			
 			system("pause");
 			break;
 		}
