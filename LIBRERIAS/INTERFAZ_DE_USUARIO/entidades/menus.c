@@ -9,6 +9,7 @@
 #include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
 #include "../../DOMINIO/gestorEventos.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
+#include "../cabeceraEntidades/interfazEntrada.h"
 
 #define DIM_MAX_NOMBRES 50
 #define ARCHIVO_JUEGOS "juegos.bin"
@@ -100,24 +101,42 @@ void ejecutarOpcion(int opcion)
 void subMenuJuegos()
 {
 	int opcion;
-
 	do
 	{
-		system("cls");
-		printf("===========================\n");
-		printf("      MENU JUEGOS\n");
-		printf("===========================\n");
+		mostrarSubMenuJuegos();
+		opcion = pedirOpcionSubMenuJuegos();
+		ejecutarOpcionSubMenuJuegos(opcion);
+	} while (opcion != 0);
+}
 
-		printf("1. Cargar un juego al archivo.\n");
-		printf("2. Listado de Juegos Alfabaticamente (A-Z)\n");
-		printf("3. Ordenar juegos por ID.\n");
-		printf("4. Vaciar Archivo juegos.\n");
-		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion\n>>> ");
-		opcion = scanInt();
+void mostrarSubMenuJuegos()
+{
+	system("cls");
+	printf("===========================\n");
+	printf("      MENU JUEGOS\n");
+	printf("===========================\n");
 
-		switch (opcion)
-		{
+	printf("1. Cargar un juego al archivo.\n");
+	printf("2. Listado de Juegos Alfabaticamente (A-Z)\n");
+	printf("3. Ordenar juegos por ID.\n");
+	printf("4. Vaciar Archivo juegos.\n");
+	printf("0. Volver al Menu Principal\n");
+}
+
+int pedirOpcionSubMenuJuegos()
+{
+	int opcion;
+
+	printf("Ingrese una opcion\n>>> ");
+	opcion = scanInt();
+
+	return opcion;
+}
+
+void ejecutarOpcionSubMenuJuegos(int opcion)
+{
+	switch (opcion)
+	{
 		case 1:
 		{
 			system("cls");
@@ -158,33 +177,49 @@ void subMenuJuegos()
 			printf("Opcion invalida. Por favor, intente de nuevo.\n");
 			system("pause");
 			system("cls");
-		}
+		}	
 
-		} 
 	}
-	while (opcion != 0);
 }
-
 
 void subMenuCategorias()
 {
 	int opcion;
-
 	do
 	{
-		printf("===========================\n");
-		printf("      MENU CATEGORIAS\n");
-		printf("===========================\n");
+		mostrarSubMenuCategorias();
+		opcion = pedirOpcionSubMenuCategorias();
+		ejecutarOpcionSubMenuCategorias(opcion);
+	} while (opcion != 0);
+}
 
-		printf("1. Cargar una Categoria al archivo.\n");
-		printf("2. Listado Categorias.\n");
-		printf("3. Abrir archivo limpio.\n");
-		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion\n>>> ");
-		opcion = scanInt();
+void mostrarSubMenuCategorias()
+{
+	system("cls");
+	printf("===========================\n");
+	printf("      MENU CATEGORIAS\n");
+	printf("===========================\n");
 
-		switch (opcion)
-		{
+	printf("1. Cargar una Categoria al archivo.\n");
+	printf("2. Listado Categorias.\n");
+	printf("3. Abrir archivo limpio.\n");
+	printf("0. Volver al Menu Principal\n");
+}
+
+int pedirOpcionSubMenuCategorias()
+{
+	int opcion;
+
+	printf("Ingrese una opcion\n>>> ");
+	opcion = scanInt();
+
+	return opcion;
+}
+
+void ejecutarOpcionSubMenuCategorias(int opcion)
+{
+	switch (opcion)
+	{
 		case 1:
 		{
 			system("cls");
@@ -224,29 +259,46 @@ void subMenuCategorias()
 			system("cls");
 		}
 
-		}
-
-	} while (opcion != 0);
+	}
 }
 
 void subMenuNominaciones()
 {
 	int opcion;
-
 	do
 	{
-		printf("===========================\n");
-		printf("      MENU NOMINACIONES\n");
-		printf("===========================\n");
+		mostrarSubMenuNominaciones();
+		opcion = pedirOpcionSubMenuNominaciones();
+		ejecutarOpcionSubMenuNominaciones(opcion);
+	} while (opcion != 0);
+}
 
-		printf("1. Registrar Nominacion.\n");
-		printf("2. Ranking Nominaciones.\n");
-		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion\n >>> ");
-		opcion = scanInt();
+void mostrarSubMenuNominaciones()
+{
+	system("cls");
+	printf("===========================\n");
+	printf("      MENU NOMINACIONES\n");
+	printf("===========================\n");
 
-		switch (opcion)
-		{
+	printf("1. Registrar Nominacion.\n");
+	printf("2. Ranking Nominaciones.\n");
+	printf("0. Volver al Menu Principal\n");
+}
+
+int pedirOpcionSubMenuNominaciones()
+{
+	int opcion;
+
+	printf("Ingrese una opcion\n >>> ");
+	opcion = scanInt();
+
+	return opcion;
+}
+
+void ejecutarOpcionSubMenuNominaciones(int opcion)
+{
+	switch (opcion)
+	{
 		case 1:
 		{
 			system("cls");
@@ -275,6 +327,5 @@ void subMenuNominaciones()
 			system("cls");
 			break;
 		}
-		}
-	} while (opcion != 0);
+	}
 }
