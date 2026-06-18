@@ -18,7 +18,12 @@ int cargarNuevaCategoria(char nombre[])
 		return 0;
 	}
 	
-	Categoria nueva = crearCategoria(nombre);
+	fseek(fp, 0, SEEK_END);
+
+	int cantCategorias = ftell(fp) / sizeof(Categoria);
+	int nuevoId = cantCategorias + 1;
+
+	Categoria nueva = crearCategoria(nuevoId, nombre);
 	
 	fwrite(&nueva, sizeof(Categoria), 1, fp);
 
@@ -29,7 +34,7 @@ int cargarNuevaCategoria(char nombre[])
 int buscarCategoriaPorId(int id)
 {
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
-	if (!fp);
+	if (!fp)
 	{
 		printf("ERROR! No se pudo abrir el archivo de categorías.\n");
 		return -1;
@@ -137,3 +142,33 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 	return arregloCategorias;
 }
 
+int bajaCategoria(int idCategoria)
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb+");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Categoria aux;
+	int exito = -1;
+
+	while (fread(&aux, sizeof(Categoria), 1, fp) > 0 && exito == -1)
+	{
+		if (aux.idCategoria == idCategoria)
+		{
+			aux.idCategoria = -1;
+
+			fseek(fp, sizeof(Categoria), SEEK_CUR);
+
+			fwrite(&aux, sizeof(Categoria), 1, fp);
+
+			exito = 1;
+		}
+	}
+
+	fclose(fp);
+
+	return exito;
+}

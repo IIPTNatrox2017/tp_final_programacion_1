@@ -10,6 +10,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos);
 int buscarCategoriaPorId(int id);
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos);
 void exportarCategoriasATexto(char rutaTexto[]);
-
+int obtenerMayorIdNominacion(void);
+int bajaCategoria(int idCategoria);
 
 #endif

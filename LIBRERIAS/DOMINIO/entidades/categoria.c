@@ -5,10 +5,11 @@
 #include <string.h>
 
 
-Categoria crearCategoria(char nombre[])
+Categoria crearCategoria(int id, char nombre[])
 {
 	Categoria nuevaCategoria;
 	
+	nuevaCategoria.idCategoria = id;
 	strcpy(nuevaCategoria.nombre, nombre);
 
 	return nuevaCategoria;

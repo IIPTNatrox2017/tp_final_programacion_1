@@ -38,11 +38,14 @@ int compararJuegosPorNombre(Juego j1, Juego j2)
 
 int compararJuegosPorId(Juego j1, Juego j2)
 {
-	int menor = j1.idJuego;
-	
-	if (j2.idJuego < menor)
+	if (j1.idJuego < j2.idJuego)
 	{
-		menor = j2.idJuego;
+		return -1;
 	}
-	return menor;
+	if (j1.idJuego > j2.idJuego)
+	{
+		return 1;
+	}
+
+	return 0;
 }

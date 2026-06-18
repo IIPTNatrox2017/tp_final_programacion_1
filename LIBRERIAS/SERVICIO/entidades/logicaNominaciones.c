@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "../cabeceraEntidades/logicaNominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
+#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
+#include "../cabeceraEntidades/logicaCategoria.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,9 +10,32 @@
 
 int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, int m, int a)
 {
-	if (existeNominacionDuplicada(idJuego, idCategoria) == 1)
+	if (buscarJuegoPorId(idJuego) == -1)
+	{
+		return -3;
+	}
+
+	if (buscarCategoriaPorId(idCategoria) == -1)
+	{
+		return -4;
+	}
+
+	if (existeNominacionDuplicada(idJuego, idCategoria))
 	{
 		return -2;
+	}
+	Puntaje nuevoPuntaje = crearPuntaje(puntajeValor);
+
+	if (!nuevoPuntaje.esValido)
+	{
+		return -5;
+	}
+
+	FechaLanzamiento nuevaFecha = crearFecha(d, m, a);
+
+	if (!nuevaFecha.esValido)
+	{
+		return -6;
 	}
 
 	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "ab");
@@ -22,15 +47,15 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 
 	fseek(fp, 0, SEEK_END);
 
-	int cantNom = ftell(fp) / sizeof(Nominacion);
-	int idNominacion = cantNom + 1;
-
-	Puntaje nuevoPuntaje = crearPuntaje(puntajeValor);
-	FechaLanzamiento nuevaFecha = crearFecha(d, m, a);
+	int idNominacion = obtenerMayorIdNominacion() + 1;
 
 	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje, nuevaFecha);
 
-	fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp);
+	if (fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp) != 1)
+	{
+		fclose(fp);
+		return 0;
+	}
 
 	fclose(fp);
 	return 1;
@@ -132,9 +157,35 @@ void exportarNominacionesATexto(char rutaTexto[])
 	}
 	while(fread(&nominacion, sizeof(Nominacion), 1 , fp)> 0)
 	{
-		fprintf(fTxt, "%d | %d | %02d/%02d/%04d\n", nominacion.idNominacion, nominacion.puntaje.valor, nominacion.fecha.dia, nominacion.fecha.mes, nominacion.fecha.anio);
+		fprintf(fTxt, "%d | %d | %02d/%02d/%04d\n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor, nominacion.fecha.dia, nominacion.fecha.mes, nominacion.fecha.anio);
 	}
 
 	fclose(fp);
 	fclose(fTxt);
+}
+
+int obtenerMayorIdNominacion(void)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Nominacion aux;
+
+	int mayor = 0;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		if (aux.idNominacion > mayor)
+		{
+			mayor = aux.idNominacion;
+		}
+	}
+
+	fclose(fp);
+
+	return mayor;
 }

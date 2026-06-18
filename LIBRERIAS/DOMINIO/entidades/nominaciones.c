@@ -27,7 +27,7 @@ int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2)
 {
 	int encontrado = 0;
 
-	if(n1.juego.idJuego == n2.juego.idJuego && n1.categoria.idCategoria == n2.categoria.idCategoria)
+	if(n1.idJuego == n2.idJuego && n1.idCategoria == n2.idCategoria)
 	{
 		encontrado = 1;
 	}
