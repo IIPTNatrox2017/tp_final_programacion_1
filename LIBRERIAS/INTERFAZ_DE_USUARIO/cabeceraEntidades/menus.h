@@ -2,8 +2,6 @@
 #define MENUS_H_INCLUDED
 
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
-
-
 void menuPrincipal();
 int pedirOpcion();
 void ejecutarOpcion(int opcion);
