@@ -16,7 +16,7 @@ int registrarNominacion(int puntajeValor, int d, int m, int a)
     {
 		while(fread(&nominacion, sizeof(Nominacion), 1, fp) > 0)
 		{
-			if(existeNominacionDuplicada(idJuego))
+			if(existeNominacionDuplicada(nominacion.juego.idJuego, nominacion.))
 			{
 				return -2;
 			}
@@ -36,7 +36,7 @@ int existeNominacionDuplicada(int idJuego, int idCategoria)
 	{
 		while (fread(&nominacion, sizeof(Nominacion), 1, fp) > 0)
 		{
-			if(idJuego == idJuego && nominacion.idCategoria == idCategoria)
+			if(nominacion.juego.idJuego == idJuego && nominacion.categoria.idCategoria == idCategoria)
 			{
 				nominacionEncontrada = 1;
 			}
