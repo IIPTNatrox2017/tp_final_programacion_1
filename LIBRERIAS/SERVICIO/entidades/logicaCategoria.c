@@ -14,6 +14,7 @@ int cargarNuevaCategoria(int id, char nombre[])
 
 	if (!fp)
 	{
+		printf("ERROR! No se pudo abrir el archivo de categorías.\n");
 		return 0;
 	}
 	
@@ -30,6 +31,7 @@ int buscarCategoriaPorId(int id)
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
 	if (!fp);
 	{
+		printf("ERROR! No se pudo abrir el archivo de categorías.\n");
 		return -1;
 	}
 
@@ -75,7 +77,27 @@ void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos)
 
 void exportarCategoriasATexto(char rutaTexto[])
 {
-	printf("funcion no implementada\n");
+	Categoria aux;
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
+	if(!fp)
+	{ 
+		printf("ERROR! No se pudo abrir el archivo de categorías.\n");
+		return;
+	}
+	FILE* fpTexto = fopen(rutaTexto, "w");
+	if(!fpTexto)
+	{ 
+		printf("ERROR! No se pudo abrir el archivo de texto.\n");
+		fclose(fp);
+		return;
+	}
+	while (fread(&aux, sizeof(Categoria), 1, fp) == 1)
+	{
+		fprintf(fpTexto, "=================================\n");
+		fprintf(fpTexto, "ID: %d, Nombre: %s\n", aux.idCategoria, aux.nombre);
+	}
+	fclose(fp);
+	fclose(fpTexto);
 }
 
 Categoria* obtenerListadoCategoriasDinamico(int* validos)
