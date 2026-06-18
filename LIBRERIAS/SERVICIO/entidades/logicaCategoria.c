@@ -26,8 +26,25 @@ int cargarNuevaCategoria(int id, char nombre[])
 }
 int buscarCategoriaPorId(int id)
 {
-	printf("funcion no implementada\n");
-	return 0;
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
+	if (!fp);
+	{
+		return -1;
+	}
+
+	int pos = 0;
+	Categoria aux;
+	while(fread(&aux, sizeof(Categoria), 1, fp))
+	{ 
+		if (aux.idCategoria == id)
+		{
+			fclose(fp);
+			return pos;
+		}
+		pos++;
+	}
+	fclose(fp);
+	return -1;
 }
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos)
 {
@@ -37,6 +54,7 @@ void exportarCategoriasATexto(char rutaTexto[])
 {
 	printf("funcion no implementada\n");
 }
+
 Categoria* obtenerListadoCategoriasDinamico(int* validos)
 {
 	FILE* fp = fopen (ARCHIVO_CATEGORIAS, "rb");
