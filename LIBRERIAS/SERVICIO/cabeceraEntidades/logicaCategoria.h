@@ -13,4 +13,5 @@ void exportarCategoriasATexto(char rutaTexto[]);
 int obtenerMayorIdNominacion(void);
 int bajaCategoria(int idCategoria);
 int modificarCategoria(int idCategoria, char nuevoNombre[]);
+int modificarJuego(int idJuego, char nuevoNombre[], char nuevoEstudio[], char nuevoGenero[]);
 #endif
