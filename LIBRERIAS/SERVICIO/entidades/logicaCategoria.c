@@ -7,7 +7,7 @@
 #define ARCHIVO_CATEGORIAS "categorias.bin"
 
 
-int cargarNuevaCategoria(char nombre[])
+int cargarNuevaCategoria(int id, char nombre[])
 {
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "ab");
 
@@ -16,7 +16,7 @@ int cargarNuevaCategoria(char nombre[])
 		return 0;
 	}
 	
-	Categoria nueva = crearCategoria(nombre);
+	Categoria nueva = crearCategoria(id, nombre);
 	
 	fwrite(&nueva, sizeof(Categoria), 1, fp);
 
