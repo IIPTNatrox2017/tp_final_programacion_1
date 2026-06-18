@@ -6,6 +6,7 @@
 
 int registrarNominacion(int idJuego, int idCategoria, float puntajeValor, int d, int m, int a)
 {
+	int a;
 	printf("funcion no implementada\n");
 	return 0;
 }
