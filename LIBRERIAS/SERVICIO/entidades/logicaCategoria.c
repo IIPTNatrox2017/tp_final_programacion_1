@@ -8,7 +8,7 @@
 #define ARCHIVO_CATEGORIAS "categorias.bin"
 
 
-int cargarNuevaCategoria(int id, char nombre[])
+int cargarNuevaCategoria(char nombre[])
 {
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "ab");
 
@@ -18,7 +18,7 @@ int cargarNuevaCategoria(int id, char nombre[])
 		return 0;
 	}
 	
-	Categoria nueva = crearCategoria(id, nombre);
+	Categoria nueva = crearCategoria(nombre);
 	
 	fwrite(&nueva, sizeof(Categoria), 1, fp);
 
@@ -111,7 +111,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 	}
 	int indice; 
 
-	Juego* arregloCategorias;
+	Categoria* arregloCategorias;
 
 	fseek(fp, 0, SEEK_END);
 
@@ -129,7 +129,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 
 	for (indice = 0; indice < *validos; indice++)
 	{
-		fread(&arregloCategorias, sizeof(Categoria), 1, fp);
+		fread(&arregloCategorias[indice], sizeof(Categoria), 1, fp);
 	}
 
 	fclose(fp);

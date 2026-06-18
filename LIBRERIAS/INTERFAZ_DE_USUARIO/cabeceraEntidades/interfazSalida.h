@@ -5,6 +5,7 @@ void mostrarListadoJuegos();
 void mostrarListadoCategorias();
 void mostrarRankingNominacionesUI();
 void formularioExportarArchivos();
+void mostrarListadoJuegosPorId();
 
 #endif // !SALIDA_H_INCLUDE
 

@@ -8,8 +8,6 @@
 typedef struct stNominacion
 {
 	int idNominacion;
-	int idJuego;
-	int idCategoria;
 	Puntaje puntaje;
 	FechaLanzamiento fecha;
 }Nominacion;

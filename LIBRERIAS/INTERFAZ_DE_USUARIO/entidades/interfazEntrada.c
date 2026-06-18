@@ -8,6 +8,8 @@
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #include "../../Librerias Externas/scanner.h"
+#include <time.h>
+
 #define DIM_MAX_NOMBRES 50
 
 
@@ -31,7 +33,7 @@ void formularioAltaJuego()
 	scanString(genero, DIM_MAX_NOMBRES);
 	cantLetras = strlen(genero);
 
-	if (cantLetras < 1)
+	if (cantLetras <= 1)
 	{
 		printf("\nGenero no valido\n");
 		return;
@@ -62,20 +64,22 @@ void formularioAltaJuego()
 void formularioAltaCategoria()
 {
 	char categoria[DIM_MAX_NOMBRES];
-	int id;
-
 	do
 	{
 		printf("Ingrese nombre de la categoria\n >>> ");
 		scanString(categoria, DIM_MAX_NOMBRES);
 
+		if (strlen(categoria) == 0)
+		{
+			printf("Ingrese un nombre valido.\n");
+			system("pause");
+			system("cls");
+		}
+
 	} while (strlen(categoria) == 0);
 
-	printf("Ingrese ID de la categoria\n >>> ");
-	id = scanInt();
 
-
-	int control = cargarNuevaCategoria(id, categoria);
+	int control = cargarNuevaCategoria(categoria);
 		
 	if (control == 1)
 	{
@@ -90,24 +94,68 @@ void formularioAltaCategoria()
 
 void formularioRegistrarNominacion()
 {
-	int idJuego;
-	int idCategoria;
-	float puntaje;
-	int d, m, a;
+	srand(time(NULL));
 
-	printf("Ingrese ID del Juego\n >>> ");
-	idJuego = scanInt();
+	int puntaje = (rand() % 10000) + 1;
+	int dia = 0;
+	int	mes = 0;
+	int	anio = 0;
 
-	printf("Ingrese ID de la Categoria\n >>> ");
-	idCategoria = scanInt();
 
-	printf("Ingrese puntaje\n>>> ");
-	puntaje = scanFloat();
+	while (dia <= 0 || dia >= 32)
+	{
+		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
+		printf("DIA: >>> ");
+		scanf("%d", &dia);
+		if (dia <= 0 || dia >= 32)
+		{
+			printf("--Dia no valido.\n");
+			system("pause");
+			system("cls");
+		}
 
-	printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n>>> ");
-	scanf("%d/%d/%d", &d, &m, &a);
+	}
 
-	int control = registrarNominacion(idJuego, idCategoria, puntaje, d, m, a);
+	printf("Dia cargado con exito!\n");
+	system("pause");
+	system("cls");
+
+	while (mes <= 0 || mes >= 13)
+	{
+		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
+		printf("MES: >>> ");
+		scanf("%d", &mes);
+		if (mes <= 0 || mes >= 13)
+		{
+			printf("--Mes no valido.\n");
+			system("pause");
+			system("cls");
+		}
+	}
+
+	printf("Mes cargado con exito!\n");
+	system("pause");
+	system("cls");
+
+	while (anio <= 1950 || anio >= 2051)
+	{
+		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
+		printf("ANIO: >>> ");
+		scanf("%d", &anio);
+		if (anio <= 1950 || anio >= 2051)
+		{
+			printf("--Anio no valido.\n");
+			system("pause");
+			system("cls");
+		}
+	}
+
+	printf("Anio cargado con exito!\n");
+	system("pause");
+	system("cls");
+
+
+	int control = registrarNominacion(puntaje, dia, mes, anio);
 
 	if (control == -2)
 	{

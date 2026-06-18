@@ -9,6 +9,7 @@ int buscarJuegoPorId(int id);
 int darDeBajaJuego(int id);
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos);
 void exportarJuegosATexto(char rutaTexto[]);
+void ordenarJuegosPorId(Juego arreglo[], int validos);
 
 
 #endif
