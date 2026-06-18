@@ -17,10 +17,36 @@ void mostrarListadoJuegos()
 
 	ordenarJuegosAlfabeticamente(lista, validos);
 
+	if (validos <= 0)
+	{
+		printf("\nNo hay Juegos cargados!.\n");
+		return;
+	}
 	printf("========== LISTADO DE JUEGOS ==========\n");
 
 	for(int i=0; i < validos; i++)
 	{ 
+		printf("ID: %d\n", lista[i].idJuego);
+		printf("Nombre: %s\n", lista[i].nombre);
+		printf("Estudio: %s\n", lista[i].estudio);
+		printf("Genero: %s\n", lista[i].genero);
+		printf("----------------------------------\n");
+	}
+
+	free(lista);
+}
+void mostrarListadoJuegosPorId()
+{
+	int validos = 0;
+
+	Juego* lista = obtenerListadoJuegosDinamico(&validos);
+	
+	ordenarJuegosPorId(lista, validos);
+
+	printf("========== LISTADO DE JUEGOS ==========\n");
+
+	for (int i = 0; i < validos; i++)
+	{
 		printf("ID: %d\n", lista[i].idJuego);
 		printf("Nombre: %s\n", lista[i].nombre);
 		printf("Estudio: %s\n", lista[i].estudio);
@@ -44,11 +70,12 @@ void mostrarListadoCategorias()
 
 	ordenarCategoriasAlfabeticamente(lista, validos);
 
+	int numCat = 0;
 	printf("========== LISTADO DE CATEGORIAS ==========\n");
 	for(int i = 0; i < validos; i++)
 	{ 
-		printf("ID: %d\n", lista[i].idCategoria);
-		printf("Nombre: %s\n", lista[i].nombre);
+		numCat = i+1;
+		printf("[%d] Nombre: %s\n", numCat, lista[i].nombre);
 		printf("----------------------------------\n");
 	}
 

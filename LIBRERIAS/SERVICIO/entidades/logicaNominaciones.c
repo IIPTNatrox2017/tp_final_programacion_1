@@ -1,11 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "../cabeceraEntidades/logicaNominaciones.h"
+#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 
-int registrarNominacion(int idJuego, int idCategoria, float puntajeValor, int d, int m, int a)
+int registrarNominacion(int puntajeValor, int d, int m, int a)
 {
+	int a;
 	printf("funcion no implementada\n");
 	return 0;
 }

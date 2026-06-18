@@ -45,7 +45,6 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 		*validos = 0;
 		return NULL;
 	}
-	int indice;
 
 	Juego* arregloJuegos;
 
@@ -62,6 +61,8 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 	}
 	
 	fseek(fp, 0, SEEK_SET);
+
+	int indice;
 
 	for (indice = 0; indice < *validos; indice++)
 	{
@@ -100,6 +101,7 @@ int darDeBajaJuego(int id)
 {
 	
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+
 	if (fp == NULL)
 	{
 		return -1;
@@ -150,7 +152,9 @@ void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 		return;
 	}
 	int i, j, indice;
+
 	Juego temporal;
+
 	for (i = 0; i < validos - 1; i++)
 	{
 		indice = i;
@@ -162,6 +166,35 @@ void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 			}
 		}
 		if(indice != i)
+		{
+			temporal = arreglo[i];
+			arreglo[i] = arreglo[indice];
+			arreglo[indice] = temporal;
+		}
+	}
+}
+
+void ordenarJuegosPorId(Juego arreglo[], int validos)
+{
+	if (arreglo == NULL || validos <= 1)
+	{
+		return;
+	}
+	int i, j, indice;
+
+	Juego temporal;
+
+	for (i = 0; i < validos - 1; i++)
+	{
+		indice = i;
+		for (j = i + 1; j < validos; j++)
+		{
+			if (compararJuegosPorId(arreglo[j], arreglo[indice]) < 0)
+			{
+				indice = j;
+			}
+		}
+		if (indice != i)
 		{
 			temporal = arreglo[i];
 			arreglo[i] = arreglo[indice];

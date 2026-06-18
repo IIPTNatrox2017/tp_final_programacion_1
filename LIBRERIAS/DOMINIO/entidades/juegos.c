@@ -35,3 +35,14 @@ int compararJuegosPorNombre(Juego j1, Juego j2)
 	resultado = _strcmpi(j1.nombre, j2.nombre);
 	return resultado;
 }
+
+int compararJuegosPorId(Juego j1, Juego j2)
+{
+	int menor = j1.idJuego;
+	
+	if (j2.idJuego < menor)
+	{
+		menor = j2.idJuego;
+	}
+	return menor;
+}

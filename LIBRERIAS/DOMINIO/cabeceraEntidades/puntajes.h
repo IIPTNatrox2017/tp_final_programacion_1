@@ -3,7 +3,7 @@
 
 typedef struct stPuntaje
 {
-    float valor;
+    int valor;
     int esValido;
 } Puntaje;
 
