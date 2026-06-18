@@ -7,6 +7,7 @@
 #include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
+#include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
 
 void mostrarListadoJuegos()
 {
@@ -58,7 +59,24 @@ void mostrarRankingNominacionesUI()
 {
 	printf("Todavia no se implemento esta funcion.\n");
 }
+
 void formularioExportarArchivos()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	char opcion;
+
+	printf("Desea exportar los archivos? (s/n)\n>>> ");
+	scanf(" %c", &opcion);
+
+	if(opcion == 's' || opcion == 'S')
+	{
+		exportarJuegosATexto("Juegos.txt");
+		exportarCategoriasATexto("Categorias.txt");
+		exportarNominacionesATexto("Nominaciones.txt");
+
+		printf("\nArchivos guardados en la carpeta del proyecto.\n");
+	}
+	else
+	{
+		printf("\nOperacion Cancelada.\n");
+	}
 }
