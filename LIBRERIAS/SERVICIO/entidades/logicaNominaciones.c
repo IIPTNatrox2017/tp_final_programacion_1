@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "../cabeceraEntidades/logicaNominaciones.h"
+#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include <stdio.h>
 #include <stdlib.h>
 
