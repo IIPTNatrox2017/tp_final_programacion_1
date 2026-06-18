@@ -37,4 +37,40 @@ void exportarCategoriasATexto(char rutaTexto[])
 {
 	printf("funcion no implementada\n");
 }
+Categoria* obtenerListadoCategoriasDinamico(int* validos)
+{
+	FILE* fp = fopen (ARCHIVO_CATEGORIAS, "rb");
+
+	if (!fp)
+	{
+		*validos = 0;
+		return 0;
+	}
+	int indice; 
+
+	Juego* arregloCategorias;
+
+	fseek(fp, 0, SEEK_END);
+
+	*validos = ftell(fp) / sizeof(Categoria);
+
+	arregloCategorias = (Categoria*)malloc((*validos) * sizeof(Categoria));
+	if(arregloCategorias == NULL)
+	{
+		fclose(fp);
+		*validos = 0;
+		return NULL;
+	}
+
+	fseek(fp, 0, SEEK_SET);
+
+	for (indice = 0; indice < *validos; indice++)
+	{
+		fread(&arregloCategorias, sizeof(Categoria), 1, fp);
+	}
+
+	fclose(fp);
+
+	return arregloCategorias;
+}
 
