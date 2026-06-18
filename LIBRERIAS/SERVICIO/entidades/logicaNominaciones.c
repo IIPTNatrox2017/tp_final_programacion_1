@@ -222,3 +222,34 @@ int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a)
 
 	return exito;
 }
+
+int bajaNominacion(int idNominacion)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb+");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Nominacion aux;
+	int exito = -1;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0 && exito == -1)
+	{
+		if (aux.idNominacion == idNominacion)
+		{
+			aux.idNominacion = -1;
+
+			fseek(fp, sizeof(Nominacion), SEEK_CUR);
+
+			fwrite(&aux, sizeof(Nominacion), 1, fp);
+
+			exito = 1;
+		}
+	}
+
+	fclose(fp);
+
+	return exito;
+}
