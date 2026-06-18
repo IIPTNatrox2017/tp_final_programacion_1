@@ -232,3 +232,35 @@ void exportarJuegosATexto(char rutaTexto[])
 	
 }
 
+int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevoGenero[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Juego aux;
+	int exito = -1;
+
+	while (fread(&aux, sizeof(Juego), 1, fp) > 0 && exito == -1)
+	{
+		if (aux.idJuego == idJuego)
+		{
+			strcpy(aux.nombre, nuevoNombre);
+			strcpy(aux.estudio, nuevoEstudio);
+			strcpy(aux.genero, nuevoGenero);
+
+			fseek(fp, sizeof(Juego), SEEK_CUR);
+
+			fwrite(&aux, sizeof(Juego), 1, fp);
+
+			exito = 1;
+		}
+	}
+
+	fclose(fp);
+
+	return exito;
+}

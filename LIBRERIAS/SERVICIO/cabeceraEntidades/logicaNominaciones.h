@@ -6,6 +6,8 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 int existeNominacionDuplicada(int idJuego, int idCategoria);
 Pila obtenerRankingNominaciones();
 void exportarNominacionesATexto(char rutaTexto[]);
+int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a);
+
 
 #endif
 
