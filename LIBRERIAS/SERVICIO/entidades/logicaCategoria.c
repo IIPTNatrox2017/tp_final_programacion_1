@@ -2,6 +2,7 @@
 #include "../cabeceraEntidades/logicaCategoria.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 
 #define ARCHIVO_CATEGORIAS "categorias.bin"
@@ -46,10 +47,32 @@ int buscarCategoriaPorId(int id)
 	fclose(fp);
 	return -1;
 }
+
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos)
 {
-	printf("funcion no implementada\n");
+	int posMenor;
+	Categoria aux;
+
+	for(int i = 0; i < validos - 1; i++)
+	{ 
+		posMenor = i;
+		
+		for(int j = i + 1; j < validos; j++)
+		{
+			if (strcmp(arreglo[j].nombre, arreglo[posMenor].nombre) < 0)
+			{
+				posMenor = j;
+			}
+		}
+		if (posMenor != i)
+		{
+			aux = arreglo[i];
+			arreglo[i] = arreglo[posMenor];
+			arreglo[posMenor] = aux;
+		}
+	}
 }
+
 void exportarCategoriasATexto(char rutaTexto[])
 {
 	printf("funcion no implementada\n");
