@@ -171,6 +171,31 @@ void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 }
 void exportarJuegosATexto(char rutaTexto[])
 {
-	printf("funcion no implementada\n");
+	FILE* fb = fopen(ARCHIVO_JUEGOS, "rb");
+	if(fb == NULL)
+	{
+		
+		return;
+	}
+	FILE* ft = fopen(rutaTexto, "w");
+	if (ft == NULL)
+	{
+		fclose(fb);
+		return;
+	}
+	Juego juego;
+	while (fread(&juego, sizeof(Juego), 1, fb) == 1)
+	{
+		if (juego.idJuego == -1)
+		{
+			continue;
+		}
+		
+		fprintf(ft, "ID: %d\nNombre: %s\nEstudio: %s\nGenero: %s\n\n", juego.idJuego, juego.nombre, juego.estudio, juego.genero);
+		
+	}
+	fclose(fb);
+	fclose(ft);
+	
 }
 
