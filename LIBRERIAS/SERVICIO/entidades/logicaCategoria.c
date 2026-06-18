@@ -172,3 +172,34 @@ int bajaCategoria(int idCategoria)
 
 	return exito;
 }
+
+int modificarCategoria(int idCategoria, char nuevoNombre[])
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb+");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Categoria aux;
+	int exito = -1;
+
+	while (fread(&aux, sizeof(Categoria), 1, fp) > 0 && exito == -1)
+	{
+		if (aux.idCategoria == idCategoria)
+		{
+			strcpy(aux.nombre, nuevoNombre);
+
+			fseek(fp, sizeof(Categoria), SEEK_CUR);
+
+			fwrite(&aux, sizeof(Categoria), 1, fp);
+
+			exito = 1;
+		}
+	}
+
+	fclose(fp);
+
+	return exito;
+}
