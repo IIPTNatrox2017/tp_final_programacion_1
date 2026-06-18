@@ -7,20 +7,29 @@
 
 Nominacion crearNominacion(int id, Puntaje p, FechaLanzamiento f)
 {
-	printf("todavia no se implemento la funcion\n");
 	Nominacion n = { 0 };
+
+	n.idNominacion = id;
+	n.puntaje = p;
+	n.fecha = f;
+
 	return n;
 }
 void modificarPuntajeNominacion(Nominacion* n, Puntaje nuevoPuntaje)
 {
-	printf("todavia no se implemento la funcion\n");
+	n->puntaje = nuevoPuntaje;
 }
 void modificarFechaNominacion(Nominacion* n, FechaLanzamiento nuevaFecha)
 {
-	printf("todavia no se implemento la funcion\n");
+	n->fecha = nuevaFecha;
 }
 int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2)
 {
-	printf("todavia no se implemento la funcion\n");
-	return 0;
+	int encontrado = 0;
+
+	if(n1.juego.idJuego == n2.juego.idJuego && n1.categoria.idCategoria == n2.categoria.idCategoria)
+	{
+		encontrado = 1;
+	}
+	return encontrado;
 }
