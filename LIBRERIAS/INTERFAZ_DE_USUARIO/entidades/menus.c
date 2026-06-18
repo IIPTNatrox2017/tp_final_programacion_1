@@ -5,10 +5,14 @@
 #include "../cabeceraEntidades/menus.h"
 #include <stdio.h>
 #include "../../Librerias Externas/scanner.h"
-#include "../cabeceraEntidades/interfazEntrada.h"
-#include "../cabeceraEntidades/interfazSalida.h"
+#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
+#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
+#include "../../DOMINIO/gestorEventos.h"
+#include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
 
 #define DIM_MAX_NOMBRES 50
+#define ARCHIVO_JUEGOS "juegos.bin"
+#define ARCHIVO_CATEGORIAS "categorias.bin"
 
 //ESTA CAPA SERA LA UNICA ENCARGADA DE SOLICITAR DATOS AL USUARIO.
 // SE RECOMIENDA EL USO RESPONSABLE DE IA.
@@ -44,7 +48,7 @@ int pedirOpcion()
 {
 	int opcion;
 
-	printf("Ingrese una opcion>> ");
+	printf("Ingrese una opcion\n >>> ");
 	opcion = scanInt();
 
 	return opcion;
@@ -65,6 +69,7 @@ void ejecutarOpcion(int opcion)
 		{
 			system("cls");
 			subMenuCategorias();
+			
 			system("pause");
 			break;
 		}
@@ -86,6 +91,7 @@ void ejecutarOpcion(int opcion)
 			system("cls");
 			printf("Opcion invalida. Por favor, intente de nuevo.\n");
 			system("pause");
+			system("cls");
 			break;
 		}
 	}
@@ -102,10 +108,12 @@ void subMenuJuegos()
 		printf("      MENU JUEGOS\n");
 		printf("===========================\n");
 
-		printf("1. Alta Juego\n");
-		printf("2. Listado de Juegos\n");
+		printf("1. Cargar un juego al archivo.\n");
+		printf("2. Listado de Juegos Alfabaticamente (A-Z)\n");
+		printf("3. Ordenar juegos por ID.\n");
+		printf("4. Vaciar Archivo juegos.\n");
 		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion>> ");
+		printf("Ingrese una opcion\n>>> ");
 		opcion = scanInt();
 
 		switch (opcion)
@@ -114,12 +122,28 @@ void subMenuJuegos()
 		{
 			system("cls");
 			formularioAltaJuego();
+			system("pause");
 			break;
 		}
 		case 2:
 		{
-			system("cls");
 			mostrarListadoJuegos();
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 3:
+		{
+			system("cls");
+			mostrarListadoJuegosPorId();
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			system("cls");
+			abrirArchivoLimpio(ARCHIVO_JUEGOS);
+			system("pause");
 			break;
 		}
 		case 0:
@@ -132,7 +156,8 @@ void subMenuJuegos()
 		{
 			system("cls");
 			printf("Opcion invalida. Por favor, intente de nuevo.\n");
-			break;
+			system("pause");
+			system("cls");
 		}
 
 		} 
@@ -151,10 +176,11 @@ void subMenuCategorias()
 		printf("      MENU CATEGORIAS\n");
 		printf("===========================\n");
 
-		printf("1. Alta Categoria.\n");
+		printf("1. Cargar una Categoria al archivo.\n");
 		printf("2. Listado Categorias.\n");
+		printf("3. Abrir archivo limpio.\n");
 		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion>> ");
+		printf("Ingrese una opcion\n>>> ");
 		opcion = scanInt();
 
 		switch (opcion)
@@ -163,14 +189,27 @@ void subMenuCategorias()
 		{
 			system("cls");
 			formularioAltaCategoria();
+			system("pause");
+			system("cls");
 			break;
 		}
 		case 2:
 		{
 			system("cls");
 			mostrarListadoCategorias();
+			system("pause");
+			system("cls");
 			break;
 		}
+		case 3:
+		{
+			system("cls");
+			abrirArchivoLimpio(ARCHIVO_CATEGORIAS);
+			system("pause");
+			system("cls");
+			break;
+		}
+
 		case 0:
 		{
 			system("cls");
@@ -180,8 +219,9 @@ void subMenuCategorias()
 		default:
 		{
 			system("cls");
-			printf("Opcion invalidad. Por favor, intente de nuevo.\n");
-			break;
+			printf("Opcion invalida. Por favor, intente de nuevo.\n");
+			system("pause");
+			system("cls");
 		}
 
 		}
@@ -202,7 +242,7 @@ void subMenuNominaciones()
 		printf("1. Registrar Nominacion.\n");
 		printf("2. Ranking Nominaciones.\n");
 		printf("0. Volver al Menu Principal\n");
-		printf("Ingrese una opcion>> ");
+		printf("Ingrese una opcion\n >>> ");
 		opcion = scanInt();
 
 		switch (opcion)
@@ -217,6 +257,8 @@ void subMenuNominaciones()
 		{
 			system("cls");
 			mostrarRankingNominacionesUI();
+			system("pause");
+			system("cls");
 			break;
 		}
 		case 0:
@@ -229,6 +271,8 @@ void subMenuNominaciones()
 		{
 			system("cls");
 			printf("Opcion invalida. Por favor, intente de nuevo.\n");
+			system("pause");
+			system("cls");
 			break;
 		}
 		}

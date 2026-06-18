@@ -5,10 +5,11 @@
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 
 
-int cargarNuevaCategoria(char nombre[], int id);
+int cargarNuevaCategoria(char nombre[]);
 Categoria* obtenerListadoCategoriasDinamico(int* validos);
 int buscarCategoriaPorId(int id);
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos);
 void exportarCategoriasATexto(char rutaTexto[]);
+
 
 #endif

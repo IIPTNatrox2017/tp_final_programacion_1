@@ -8,8 +8,8 @@ typedef struct stCategoria
 } Categoria;
 
 
-Categoria crearCategoria(int id, char nombre[]);
+Categoria crearCategoria(char nombre[]);
 void modificarNombreCategoria(Categoria* c, char nuevoNombre[]);
 int compararCategoriasPorNombre(Categoria c1, Categoria c2);
-
+void modificarIDcategoria(Categoria* c, int idNuevo);
 #endif

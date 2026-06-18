@@ -1,15 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "../cabeceraEntidades/puntajes.h"
 
-#define VAL_MIN 0.0f
-#define VAL_MAX 100.0f
+#define VAL_MIN 0
+#define VAL_MAX 100
 
-Puntaje crearPuntaje(float valor)
+Puntaje crearPuntaje(int valor)
 {
 	Puntaje nuevoPuntaje;
 	if (valor < VAL_MIN || valor > VAL_MAX)
 	{
-		nuevoPuntaje.valor = 0.0;
+		nuevoPuntaje.valor = 0;
 		nuevoPuntaje.esValido = 0;
 	}
 	else

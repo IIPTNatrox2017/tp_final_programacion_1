@@ -5,12 +5,11 @@
 #include <string.h>
 
 
-Categoria crearCategoria(int id, char nombre[])
+Categoria crearCategoria(char nombre[])
 {
 	Categoria nuevaCategoria;
 	
 	strcpy(nuevaCategoria.nombre, nombre);
-	nuevaCategoria.idCategoria = id;
 
 	return nuevaCategoria;
 }
@@ -23,4 +22,9 @@ int compararCategoriasPorNombre(Categoria c1, Categoria c2)
 	int resultado;
 	resultado = _strcmpi(c1.nombre, c2.nombre);
 	return resultado;
+}
+
+void modificarIDcategoria(Categoria* c, int idNuevo)
+{
+	c->idCategoria = idNuevo;
 }

@@ -5,7 +5,7 @@
 
 #define ARCHIVO_NOMINACIONES "nominaciones.bin"
 
-int registrarNominacion(int idJuego, int idCategoria, float puntajeValor, int d, int m, int a)
+int registrarNominacion(int puntajeValor, int d, int m, int a)
 {
 	FILE *fp = fopen(ARCHIVO_NOMINACIONES, "rb");
 
