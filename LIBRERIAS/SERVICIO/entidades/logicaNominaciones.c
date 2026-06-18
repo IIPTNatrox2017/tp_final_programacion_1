@@ -9,7 +9,7 @@ int registrarNominacion(int puntajeValor, int d, int m, int a)
 {
 	FILE *fp = fopen(ARCHIVO_NOMINACIONES, "rb");
 
-	if (existeNominacionDuplicada(idJuego, idCategoria))
+	if(existeNominacionDuplicada(idJuego, idCategoria))
     {
 		return -2;
 	}
