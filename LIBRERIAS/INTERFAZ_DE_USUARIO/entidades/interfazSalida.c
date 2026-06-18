@@ -115,8 +115,8 @@ void mostrarRankingNominacionesUI()
 	{
 		int idJuegoBuscado = desapilar(&rankings);
 
-		char nombreJuego[50] = {};
-		char estudioJuego[50] = {};
+		char nombreJuego[50] = { };
+		char estudioJuego[50] = { };
 
 
 
@@ -155,4 +155,13 @@ void formularioExportarArchivos()
 	{
 		printf("\nOperacion Cancelada.\n");
 	}
+}
+
+void mostrarJuego(Juego aux)
+{
+	printf("ID: %d\n", aux.idJuego);
+	printf("Nombre: %s\n", aux.nombre);
+	printf("Estudio: %s\n",aux.estudio);
+	printf("Genero: %s\n",aux.genero);
+	printf("----------------------------------\n");
 }

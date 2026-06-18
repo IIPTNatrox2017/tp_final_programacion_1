@@ -8,6 +8,7 @@
 #include "../../DOMINIO/cabeceraEntidades/juegos.h"
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/puntajes.h"
+#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
 
 #define ARCHIVO_JUEGOS "juegos.bin"
 
@@ -263,4 +264,27 @@ int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevo
 	fclose(fp);
 
 	return exito;
+}
+
+void mostrarJuegosPorGenero(char genero[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Juego aux;
+
+	while (fread(&aux, sizeof(Juego), 1, fp) > 0)
+	{
+		if (aux.idJuego != -1 &&
+			strcmp(aux.genero, genero) == 0)
+		{
+			mostrarJuego(aux);
+		}
+	}
+
+	fclose(fp);
 }
