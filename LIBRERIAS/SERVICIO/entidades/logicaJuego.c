@@ -100,6 +100,7 @@ int darDeBajaJuego(int id)
 {
 	
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+
 	if (fp == NULL)
 	{
 		return -1;
