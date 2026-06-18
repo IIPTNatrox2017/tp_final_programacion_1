@@ -14,7 +14,7 @@
 #define DIM_MAX_NOMBRES 50
 #define ARCHIVO_JUEGOS "juegos.bin"
 #define ARCHIVO_CATEGORIAS "categorias.bin"
-
+#define ARCHIVO_NOMINACIONES "nominaciones.bin"
 //ESTA CAPA SERA LA UNICA ENCARGADA DE SOLICITAR DATOS AL USUARIO.
 // SE RECOMIENDA EL USO RESPONSABLE DE IA.
 // TODO EL CODIGO ENTREGADO DEBE PODER SER DEFENDIDO POR CUALQUIER INTEGRANTE DEL GRUPO.
@@ -303,12 +303,22 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 		{
 			system("cls");
 			formularioRegistrarNominacion();
+			system("pause");
+			system("cls");
 			break;
 		}
 		case 2:
 		{
 			system("cls");
 			mostrarRankingNominacionesUI();
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 3:
+		{
+			system("cls");
+			abrirArchivoLimpio(ARCHIVO_NOMINACIONES);
 			system("pause");
 			system("cls");
 			break;
@@ -328,4 +338,11 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 			break;
 		}
 	}
+}
+
+void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[])
+{
+	printf(" %d PUESTO: %s\n", puesto, nombreJuego);
+	printf("    ESTUDIO: %s\n,", estudioJuego);
+	printf("\n------------------------------------\n");
 }

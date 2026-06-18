@@ -5,7 +5,7 @@
 #include "../../Librerias Externas/scanner.h"
 #include <stdio.h>
 
-Nominacion crearNominacion(int id, Puntaje p, FechaLanzamiento f)
+Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f)
 {
 	printf("todavia no se implemento la funcion\n");
 	Nominacion n = { 0 };

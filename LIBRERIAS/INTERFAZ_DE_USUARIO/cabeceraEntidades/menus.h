@@ -21,4 +21,5 @@ void subMenuNominaciones();
 int pedirOpcionSubMenuNominaciones();
 void ejecutarOpcionSubMenuNominaciones(int opcion);
 void mostrarSubMenuNominaciones();
+void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
 #endif // !1

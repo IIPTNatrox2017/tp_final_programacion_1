@@ -8,6 +8,9 @@
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
+#include "../../Librerias Externas/scanner.h"
+#include <string.h>
+#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/menus.h"
 
 void mostrarListadoJuegos()
 {
@@ -84,7 +87,53 @@ void mostrarListadoCategorias()
 
 void mostrarRankingNominacionesUI()
 {
-	printf("Todavia no se implemento esta funcion.\n");
+	Pila rankings;
+	inicpila(&rankings);
+
+	rankings = obtenerRankingNominaciones();
+
+
+	if (pilavacia(&rankings))
+	{
+		printf("\n No hay nominaciones registradas para armar el ranking.\n");
+		return;
+	}
+	
+	int juegosTotales = 0;
+
+	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
+
+
+	if (listaJuegos == NULL)
+	{
+		return;
+	}
+
+	int puesto = 1;
+
+	while (!pilavacia(&rankings))
+	{
+		int idJuegoBuscado = desapilar(&rankings);
+
+		char nombreJuego[50] = {};
+		char estudioJuego[50] = {};
+
+
+
+		for (int i = 0; i < juegosTotales; i++)
+		{
+			if (listaJuegos[i].idJuego == idJuegoBuscado)
+			{
+				strcpy(nombreJuego, listaJuegos[i].nombre);
+				strcpy(estudioJuego, listaJuegos[i].estudio);
+			}
+		}
+		
+		menuPuestosPila(puesto, nombreJuego, estudioJuego);
+		puesto++;
+	}
+
+	free(listaJuegos);
 }
 
 void formularioExportarArchivos()

@@ -96,6 +96,8 @@ void formularioRegistrarNominacion()
 {
 	srand(time(NULL));
 
+	int idJuego = 0;
+	int idCategoria = 0;
 	int puntaje = (rand() % 10000) + 1;
 	int dia = 0;
 	int	mes = 0;
@@ -154,8 +156,7 @@ void formularioRegistrarNominacion()
 	system("pause");
 	system("cls");
 
-
-	int control = registrarNominacion(puntaje, dia, mes, anio);
+	int control = registrarNominacion(idJuego, idCategoria, puntaje, dia, mes, anio);
 
 	if (control == -2)
 	{
