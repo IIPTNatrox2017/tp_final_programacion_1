@@ -38,44 +38,54 @@ int cargarNuevoJuego(char nombre[], char estudio[], char genero[])
 	
 	return 1;
 }
+
 Juego* obtenerListadoJuegosDinamico(int* validos)
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+
 	if (fp == NULL)
 	{
 		*validos = 0;
 		return NULL;
 	}
 
-	Juego* arregloJuegos;
-
 	fseek(fp, 0, SEEK_END);
-	 
-	*validos = ftell(fp) / sizeof(Juego);
 
-	arregloJuegos = (Juego*)malloc(*validos * sizeof(Juego));
+	int totalRegistros =
+		ftell(fp) / sizeof(Juego);
+
+	rewind(fp);
+
+	Juego* arregloJuegos =
+		(Juego*)malloc(sizeof(Juego) * totalRegistros);
+
 	if (arregloJuegos == NULL)
 	{
 		fclose(fp);
 		*validos = 0;
 		return NULL;
 	}
-	
-	fseek(fp, 0, SEEK_SET);
 
-	int indice;
+	Juego aux;
 
-	for (indice = 0; indice < *validos; indice++)
+	int i = 0;
+
+	while (fread(&aux, sizeof(Juego), 1, fp) > 0)
 	{
-		fread(&arregloJuegos[indice], sizeof(Juego), 1, fp);
+		if (aux.idJuego != -1)
+		{
+			arregloJuegos[i] = aux;
+			i++;
+		}
 	}
-	
+
 	fclose(fp);
 
+	*validos = i;
+
 	return arregloJuegos;
-
-
 }
+
 int buscarJuegoPorId(int id)
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");

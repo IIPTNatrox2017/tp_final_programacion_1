@@ -92,17 +92,16 @@ void mostrarRankingNominacionesUI()
 
 	rankings = obtenerRankingNominaciones();
 
-
 	if (pilavacia(&rankings))
 	{
-		printf("\n No hay nominaciones registradas para armar el ranking.\n");
+		printf("\nNo hay nominaciones registradas.\n");
 		return;
 	}
-	
+
 	int juegosTotales = 0;
 
-	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
-
+	Juego* listaJuegos =
+		obtenerListadoJuegosDinamico(&juegosTotales);
 
 	if (listaJuegos == NULL)
 	{
@@ -113,28 +112,47 @@ void mostrarRankingNominacionesUI()
 
 	while (!pilavacia(&rankings))
 	{
-		int idJuegoBuscado = desapilar(&rankings);
+		int idJuegoBuscado =
+			desapilar(&rankings);
 
-		char nombreJuego[50] = { };
-		char estudioJuego[50] = { };
-
-
+		char nombreJuego[50] = "";
+		char estudioJuego[50] = "";
 
 		for (int i = 0; i < juegosTotales; i++)
 		{
 			if (listaJuegos[i].idJuego == idJuegoBuscado)
 			{
-				strcpy(nombreJuego, listaJuegos[i].nombre);
-				strcpy(estudioJuego, listaJuegos[i].estudio);
+				strcpy(nombreJuego,
+					listaJuegos[i].nombre);
+
+				strcpy(estudioJuego,
+					listaJuegos[i].estudio);
+
+				break;
 			}
 		}
-		
-		menuPuestosPila(puesto, nombreJuego, estudioJuego);
+
+		int cantidad =
+			contarNominacionesJuego(idJuegoBuscado);
+
+		printf(
+			"\n%d Puesto"
+			"\nJuego: %s"
+			"\nEstudio: %s"
+			"\nCantidad de nominaciones: %d"
+			"\n-------------------------\n",
+			puesto,
+			nombreJuego,
+			estudioJuego,
+			cantidad
+		);
+
 		puesto++;
 	}
 
 	free(listaJuegos);
 }
+
 
 void formularioExportarArchivos()
 {
@@ -163,5 +181,15 @@ void mostrarJuego(Juego aux)
 	printf("Nombre: %s\n", aux.nombre);
 	printf("Estudio: %s\n",aux.estudio);
 	printf("Genero: %s\n",aux.genero);
+	printf("----------------------------------\n");
+}
+
+void mostrarNominacion(Nominacion aux)
+{
+	printf("ID: %d\n", aux.idNominacion);
+	printf("FECHA LANZAMIENTO: ");
+	printf("%d", aux.fecha.dia);
+	printf("%d", aux.fecha.mes);
+	printf("%d\n", aux.fecha.anio);
 	printf("----------------------------------\n");
 }

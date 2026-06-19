@@ -8,6 +8,8 @@
 
 #define ARCHIVO_NOMINACIONES "nominaciones.bin"
 
+
+
 int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, int m, int a)
 {
 	if (buscarJuegoPorId(idJuego) == -1)
@@ -60,6 +62,7 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 	fclose(fp);
 	return 1;
 }
+
 int existeNominacionDuplicada(int idJuego, int idCategoria)
 {
 	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
@@ -85,62 +88,65 @@ int existeNominacionDuplicada(int idJuego, int idCategoria)
 
 Pila obtenerRankingNominaciones()
 {
-	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
-
 	Pila p;
 	inicpila(&p);
 
-	if (fp == NULL)
+	int juegosTotales = 0;
+
+	Juego* listaJuegos =
+		obtenerListadoJuegosDinamico(&juegosTotales);
+
+	if (listaJuegos == NULL)
 	{
 		return p;
 	}
 
-	fseek(fp, 0, SEEK_END);
-	int total = ftell(fp) / sizeof(Nominacion);
+	RankingJuego* ranking =
+		(RankingJuego*)malloc(sizeof(RankingJuego) * juegosTotales);
 
-	if (total == 0)
+	if (ranking == NULL)
 	{
-		fclose(fp);
+		free(listaJuegos);
 		return p;
 	}
 
-	
-	Nominacion* arreglo = (Nominacion*)malloc(total * sizeof(Nominacion));
-	fseek(fp, 0, SEEK_SET);
-	fread(arreglo, sizeof(Nominacion), total, fp);
-	fclose(fp); 
+	int i;
+	int j;
 
-	int i, j, posMin;
-	for (i = 0; i < total - 1; i++)
+	for (i = 0; i < juegosTotales; i++)
 	{
-		posMin = i;
-		for (j = i + 1; j < total; j++)
+		ranking[i].idJuego = listaJuegos[i].idJuego;
+
+		ranking[i].cantidad =
+			contarNominacionesJuego(listaJuegos[i].idJuego);
+	}
+
+	RankingJuego aux;
+
+	for (i = 0; i < juegosTotales - 1; i++)
+	{
+		for (j = i + 1; j < juegosTotales; j++)
 		{
-			
-			if (arreglo[j].puntaje.valor < arreglo[posMin].puntaje.valor)
+			if (ranking[j].cantidad >
+				ranking[i].cantidad)
 			{
-				posMin = j;
+				aux = ranking[i];
+				ranking[i] = ranking[j];
+				ranking[j] = aux;
 			}
 		}
-		if (posMin != i)
-		{
-			Nominacion aux = arreglo[i];
-			arreglo[i] = arreglo[posMin];
-			arreglo[posMin] = aux;
-		}
 	}
 
-	for (i = 0; i < total; i++)
+	for (i = juegosTotales - 1; i >= 0; i--)
 	{
-		apilar(&p, arreglo[i].idJuego);
+		apilar(&p, ranking[i].idJuego);
 	}
 
-	
-	free(arreglo);
+	free(ranking);
+	free(listaJuegos);
 
-	return p; 
+	return p;
 }
-
 void exportarNominacionesATexto(char rutaTexto[])
 {
 	FILE *fp = fopen(ARCHIVO_NOMINACIONES, "rb");
@@ -252,4 +258,52 @@ int bajaNominacion(int idNominacion)
 	fclose(fp);
 
 	return exito;
+}
+
+void mostrarNominacionesPorCategoria(int idCategoria)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Nominacion aux;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		if (aux.idCategoria == idCategoria)
+		{
+			mostrarNominacion(aux);
+		}
+	}
+
+	fclose(fp);
+}
+
+int contarNominacionesJuego(int idJuego)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (fp == NULL)
+	{
+		return 0;
+	}
+
+	Nominacion aux;
+	int contador = 0;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		if (aux.idNominacion != -1 &&
+			aux.idJuego == idJuego)
+		{
+			contador++;
+		}
+	}
+
+	fclose(fp);
+
+	return contador;
 }
