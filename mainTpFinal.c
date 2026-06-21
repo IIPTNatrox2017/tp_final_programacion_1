@@ -16,6 +16,7 @@
 #include  "LIBRERIAS/INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazEntrada.h"
 #include "LIBRERIAS/INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
 
+
 int main()
 {
     menuPrincipal();

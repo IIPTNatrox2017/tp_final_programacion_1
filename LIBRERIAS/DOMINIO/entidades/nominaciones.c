@@ -10,6 +10,8 @@ Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, Fech
 	Nominacion n = { 0 };
 
 	n.idNominacion = id;
+	n.idJuego = idJuego;
+	n.idCategoria = idCategoria;
 	n.puntaje = p;
 	n.fecha = f;
 

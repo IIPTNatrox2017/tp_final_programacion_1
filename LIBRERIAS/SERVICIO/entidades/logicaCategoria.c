@@ -204,3 +204,17 @@ int modificarCategoria(int idCategoria, char nuevoNombre[])
 	return exito;
 }
 
+int contarCategorias(char nombreArchivo[])
+{
+	FILE* fp = fopen(nombreArchivo, "rb");
+
+	if (!fp)
+	{
+		return 0;
+	}
+	fseek(fp, 0, SEEK_SET);
+
+	int cantCategorias = ftell(fp) / sizeof(Categoria);
+
+	fclose(fp);
+}

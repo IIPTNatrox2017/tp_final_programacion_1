@@ -16,5 +16,6 @@ int bajaNominacion(int idNominacion);
 void mostrarNominacionesPorCategoria(int idCategoria);
 Pila obtenerRankingNominaciones();
 int contarNominacionesJuego(int idJuego);
+
 #endif
 

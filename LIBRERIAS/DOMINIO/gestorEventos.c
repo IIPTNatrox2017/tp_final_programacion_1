@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include "gestorEventos.h"
+#include <string.h>
+
 
 #define DIM_MAX_NOMBRES 50
 
@@ -20,5 +22,22 @@ void abrirArchivoLimpio(char nombreArchivo[])
 	printf("El archivo se creo y/o abrio vacio.\n");
 
 	fclose(fp);
+}
+
+int validarNombres(char nombre[])
+{
+
+	int valido;
+
+	if(strlen(nombre) >= 1)
+	{
+		valido = 1;
+	}
+	else
+	{
+		valido = 0;
+	}
+
+	return valido;
 }
 

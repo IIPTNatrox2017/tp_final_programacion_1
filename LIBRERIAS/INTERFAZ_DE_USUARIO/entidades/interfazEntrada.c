@@ -8,6 +8,7 @@
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #include "../../Librerias Externas/scanner.h"
+#include "../../DOMINIO/gestorEventos.h"
 #include <time.h>
 
 #define DIM_MAX_NOMBRES 50
@@ -15,48 +16,84 @@
 
 void formularioAltaJuego()
 {
+
 	char nombre[DIM_MAX_NOMBRES];
 	char genero[DIM_MAX_NOMBRES];
 	char estudio[DIM_MAX_NOMBRES];
 
-	printf("Ingrese nombre\n >>> ");
-	scanString(nombre, DIM_MAX_NOMBRES);
-	int cantLetras = strlen(nombre);
+	int esValido = 0;
 
-	if (cantLetras < 1)
+	do
+	{ 
+		printf("Ingrese Nombre Juego\n >>> ");
+		scanString(nombre, DIM_MAX_NOMBRES);
+	
+		 esValido = validarNombres(nombre);
+
+		if (!esValido)
+		{
+			printf("Nombre no valido.\n");
+			system("pause");
+			system("cls");
+		}
+
+	} while (!esValido);
+
+	esValido = 0;
+
+	system("cls");
+	mostrarDatosJuegosCargados(nombre, genero, estudio);
+
+	do
+	{ 
+		printf("Ingrese Genero Juego\n >>> ");
+		scanString(genero, DIM_MAX_NOMBRES);
+	
+		 esValido = validarNombres(genero);
+
+		if (!esValido)
+		{
+			printf("Genero no valido.\n");
+			system("pause");
+
+		}
+
+	} while (!esValido);
+
+	esValido = 0;
+	system("cls");
+	mostrarDatosJuegosCargados(nombre, genero, estudio);
+
+	do
 	{
-		printf("\nNombre no valido\n");
-		return;
-	}
+		printf("Ingrese Estudio\n >>> ");
+		scanString(estudio, DIM_MAX_NOMBRES);
 
-	printf("Ingrese genero\n >>> ");
-	scanString(genero, DIM_MAX_NOMBRES);
-	cantLetras = strlen(genero);
+		esValido = validarNombres(estudio);
 
-	if (cantLetras <= 1)
-	{
-		printf("\nGenero no valido\n");
-		return;
-	}
+		if (!esValido)
+		{
+			printf("Estudio no valido.\n");
+			system("pause");
 
-	printf("Ingrese estudio\n >>> ");
-	scanString(estudio, DIM_MAX_NOMBRES);
-	cantLetras = strlen(estudio);
+		}
 
-	if (cantLetras < 1)
-	{
-		printf("\nEstudio no valido\n");
-		return;
-	}
+	} while (!esValido);
+
+	system("cls");
+	mostrarDatosJuegosCargados(nombre, genero, estudio);
+
 	int control = cargarNuevoJuego(nombre, estudio, genero);
 
 	if (control == 1)
 	{
 		printf("\nJuego guardado con exito!\n");
+
 	}
 	else
 	{
 		printf("\nError al intentar cargar el juego.\n");
+
 	}
 
 }
@@ -94,10 +131,10 @@ void formularioAltaCategoria()
 
 void formularioRegistrarNominacion()
 {
+	
 	srand(time(NULL));
-
-	int idJuego = 0;
-	int idCategoria = 0;
+	int idJuego = 1;
+	int idCategoria = 1;
 	int puntaje = (rand() % 10000) + 1;
 	int dia = 0;
 	int	mes = 0;
@@ -170,4 +207,34 @@ void formularioRegistrarNominacion()
 	{
 		printf("\nError al intentar registrar la nominacion.\n");
 	}
+}
+
+void mostrarDatosJuegosCargados(char nombre[], char genero[], char estudio[])
+{
+	static int indice = 0;
+
+	if (indice == 3)
+	{
+		indice = 0;
+	}
+
+	if (indice == 0)
+	{
+		printf("Nombre Cargado: [%s]\n", nombre);
+		indice++;
+	}
+	else if (indice == 1)
+	{
+		printf("Nombre Cargado: [%s]\n", nombre);
+		printf("Genero Cargado: [%s]\n", genero);
+		indice++;
+	}
+	else if (indice == 2)
+	{
+		printf("Nombre Cargado: [%s]\n", nombre);
+		printf("Genero Cargado: [%s]\n", genero);
+		printf("Estudio Cargado: [%s]\n", estudio);
+		indice++;
+	}
+
 }

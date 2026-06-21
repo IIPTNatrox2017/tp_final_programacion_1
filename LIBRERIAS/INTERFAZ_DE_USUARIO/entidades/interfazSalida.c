@@ -11,6 +11,7 @@
 #include "../../Librerias Externas/scanner.h"
 #include <string.h>
 #include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/menus.h"
+#include <time.h>
 
 void mostrarListadoJuegos()
 {
@@ -100,8 +101,7 @@ void mostrarRankingNominacionesUI()
 
 	int juegosTotales = 0;
 
-	Juego* listaJuegos =
-		obtenerListadoJuegosDinamico(&juegosTotales);
+	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
 
 	if (listaJuegos == NULL)
 	{
@@ -112,9 +112,8 @@ void mostrarRankingNominacionesUI()
 
 	while (!pilavacia(&rankings))
 	{
-		int idJuegoBuscado =
-			desapilar(&rankings);
-
+		srand(time(NULL));
+		int idJuegoBuscado = desapilar(&rankings);
 		char nombreJuego[50] = "";
 		char estudioJuego[50] = "";
 
@@ -131,21 +130,16 @@ void mostrarRankingNominacionesUI()
 				break;
 			}
 		}
+		int cantidad = contarNominacionesJuego(idJuegoBuscado);
 
-		int cantidad =
-			contarNominacionesJuego(idJuegoBuscado);
 
-		printf(
-			"\n%d Puesto"
-			"\nJuego: %s"
-			"\nEstudio: %s"
-			"\nCantidad de nominaciones: %d"
-			"\n-------------------------\n",
-			puesto,
-			nombreJuego,
-			estudioJuego,
-			cantidad
-		);
+		printf("\nNro Nominacion: [%d]", puesto);
+		printf("\nJuego %s", nombreJuego);
+		printf("\nEstudio: %s", estudioJuego);
+		printf("\nCantidad Nominaciones %d\n", cantidad);
+		
+		printf("\n-------------------------\n");
+
 
 		puesto++;
 	}

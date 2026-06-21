@@ -3,7 +3,7 @@
 
 
 void abrirArchivoLimpio(char nombreArchivo[]);
-
+int validarNombres(char nombre[]);
 
 
 

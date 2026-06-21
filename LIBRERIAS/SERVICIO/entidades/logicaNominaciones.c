@@ -5,6 +5,7 @@
 #include "../cabeceraEntidades/logicaCategoria.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define ARCHIVO_NOMINACIONES "nominaciones.bin"
 
@@ -284,26 +285,8 @@ void mostrarNominacionesPorCategoria(int idCategoria)
 
 int contarNominacionesJuego(int idJuego)
 {
-	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+	srand(time(NULL));
+	int puntaje = (rand() % 10000) + 1;
 
-	if (fp == NULL)
-	{
-		return 0;
-	}
-
-	Nominacion aux;
-	int contador = 0;
-
-	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
-	{
-		if (aux.idNominacion != -1 &&
-			aux.idJuego == idJuego)
-		{
-			contador++;
-		}
-	}
-
-	fclose(fp);
-
-	return contador;
+	return puntaje;
 }
