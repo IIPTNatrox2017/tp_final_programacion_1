@@ -14,7 +14,7 @@
 #include <ctype.h>
 #include <time.h>
 
-#define DIM_MAX_NOMBRES 500
+#define DIM_MAX_NOMBRES 50
 
 
 void formularioAltaJuego()
@@ -104,9 +104,8 @@ void formularioAltaJuego()
 
 	int indice = opcion - 1;
 
-	//
-	int control = cargarNuevoJuego(nombre, estudio, categorias[indice].idCategoria); /*cambiar genero por idCategoria*///categorias[indice].idCategoria.
-
+	
+	int control = cargarNuevoJuego(nombre, estudio, categorias[indice].idCategoria);
 	if (control == 1)
 	{
 		printf("\nJuego guardado con exito!\n");
@@ -266,8 +265,8 @@ void modificarJuegoArchivo()
 	int cantJuegos = 0;
 	Juego* juegos = obtenerListadoJuegosDinamico(&cantJuegos);
 
-	mostrarPosicionCero();
-	system("pause");
+	int cantCategorias = 0;
+	Categoria* categorias = obtenerListadoCategoriasDinamico(&cantCategorias);
 
 	if (cantJuegos == 0)
 	{
@@ -278,8 +277,6 @@ void modificarJuegoArchivo()
 	int esValido = 0;
 	int opcion = 0;
 
-	printf("%d cantJuegos\n", cantJuegos);
-	system("pause");
 	do
 	{
 		system("cls");
@@ -299,8 +296,10 @@ void modificarJuegoArchivo()
 		}
 
 	} while (!esValido);
-	
+
+
 	int indice = opcion - 1;
+	
 
 	system("cls");
 	mostrarJuego(juegos[indice]);
@@ -322,7 +321,29 @@ void modificarJuegoArchivo()
 		}
 		case 3:
 		{
+			int opcion1 = 0;
+			do
+			{
+				system("cls");
+				menuCategoriasDisponibles(categorias, cantCategorias);
+				opcion1 = pedirOpcion();
 
+				if (opcion1 < 1 || opcion1 > cantCategorias)
+				{
+					printf("Opcion no valida. Intente de nuevo por favor.\n");
+					system("pause");
+					system("cls");
+					menuCategoriasDisponibles(categorias, cantCategorias);
+				}
+				else
+				{
+					esValido = 1;
+				}
+
+			} while (!esValido);
+
+			int indiceCat = opcion1 - 1;
+			ejecutarModificacionCategoria(juegos[indice].idJuego, categorias[indiceCat].idCategoria);
 			break;
 		}
 	}
@@ -344,18 +365,9 @@ void ejecutarModificacionNombreJuego(int idJuego)
 	modificarJuegoPorNombre(idJuego, nombre);
 }
 
-void ejecutarModificarCategoria(int idJuego, int idCategoria)
+void ejecutarModificacionCategoria(int idJuego, int idCategoria)
 {
 
+	modificarJuegoPorCategoria(idJuego, idCategoria);
 }
 
-void mostrarPosicionCero()
-{
-	int validos = 0;
-	Juego* juegos = obtenerListadoJuegosDinamico(&validos);
-
-	printf("Id %d\n", juegos[0].idJuego);
-	printf("Nombre %s\n", juegos[0].nombre);
-
-
-}

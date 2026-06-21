@@ -98,8 +98,6 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 		return NULL;
 	}
 
-	Juego aux;
-
 	fread(arregloJuegos, sizeof(Juego), totalRegistros, fp);
 
 	fclose(fp);
@@ -286,7 +284,7 @@ void modificarJuegoPorNombre(int idJuego, char nombre[])
 		if (juegoAux.idJuego == idJuego)
 		{
 			modificarNombreJuego(&juegoAux, nombre);
-			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&juegoAux, sizeof(Juego), 1, fp);
 			encontrado = 1;
 		}
@@ -306,7 +304,7 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 		if (juegoAux.idJuego == idJuego)
 		{
 			modificarEstudioJuego(&juegoAux, estudio);
-			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&juegoAux, sizeof(Juego), 1, fp);
 			encontrado = 1;
 
@@ -346,7 +344,7 @@ void modificarJuegoPorCategoria(int idJuego, int idCategoria)
 		if (auxJuego.idJuego == idJuego)
 		{
 			strcpy(auxJuego.categoria, categoriaBuscada);
-			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&auxJuego, sizeof(Juego), 1, fp);
 			encontrado = 1;
 		}
@@ -355,27 +353,3 @@ void modificarJuegoPorCategoria(int idJuego, int idCategoria)
 	fclose(fp);
 	
 }
-void mostrarJuegosPorcategoria(char categoria[])
-{
-	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
-
-	if (!fp)
-	{
-		return;
-	}
-
-	Juego aux;
-
-	while (fread(&aux, sizeof(Juego), 1, fp) > 0)
-	{
-		if (aux.idJuego != -1 &&
-			strcmp(aux.categoria, categoria) == 0)
-		{
-			mostrarJuego(aux);
-		}
-	}
-
-	fclose(fp);
-}
-
-

@@ -38,7 +38,6 @@ void mostrarListadoJuegos()
 		printf("----------------------------------\n");
 	}
 
-	free(lista);
 }
 void mostrarListadoJuegosPorId()
 {
@@ -53,8 +52,6 @@ void mostrarListadoJuegosPorId()
 
 	ordenarJuegosPorId(lista, validos);
 
-	mostrarPosicionCero();
-
 	printf("========== LISTADO DE JUEGOS ==========\n");
 
 	for (int i = 0; i < validos; i++)
@@ -66,9 +63,6 @@ void mostrarListadoJuegosPorId()
 		printf("----------------------------------\n");
 	}
 
-
-
-	free(lista);
 }
 void mostrarListadoCategorias()
 {

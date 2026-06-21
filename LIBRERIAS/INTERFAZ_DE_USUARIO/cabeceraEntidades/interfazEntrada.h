@@ -10,7 +10,7 @@ void modificarJuegoArchivo();
 
 void ejecutarModificacionEstudio(int idJuego);
 void ejecutarModificacionNombreJuego(int idJuego);
+void ejecutarModificacionCategoria(int idJuego, int idCategoria);
 
-void mostrarPosicionCero();
 #endif // !1
 
