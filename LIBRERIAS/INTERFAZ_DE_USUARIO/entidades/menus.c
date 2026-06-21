@@ -105,7 +105,7 @@ void subMenuJuegos()
 	do
 	{
 		mostrarSubMenuJuegos();
-		opcion = pedirOpcionSubMenuJuegos();
+		opcion = pedirOpcion();
 		ejecutarOpcionSubMenuJuegos(opcion);
 	} while (opcion != 0);
 }
@@ -122,16 +122,6 @@ void mostrarSubMenuJuegos()
 	printf("3. Ordenar juegos por ID.\n");
 	printf("4. Vaciar Archivo juegos.\n");
 	printf("0. Volver al Menu Principal\n");
-}
-
-int pedirOpcionSubMenuJuegos()
-{
-	int opcion;
-
-	printf("Ingrese una opcion\n>>> ");
-	opcion = scanInt();
-
-	return opcion;
 }
 
 void ejecutarOpcionSubMenuJuegos(int opcion)
@@ -189,7 +179,7 @@ void subMenuCategorias()
 	do
 	{
 		mostrarSubMenuCategorias();
-		opcion = pedirOpcionSubMenuCategorias();
+		opcion = pedirOpcion();
 		ejecutarOpcionSubMenuCategorias(opcion);
 	} while (opcion != 0);
 }
@@ -205,16 +195,6 @@ void mostrarSubMenuCategorias()
 	printf("2. Listado Categorias.\n");
 	printf("3. Abrir archivo limpio.\n");
 	printf("0. Volver al Menu Principal\n");
-}
-
-int pedirOpcionSubMenuCategorias()
-{
-	int opcion;
-
-	printf("Ingrese una opcion\n>>> ");
-	opcion = scanInt();
-
-	return opcion;
 }
 
 void ejecutarOpcionSubMenuCategorias(int opcion)
@@ -269,7 +249,7 @@ void subMenuNominaciones()
 	do
 	{
 		mostrarSubMenuNominaciones();
-		opcion = pedirOpcionSubMenuNominaciones();
+		opcion = pedirOpcion();
 		ejecutarOpcionSubMenuNominaciones(opcion);
 	} while (opcion != 0);
 }
@@ -284,16 +264,6 @@ void mostrarSubMenuNominaciones()
 	printf("1. Registrar Nominacion.\n");
 	printf("2. Ranking Nominaciones.\n");
 	printf("0. Volver al Menu Principal\n");
-}
-
-int pedirOpcionSubMenuNominaciones()
-{
-	int opcion;
-
-	printf("Ingrese una opcion\n >>> ");
-	opcion = scanInt();
-
-	return opcion;
 }
 
 void ejecutarOpcionSubMenuNominaciones(int opcion)
