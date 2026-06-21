@@ -317,31 +317,43 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 
 void modificarJuegoPorCategoria(int idJuego, int idCategoria)
 {
-	FILE* fp1 = fopen(ARCHIVO_CATEGORIAS, "rb");
-	FILE* fp2 = fopen(ARCHIVO_JUEGOS, "rb+");
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
 
 	Categoria auxCategoria;
-	Juego auxJuego;
 
 	int encontrado = 0;
-	int juegoFound = 0;
+	char categoriaBuscada[DIM_MAX_NOMRBES];
 
-	while (fread(&auxCategoria, sizeof(Categoria), 1, fp1) > 0 && encontrado == 0)
+
+	while (fread(&auxCategoria, sizeof(Categoria), 1, fp) > 0 && encontrado == 0)
 	{
 		if (auxCategoria.idCategoria == idCategoria)
 		{
-			while (fread(&auxJuego, sizeof(Juego), 1, fp2) > 0 && juegoFound == 0)
-			{
-				if (auxJuego.idJuego == idJuego)
-				{
-					strcpy(auxJuego.nombre, auxCategoria.nombre);
-				}
-			}
+			strcpy(categoriaBuscada, auxCategoria.nombre);
+			encontrado = 1;
 		}
 	}
 
-	fclose(fp1);
-	fclose(fp2);
+	fclose(fp);
+
+	fp = fopen(ARCHIVO_JUEGOS, "rb+");
+
+	Juego auxJuego;
+	encontrado = 0;
+	
+	while (fread(&auxJuego, sizeof(Juego), 1, fp) > 0 && encontrado == 0)
+	{
+		if (auxJuego.idJuego == idJuego)
+		{
+			strcpy(auxJuego.categoria, categoriaBuscada);
+			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fwrite(&auxJuego, sizeof(Juego), 1, fp);
+			encontrado = 1;
+		}
+	}
+
+	fclose(fp);
+	
 }
 void mostrarJuegosPorcategoria(char categoria[])
 {
