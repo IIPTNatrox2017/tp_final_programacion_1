@@ -30,5 +30,6 @@
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazEntrada.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazSalida.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\menus.h" />
+    <ClInclude Include="LIBRERIAS\ARCHIVOS\archivos.h" />
   </ItemGroup>
 </Project>

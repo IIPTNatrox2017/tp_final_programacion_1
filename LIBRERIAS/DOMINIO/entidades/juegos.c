@@ -6,14 +6,14 @@
 
 #define DIM_MAX_NOMBRES 50
 
-Juego crearJuego(int id, char nombre[], char estudio[], char genero[])
+Juego crearJuego(int id, char nombre[], char estudio[], char categoria[])
 {
 	Juego nuevoJuego;
 
 	nuevoJuego.idJuego = id;
 	strcpy(nuevoJuego.nombre, nombre);
 	strcpy(nuevoJuego.estudio, estudio);
-	strcpy(nuevoJuego.genero, genero);
+	strcpy(nuevoJuego.categoria, categoria);
 
 	return nuevoJuego;
 }
@@ -25,9 +25,9 @@ void modificarEstudioJuego(Juego* j, char nuevoEstudio[])
 {
 	strcpy(j->estudio, nuevoEstudio);
 }
-void modificarGeneroJuego(Juego* j, char nuevoGenero[])
+void modificarcategoriaJuego(Juego* j, char nuevocategoria[])
 {
-	strcpy(j->genero, nuevoGenero);
+	strcpy(j->categoria, nuevocategoria);
 }
 int compararJuegosPorNombre(Juego j1, Juego j2)
 {

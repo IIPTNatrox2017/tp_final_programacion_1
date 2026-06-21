@@ -3,7 +3,7 @@
 
 #include "../../DOMINIO/cabeceraEntidades/juegos.h"
 
-int cargarNuevoJuego(char nombre[], char estudio[], char genero[]);
+int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria);
 Juego* obtenerListadoJuegosDinamico(int* validos);
 int buscarJuegoPorId(int id);
 int darDeBajaJuego(int id);
@@ -12,7 +12,7 @@ void exportarJuegosATexto(char rutaTexto[]);
 void ordenarJuegosPorId(Juego arreglo[], int validos);
 int modificarJuego(int idJuego, char nuevoNombre[], char nuevoEstudio[], char nuevoGenero[]);
 void mostrarJuegosPorGenero(char genero[]);
-
+void cargarCategoriaAjuego(int idCategoria, Juego* juego);
 
 #endif
 	

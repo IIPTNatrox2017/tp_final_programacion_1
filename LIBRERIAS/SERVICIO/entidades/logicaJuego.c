@@ -10,10 +10,10 @@
 #include "../../DOMINIO/cabeceraEntidades/puntajes.h"
 #include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
 
-#define ARCHIVO_JUEGOS "juegos.bin"
+#include "../../ARCHIVOS/archivos.h"
 
 
-int cargarNuevoJuego(char nombre[], char estudio[], char genero[]) 
+int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria) 
 {
 	FILE* fp;
 	fp = fopen(ARCHIVO_JUEGOS, "ab");
@@ -30,7 +30,11 @@ int cargarNuevoJuego(char nombre[], char estudio[], char genero[])
 
 	int idJuego = cantidadRegistros + 1;
 	
-	nuevoJuego = crearJuego(idJuego, nombre, estudio, genero);
+	char categoria[50] = { 0 };
+
+	nuevoJuego = crearJuego(idJuego, nombre, estudio, categoria);
+
+	cargarCategoriaAjuego(idCategoria, &nuevoJuego);
 
 	fwrite(&nuevoJuego, sizeof(Juego), 1, fp);
 
@@ -38,6 +42,29 @@ int cargarNuevoJuego(char nombre[], char estudio[], char genero[])
 	
 	return 1;
 }
+
+void cargarCategoriaAjuego(int idCategoria, Juego* juego)
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Categoria auxCategoria;
+
+	while (fread(&auxCategoria, sizeof(Categoria), 1, fp) > 0)
+	{
+		if (auxCategoria.idCategoria == idCategoria)
+		{
+			strcpy(juego->categoria, auxCategoria.nombre);
+		}
+	}
+	fclose(fp);
+}
+
+
 
 Juego* obtenerListadoJuegosDinamico(int* validos)
 {
@@ -94,20 +121,23 @@ int buscarJuegoPorId(int id)
 		return -1;
 	}
 	
-	int pos = 0;
+	int idDeseada = NULL;
 	Juego juego;
-	while(fread(&juego, sizeof(juego), 1, fp) == 1)
+	while(fread(&juego, sizeof(juego), 1, fp) > 0)
 	{
 		if (juego.idJuego == id)
 		{
 			fclose(fp);
-			return pos;
+			idDeseada = juego.idJuego;
+			return idDeseada;
 		}
-		pos++;
+
 	}
-		fclose(fp);
-		return -1;
+	fclose(fp);
+	return idDeseada;
+
 }
+
 int darDeBajaJuego(int id)
 {
 	
@@ -235,7 +265,7 @@ void exportarJuegosATexto(char rutaTexto[])
 			continue;
 		}
 		
-		fprintf(ft, "ID: %d\nNombre: %s\nEstudio: %s\nGenero: %s\n\n", juego.idJuego, juego.nombre, juego.estudio, juego.genero);
+		fprintf(ft, "ID: %d\nNombre: %s\nEstudio: %s\ncategoria: %s\n\n", juego.idJuego, juego.nombre, juego.estudio, juego.categoria);
 		
 	}
 	fclose(fb);
@@ -243,7 +273,7 @@ void exportarJuegosATexto(char rutaTexto[])
 	
 }
 
-int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevoGenero[])
+int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevocategoria[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
 
@@ -261,7 +291,7 @@ int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevo
 		{
 			strcpy(aux.nombre, nuevoNombre);
 			strcpy(aux.estudio, nuevoEstudio);
-			strcpy(aux.genero, nuevoGenero);
+			strcpy(aux.categoria, nuevocategoria);
 
 			fseek(fp, sizeof(Juego), SEEK_CUR);
 
@@ -276,7 +306,7 @@ int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevo
 	return exito;
 }
 
-void mostrarJuegosPorGenero(char genero[])
+void mostrarJuegosPorcategoria(char categoria[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
 
@@ -290,7 +320,7 @@ void mostrarJuegosPorGenero(char genero[])
 	while (fread(&aux, sizeof(Juego), 1, fp) > 0)
 	{
 		if (aux.idJuego != -1 &&
-			strcmp(aux.genero, genero) == 0)
+			strcmp(aux.categoria, categoria) == 0)
 		{
 			mostrarJuego(aux);
 		}
@@ -298,3 +328,4 @@ void mostrarJuegosPorGenero(char genero[])
 
 	fclose(fp);
 }
+

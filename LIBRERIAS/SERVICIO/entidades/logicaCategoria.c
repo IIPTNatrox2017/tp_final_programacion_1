@@ -4,9 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
+#include "../../ARCHIVOS/archivos.h"
 
-#define ARCHIVO_CATEGORIAS "categorias.bin"
-#define ARCHIVO_JUEGOS "juegos.bin"
 
 int cargarNuevaCategoria(char nombre[])
 {
@@ -218,3 +217,4 @@ int contarCategorias(char nombreArchivo[])
 
 	fclose(fp);
 }
+

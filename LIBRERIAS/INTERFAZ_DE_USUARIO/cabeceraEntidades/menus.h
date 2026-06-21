@@ -2,6 +2,7 @@
 #define MENUS_H_INCLUDED
 
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
+#include "../../DOMINIO/cabeceraEntidades/categoria.h"
 void menuPrincipal();
 int pedirOpcion();
 void ejecutarOpcion(int opcion);
@@ -19,4 +20,5 @@ void subMenuNominaciones();
 void ejecutarOpcionSubMenuNominaciones(int opcion);
 void mostrarSubMenuNominaciones();
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
+void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias);
 #endif // !1

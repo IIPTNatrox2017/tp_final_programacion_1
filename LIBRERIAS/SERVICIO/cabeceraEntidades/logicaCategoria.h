@@ -14,4 +14,5 @@ int obtenerMayorIdNominacion(void);
 int bajaCategoria(int idCategoria);
 int modificarCategoria(int idCategoria, char nuevoNombre[]);
 
+
 #endif

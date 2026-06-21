@@ -3,11 +3,12 @@
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
 #include "../cabeceraEntidades/logicaCategoria.h"
+#include "../../ARCHIVOS/archivos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define ARCHIVO_NOMINACIONES "nominaciones.bin"
+
 
 
 

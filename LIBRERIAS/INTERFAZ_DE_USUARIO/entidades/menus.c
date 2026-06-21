@@ -137,9 +137,9 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		}
 		case 2:
 		{
+			system("cls");
 			mostrarListadoJuegos();
 			system("pause");
-			system("cls");
 			break;
 		}
 		case 3:
@@ -316,4 +316,19 @@ void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[])
 	printf(" %d PUESTO: %s\n", puesto, nombreJuego);
 	printf("    ESTUDIO: %s\n,", estudioJuego);
 	printf("\n------------------------------------\n");
+}
+
+void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
+{
+	printf("============================================\n");
+	printf("\t--CATEGORIAS--\t\n");
+	printf("============================================\n");
+	for (int i = 0; i < cantCategorias; i++)
+	{
+		printf(" -[%d] [%s]", i + 1, categorias[i].nombre);
+		if (i % 5 != 0)
+		{
+			printf("\n");
+		}
+	}
 }

@@ -33,7 +33,7 @@ void mostrarListadoJuegos()
 		printf("ID: %d\n", lista[i].idJuego);
 		printf("Nombre: %s\n", lista[i].nombre);
 		printf("Estudio: %s\n", lista[i].estudio);
-		printf("Genero: %s\n", lista[i].genero);
+		printf("categoria: %s\n", lista[i].categoria);
 		printf("----------------------------------\n");
 	}
 
@@ -54,7 +54,7 @@ void mostrarListadoJuegosPorId()
 		printf("ID: %d\n", lista[i].idJuego);
 		printf("Nombre: %s\n", lista[i].nombre);
 		printf("Estudio: %s\n", lista[i].estudio);
-		printf("Genero: %s\n", lista[i].genero);
+		printf("categoria: %s\n", lista[i].categoria);
 		printf("----------------------------------\n");
 	}
 
@@ -174,7 +174,7 @@ void mostrarJuego(Juego aux)
 	printf("ID: %d\n", aux.idJuego);
 	printf("Nombre: %s\n", aux.nombre);
 	printf("Estudio: %s\n",aux.estudio);
-	printf("Genero: %s\n",aux.genero);
+	printf("categoria: %s\n",aux.categoria);
 	printf("----------------------------------\n");
 }
 

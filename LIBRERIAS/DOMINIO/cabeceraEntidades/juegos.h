@@ -6,12 +6,12 @@ typedef struct stJuego
 	int idJuego;
 	char nombre[50];
 	char estudio[50];
-	char genero[50];
+	char categoria[50];
 
 } Juego;
 
 
-Juego crearJuego(int id, char nombre[], char estudio[], char genero[]);
+Juego crearJuego(int id, char nombre[], char estudio[], char categoria[]);
 void modificarNombreJuego(Juego* j, char nuevoNombre[]);
 void modificarEstudioJuego(Juego* j, char nuevoEstudio[]);
 void modificarGeneroJuego(Juego* j, char nuevoGenero[]);

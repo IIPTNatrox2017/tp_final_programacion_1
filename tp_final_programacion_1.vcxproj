@@ -36,6 +36,7 @@
     <ClCompile Include="mainTpFinal.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LIBRERIAS\ARCHIVOS\archivos.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\juegos.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\nominaciones.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\puntajes.h" />
