@@ -344,6 +344,11 @@ void ejecutarModificacionNombreJuego(int idJuego)
 	modificarJuegoPorNombre(idJuego, nombre);
 }
 
+void ejecutarModificarCategoria(int idJuego, int idCategoria)
+{
+
+}
+
 void mostrarPosicionCero()
 {
 	int validos = 0;
