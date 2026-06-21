@@ -13,8 +13,9 @@ void ordenarJuegosPorId(Juego arreglo[], int validos);
 void mostrarJuegosPorGenero(char genero[]);
 void cargarCategoriaAjuego(int idCategoria, Juego* juego);
 
-int modificarJuegoPorNombre(int idJuego, char nombre[]);
-int modificarJuegoPorEstudio(int idJuego, char estudio[]);
+void modificarJuegoPorNombre(int idJuego, char nombre[]);
+void modificarJuegoPorEstudio(int idJuego, char estudio[]);
+void modificarJuegoPorCategoria(int idJuego, int idCategoria);
 
 #endif
 	

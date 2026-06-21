@@ -11,6 +11,7 @@
 #include "../../Librerias Externas/scanner.h"
 #include <string.h>
 #include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/menus.h"
+#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazEntrada.h"
 #include <time.h>
 
 void mostrarListadoJuegos()
@@ -52,6 +53,8 @@ void mostrarListadoJuegosPorId()
 
 	ordenarJuegosPorId(lista, validos);
 
+	mostrarPosicionCero();
+
 	printf("========== LISTADO DE JUEGOS ==========\n");
 
 	for (int i = 0; i < validos; i++)
@@ -62,6 +65,8 @@ void mostrarListadoJuegosPorId()
 		printf("categoria: %s\n", lista[i].categoria);
 		printf("----------------------------------\n");
 	}
+
+
 
 	free(lista);
 }

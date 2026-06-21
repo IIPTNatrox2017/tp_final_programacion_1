@@ -8,5 +8,9 @@ void mostrarDatosJuegosCargados(char nombre[], char estudio[]);
 void mostrarDatosJuegosTerminados(char nombre[], char estudio[]);
 void modificarJuegoArchivo();
 
+void ejecutarModificacionEstudio(int idJuego);
+void ejecutarModificacionNombreJuego(int idJuego);
+
+void mostrarPosicionCero();
 #endif // !1
 

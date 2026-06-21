@@ -14,7 +14,7 @@
 #include <ctype.h>
 #include <time.h>
 
-#define DIM_MAX_NOMBRES 50
+#define DIM_MAX_NOMBRES 500
 
 
 void formularioAltaJuego()
@@ -266,6 +266,9 @@ void modificarJuegoArchivo()
 	int cantJuegos = 0;
 	Juego* juegos = obtenerListadoJuegosDinamico(&cantJuegos);
 
+	mostrarPosicionCero();
+	system("pause");
+
 	if (cantJuegos == 0)
 	{
 		printf("Aun no hay juego cargados. Por favor ingrese uno.\n");
@@ -275,6 +278,8 @@ void modificarJuegoArchivo()
 	int esValido = 0;
 	int opcion = 0;
 
+	printf("%d cantJuegos\n", cantJuegos);
+	system("pause");
 	do
 	{
 		system("cls");
@@ -306,12 +311,46 @@ void modificarJuegoArchivo()
 	{
 		case 1:
 		{
-			char nombre[DIM_MAX_NOMBRES];
-			printf("Ingrese Nuevo Nombre: ");
-			scanString(nombre, DIM_MAX_NOMBRES);
-			modificarJuegoPorNombre(juegos[indice].idJuego, nombre);
+
+			ejecutarModificacionNombreJuego(juegos[indice].idJuego);
+			break;
+		}
+		case 2:
+		{
+			ejecutarModificacionEstudio(juegos[indice].idJuego);
+			break;
+		}
+		case 3:
+		{
 
 			break;
 		}
 	}
+	free(juegos);
+}
+
+void ejecutarModificacionEstudio(int idJuego)
+{
+	char estudio[DIM_MAX_NOMBRES];
+	printf("Ingrese Nuevo Estudio: ");
+	scanString(estudio, DIM_MAX_NOMBRES);
+	modificarJuegoPorEstudio(idJuego, estudio);
+}
+void ejecutarModificacionNombreJuego(int idJuego)
+{
+	char nombre[DIM_MAX_NOMBRES];
+	printf("Ingrese Nuevo Nombre: ");
+	scanString(nombre, DIM_MAX_NOMBRES);
+	modificarJuegoPorNombre(idJuego, nombre);
+}
+
+void mostrarPosicionCero()
+{
+	int validos = 0;
+	Juego* juegos = obtenerListadoJuegosDinamico(&validos);
+
+	printf("Id %d\n", juegos[0].idJuego);
+	printf("Nombre %s\n", juegos[0].nombre);
+
+
 }

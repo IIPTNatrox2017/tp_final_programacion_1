@@ -385,4 +385,3 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 	printf("Presione \"Q\" para salir.\n");
 	printf("============================================\n");*///[WIP]
 }
-

@@ -27,4 +27,5 @@ void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
 void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias);
 
 
+
 #endif // !1
