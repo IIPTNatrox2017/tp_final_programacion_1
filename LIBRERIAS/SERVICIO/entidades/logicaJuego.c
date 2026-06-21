@@ -273,37 +273,38 @@ void exportarJuegosATexto(char rutaTexto[])
 	
 }
 
-int modificarJuego(int idJuego,char nuevoNombre[],char nuevoEstudio[],char nuevocategoria[])
+int modificarJuegoPorNombre(int idJuego, char nombre[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
 
-	if (!fp)
-	{
-		return 0;
-	}
+	Juego juegoAux;
 
-	Juego aux;
-	int exito = -1;
-
-	while (fread(&aux, sizeof(Juego), 1, fp) > 0 && exito == -1)
+	while (fread(&juegoAux, sizeof(Juego), 1, fp) > 0)
 	{
-		if (aux.idJuego == idJuego)
+		if (juegoAux.idJuego == idJuego)
 		{
-			strcpy(aux.nombre, nuevoNombre);
-			strcpy(aux.estudio, nuevoEstudio);
-			strcpy(aux.categoria, nuevocategoria);
-
-			fseek(fp, sizeof(Juego), SEEK_CUR);
-
-			fwrite(&aux, sizeof(Juego), 1, fp);
-
-			exito = 1;
+			modificarNombreJuego(&juegoAux, nombre);
+			fseek(fp,sizeof(Juego) * (-1), SEEK_CUR);
+			fwrite(&juegoAux, sizeof(Juego), 1, fp);
 		}
 	}
-
 	fclose(fp);
+}
 
-	return exito;
+int modificarJuegoPorEstudio(int idJuego, char estudio[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+
+	Juego juegoAux;
+
+	while (fread(&juegoAux, sizeof(Juego), 1, fp) > 0)
+	{
+		if (juegoAux.idJuego == idJuego)
+		{
+			modificarNombreJuego(&juegoAux, estudio);
+		}
+	}
+	fclose(fp);
 }
 
 void mostrarJuegosPorcategoria(char categoria[])
@@ -328,4 +329,5 @@ void mostrarJuegosPorcategoria(char categoria[])
 
 	fclose(fp);
 }
+
 

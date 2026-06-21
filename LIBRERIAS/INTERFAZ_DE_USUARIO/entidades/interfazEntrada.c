@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../cabeceraEntidades/interfazEntrada.h"
+#include "../cabeceraEntidades/interfazSalida.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
 #include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
@@ -10,6 +11,7 @@
 #include "../../Librerias Externas/scanner.h"
 #include "../../DOMINIO/gestorEventos.h"
 #include "../cabeceraEntidades/menus.h"
+#include <ctype.h>
 #include <time.h>
 
 #define DIM_MAX_NOMBRES 50
@@ -22,7 +24,10 @@ void formularioAltaJuego()
 
 	if (cantCategorias == 0)
 	{
-		printf("Todavia no hay categorias cargadas. Por favor vuelva al menu principal y ingrese una.\n");
+		printf("Todavia no hay categorias cargadas. Por favor ingrese una.\n");
+		system("pause");
+		system("cls");
+		formularioAltaCategoria();
 		return;
 	}
 
@@ -75,6 +80,7 @@ void formularioAltaJuego()
 
 	int opcion = 0;
 	esValido = 0;
+
 	do
 	{
 		
@@ -252,4 +258,60 @@ void mostrarDatosJuegosTerminados(char nombre[], char estudio[])
 {
 	printf("Nombre Cargado: [%s]\n", nombre);
 	printf("Estudio Cargado: [%s]\n", estudio);
+}
+
+void modificarJuegoArchivo()
+{
+
+	int cantJuegos = 0;
+	Juego* juegos = obtenerListadoJuegosDinamico(&cantJuegos);
+
+	if (cantJuegos == 0)
+	{
+		printf("Aun no hay juego cargados. Por favor ingrese uno.\n");
+		return;
+	}
+
+	int esValido = 0;
+	int opcion = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoJuegosPorId();
+		opcion = pedirOpcionModificarJuego();
+
+		if (opcion < 1 || opcion > cantJuegos)
+		{
+			printf("Opcion no valida. Intente de nuevo por favor.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosPorId();
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	} while (!esValido);
+	
+	int indice = opcion - 1;
+
+	system("cls");
+	mostrarJuego(juegos[indice]);
+	subMenuModificarJuego();
+	opcion = pedirOpcion();
+
+	switch (opcion)
+	{
+		case 1:
+		{
+			char nombre[DIM_MAX_NOMBRES];
+			printf("Ingrese Nuevo Nombre: ");
+			scanString(nombre, DIM_MAX_NOMBRES);
+			modificarJuegoPorNombre(juegos[indice].idJuego, nombre);
+
+			break;
+		}
+	}
 }

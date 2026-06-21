@@ -10,9 +10,11 @@ int darDeBajaJuego(int id);
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos);
 void exportarJuegosATexto(char rutaTexto[]);
 void ordenarJuegosPorId(Juego arreglo[], int validos);
-int modificarJuego(int idJuego, char nuevoNombre[], char nuevoEstudio[], char nuevoGenero[]);
 void mostrarJuegosPorGenero(char genero[]);
 void cargarCategoriaAjuego(int idCategoria, Juego* juego);
+
+int modificarJuegoPorNombre(int idJuego, char nombre[]);
+int modificarJuegoPorEstudio(int idJuego, char estudio[]);
 
 #endif
 	

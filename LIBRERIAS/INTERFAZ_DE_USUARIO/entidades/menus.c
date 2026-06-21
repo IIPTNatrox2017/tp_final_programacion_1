@@ -56,6 +56,16 @@ int pedirOpcion()
 	return opcion;
 }
 
+int pedirOpcionModificarJuego()
+{
+	int opcion;
+
+	printf("Ingrese ID de juego a modificar\n >>> ");
+	opcion = scanInt();
+
+	return opcion;
+}
+
 void ejecutarOpcion(int opcion)
 {
 	switch (opcion)
@@ -121,6 +131,7 @@ void mostrarSubMenuJuegos()
 	printf("2. Listado de Juegos Alfabaticamente (A-Z)\n");
 	printf("3. Ordenar juegos por ID.\n");
 	printf("4. Vaciar Archivo juegos.\n");
+	printf("5. Modificar Juego.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -156,6 +167,13 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 			system("pause");
 			break;
 		}
+		case 5:
+		{
+			system("cls");
+			modificarJuegoArchivo();
+			system("pause");
+			break;
+		}
 		case 0:
 		{
 			system("cls");
@@ -173,6 +191,36 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 	}
 }
 
+void subMenuModificarJuego()
+{
+	printf("===========================\n");
+	printf("      OPCIONES JUEGO\n");
+	printf("===========================\n");
+
+	printf("1. Modificar Nombre.\n");
+	printf("2. Modificar Estudio.\n");
+	printf("3. Modificar Categoria.\n");
+}
+
+void opcionModificarJuego()
+{
+	subMenuModificarJuego();
+	int opcion = pedirOpcion();
+	ejecutarMenuModificarJuego(opcion);
+}
+
+void ejecutarMenuModificarJuego(int opcion)
+{
+	switch (opcion)
+	{
+		case 1:
+		{
+			system("cls");
+			system("pause");
+			break;
+		}
+	}
+}
 void subMenuCategorias()
 {
 	int opcion;
@@ -326,9 +374,15 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 	for (int i = 0; i < cantCategorias; i++)
 	{
 		printf(" -[%d] [%s]", i + 1, categorias[i].nombre);
-		if (i % 5 != 0)
+		if (i % 2 != 0)
 		{
 			printf("\n");
 		}
 	}
+	/*
+	printf("============================================\n");
+	printf("Presione \"Y\" para agregar una nueva categoria.\n");
+	printf("Presione \"Q\" para salir.\n");
+	printf("============================================\n");*///[WIP]
 }
+
