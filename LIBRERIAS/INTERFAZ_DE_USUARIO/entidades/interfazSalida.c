@@ -59,6 +59,27 @@ void mostrarListadoJuegosPorId(Juego* lista, int validos)
 	}
 
 }
+void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos)
+{
+	if (validos <= 0)
+	{
+		printf("\nNo hay Juegos cargados!.\n");
+		return;
+	}
+
+	ordenarJuegosPorId(lista, validos);
+
+	printf("========== LISTADO DE JUEGOS INACTIVOS ==========\n");
+
+	for (int i = 0; i < validos; i++)
+	{
+		if (lista[i].estaActivo == 0)
+		{
+			mostrarJuego(lista[i]);
+		}
+	}
+
+}
 void mostrarListadoCategorias()
 {
 	int validos = 0;

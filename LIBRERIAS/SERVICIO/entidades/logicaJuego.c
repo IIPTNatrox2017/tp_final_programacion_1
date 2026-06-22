@@ -75,7 +75,7 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 
 	fseek(fp, 0, SEEK_END);
 
-	int totalRegistros = generadorDeIdAutoIncremental(ARCHIVO_JUEGOS, sizeof(Juego));
+	int totalRegistros = ftell(fp) / sizeof(Juego);
 
 	rewind(fp);
 
@@ -130,13 +130,13 @@ Juego* buscarJuegoPorId(int id)
 
 }
 
-int darDeBajaJuego(int id)
+void darDeBajaJuego(int id)
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "r+b");
 
 	if (!fp)
 	{
-		return 0;
+		return ;
 	}
 
 	Juego aux;
@@ -156,6 +156,34 @@ int darDeBajaJuego(int id)
 
 	fclose(fp);
 }
+
+void reactivarUnJuego(int idJuego)
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "r+b");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Juego aux;
+	int encontrado = 0;
+
+	while (encontrado == 0 && fread(&aux, sizeof(Juego), 1, fp) > 0)
+	{
+		if (aux.idJuego == idJuego && aux.estaActivo == 0)
+		{
+			aux.estaActivo = 1;
+			encontrado = 1;
+			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fwrite(&aux, sizeof(Juego), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
+		}
+	}
+
+	fclose(fp);
+}
+
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
 	if (arreglo == NULL || validos <= 1)

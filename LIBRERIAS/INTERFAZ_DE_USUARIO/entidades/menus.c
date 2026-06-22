@@ -28,7 +28,7 @@ void menuPrincipal()
 	do
 	{
 		mostrarMenu();
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione una opcion:");
 		ejecutarOpcion(opcion);
 	} while (opcion != 0);
 }
@@ -46,11 +46,12 @@ void mostrarMenu()
 	printf("0. Salir.\n");
 }
  
-int pedirOpcion()
+int pedirOpcion(char string[])
 {
 	int opcion;
 
-	printf("Ingrese una opcion\n >>> ");
+	printf("%s ", string);
+
 	opcion = scanInt();
 
 	return opcion;
@@ -115,7 +116,7 @@ void subMenuJuegos()
 	do
 	{
 		mostrarSubMenuJuegos();
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione una opcion: ");
 		ejecutarOpcionSubMenuJuegos(opcion);
 	} while (opcion != 0);
 }
@@ -133,6 +134,7 @@ void mostrarSubMenuJuegos()
 	printf("4. Vaciar Archivo juegos.\n");
 	printf("5. Modificar Juego.\n");
 	printf("6. Dar de Baja un Juego.\n");
+	printf("7. Reactivar Un Juego.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -184,6 +186,13 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 			system("pause");
 			break;
 		}
+		case 7:
+		{
+			system("cls");
+			ejecutarReactivarUnJuego();
+			system("pause");
+			break;
+		}
 		case 0:
 		{
 			system("cls");
@@ -215,7 +224,7 @@ void subMenuModificarJuego()
 void opcionModificarJuego()
 {
 	subMenuModificarJuego();
-	int opcion = pedirOpcion();
+	int opcion = pedirOpcion("Seleccione un campo: ");
 	ejecutarMenuModificarJuego(opcion);
 }
 
@@ -237,7 +246,7 @@ void subMenuCategorias()
 	do
 	{
 		mostrarSubMenuCategorias();
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione una opcion: ");
 		ejecutarOpcionSubMenuCategorias(opcion);
 	} while (opcion != 0);
 }
@@ -307,7 +316,7 @@ void subMenuNominaciones()
 	do
 	{
 		mostrarSubMenuNominaciones();
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione una opcion: ");
 		ejecutarOpcionSubMenuNominaciones(opcion);
 	} while (opcion != 0);
 }

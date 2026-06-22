@@ -6,7 +6,8 @@
 int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria);
 Juego* obtenerListadoJuegosDinamico(int* validos);
 Juego* buscarJuegoPorId(int id);
-int darDeBajaJuego(int id);
+void darDeBajaJuego(int id);
+void reactivarUnJuego(int idJuego);
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos);
 void exportarJuegosATexto(char rutaTexto[]);
 void ordenarJuegosPorId(Juego arreglo[], int validos);

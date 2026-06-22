@@ -4,7 +4,7 @@
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 void menuPrincipal();
-int pedirOpcion();
+int pedirOpcion(char string[]);
 void ejecutarOpcion(int opcion);
 int pedirOpcionModificarJuego();
 void mostrarMenu();

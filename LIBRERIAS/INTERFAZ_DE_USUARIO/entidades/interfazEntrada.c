@@ -83,7 +83,7 @@ void formularioAltaJuego()
 	{
 		menuCategoriasDisponibles(categorias, cantCategorias);
 		printf("\n");
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione una Categoria: ");
 
 		if (opcion < 1 || opcion > cantCategorias)
 		{
@@ -280,7 +280,7 @@ void modificarJuegoArchivo()
 		mostrarListadoJuegosPorId(juegos, cantJuegos);
 		opcion = pedirOpcionModificarJuego();
 
-		if (opcion < 1 || opcion > cantJuegos)
+		if (opcion < 1 || opcion > cantJuegos || juegos[opcion - 1].estaActivo == 0)
 		{
 			printf("Opcion no valida. Intente de nuevo por favor.\n");
 			system("pause");
@@ -306,7 +306,7 @@ void modificarJuegoArchivo()
 	{
 		mostrarJuego(juegos[indice]);
 		subMenuModificarJuego();
-		opcion = pedirOpcion();
+		opcion = pedirOpcion("Seleccione un campo a modificar: ");
 
 		switch (opcion)
 		{
@@ -330,7 +330,7 @@ void modificarJuegoArchivo()
 				{
 					system("cls");
 					menuCategoriasDisponibles(categorias, cantCategorias);
-					opcion1 = pedirOpcion();
+					opcion1 = pedirOpcion("Seleccione una categoria: ");
 
 					if (opcion1 < 1 || opcion1 > cantCategorias)
 					{
@@ -397,18 +397,38 @@ void ejecutarDarDeBajaUnJuego()
 	int validos = 0;
 	Juego* lista = obtenerListadoJuegosDinamico(&validos);
 
-	mostrarListadoJuegosPorId(lista, validos);
-	int opcion = pedirOpcion();
+	int opcion = 0;
+	int esValido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoJuegosPorId(lista, validos);
+		opcion = pedirOpcion("Seleccione una ID para dar de baja: ");
+
+		if (opcion < 1 || opcion > validos || lista[opcion - 1].estaActivo == 0)
+		{
+			printf("Opcion No valida. Elija otra.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosPorId(lista, validos);
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	} while (!esValido);
 
 	int indice = opcion - 1;
 
+	system("cls");
 	mostrarJuego(lista[indice]);
 
 	int continuar = 1;
 
-	printf("Esta seguro que quiere eliminar este juego?\n >>> ");
+	printf("Esta seguro que quiere eliminar este juego?[s/n]\n >>> ");
 	continuar = confirmar('s');
-
 	if (continuar)
 	{
 		darDeBajaJuego(lista[indice].idJuego);
@@ -417,4 +437,59 @@ void ejecutarDarDeBajaUnJuego()
 	free(lista);
 	return;
 
+}
+
+void ejecutarReactivarUnJuego()
+{
+	int validos = 0;
+	Juego* lista = obtenerListadoJuegosDinamico(&validos);
+
+	if (lista == NULL)
+	{
+		printf("No hay Juegos eliminados.");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	int opcion = 0;
+	int esValido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoJuegosDescativadosPorId(lista, validos);
+		opcion = pedirOpcion("Seleccione una ID: ");
+
+		if (opcion < 1 || opcion > validos || lista[opcion - 1].estaActivo == 1)
+		{
+			printf("Opcion no valida. Por favor elija otra.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosDescativadosPorId(lista, validos);
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	}while(!esValido);
+
+	int indice = opcion - 1;
+
+	system("cls");
+	mostrarJuego(lista[indice]);
+
+	int continuar = 1;
+
+	printf("Esta seguro que quiere Reactivar este juego?[s/n]\n >>> ");
+	continuar = confirmar('s');
+
+	if (continuar)
+	{
+		reactivarUnJuego(lista[indice].idJuego);
+	}
+
+	free(lista);
+	return;
 }
