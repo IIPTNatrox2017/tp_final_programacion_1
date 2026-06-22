@@ -6,10 +6,11 @@
 void mostrarListadoJuegos();
 void mostrarListadoCategorias();
 void mostrarRankingNominacionesUI();
-void formularioExportarArchivos();
 void mostrarListadoJuegosPorId(Juego* lista, int validos);
 void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos);
 void mostrarJuego(Juego aux);
+
+void formularioExportarArchivos();
 
 #endif // !SALIDA_H_INCLUDE
 

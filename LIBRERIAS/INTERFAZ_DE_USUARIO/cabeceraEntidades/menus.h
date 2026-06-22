@@ -3,16 +3,15 @@
 
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
+
 void menuPrincipal();
 int pedirOpcion(char string[]);
 void ejecutarOpcion(int opcion);
-int pedirOpcionModificarJuego();
 void mostrarMenu();
 
 void subMenuJuegos();
 void subMenuModificarJuego();
-void opcionModificarJuego();
-void ejecutarMenuModificarJuego(int opcion);
+
 void ejecutarOpcionSubMenuJuegos(int opcion);
 void mostrarSubMenuJuegos();
 

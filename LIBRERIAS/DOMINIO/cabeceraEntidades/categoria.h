@@ -9,7 +9,9 @@ typedef struct stCategoria
 
 
 Categoria crearCategoria(int id, char nombre[]);
-void modificarNombreCategoria(Categoria* c, char nuevoNombre[]);
+
 int compararCategoriasPorNombre(Categoria c1, Categoria c2);
+
+void modificarNombreCategoria(Categoria* c, char nuevoNombre[]);
 void modificarIDcategoria(Categoria* c, int idNuevo);
 #endif

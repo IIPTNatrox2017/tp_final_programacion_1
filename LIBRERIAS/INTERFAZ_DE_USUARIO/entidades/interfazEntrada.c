@@ -117,19 +117,22 @@ void formularioAltaJuego()
 void formularioAltaCategoria()
 {
 	char categoria[DIM_MAX_NOMBRES];
+	int esValido = 0;
+
 	do
 	{
 		printf("Ingrese nombre de la categoria\n >>> ");
 		scanString(categoria, DIM_MAX_NOMBRES);
 
-		if (strlen(categoria) == 0)
+		esValido = validarNombres(categoria);
+		if (!esValido)
 		{
 			printf("Ingrese un nombre valido.\n");
 			system("pause");
 			system("cls");
 		}
 
-	} while (strlen(categoria) == 0);
+	} while (!esValido);
 
 
 	int control = cargarNuevaCategoria(categoria);
@@ -276,7 +279,7 @@ void modificarJuegoArchivo()
 	{
 		system("cls");
 		mostrarListadoJuegosPorId(juegos, cantJuegos);
-		opcion = pedirOpcionModificarJuego();
+		opcion = pedirOpcion("Seleccione un ID a modificar");
 
 		if (opcion < 1 || opcion > cantJuegos || juegos[opcion - 1].estaActivo == 0)
 		{

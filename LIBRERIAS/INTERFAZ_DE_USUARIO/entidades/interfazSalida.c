@@ -71,7 +71,6 @@ void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos)
 void mostrarListadoCategorias()
 {
 	int validos = 0;
-
 	Categoria* lista = obtenerListadoCategoriasDinamico(&validos);
 
 	if(lista == NULL)
@@ -82,12 +81,10 @@ void mostrarListadoCategorias()
 
 	ordenarCategoriasAlfabeticamente(lista, validos);
 
-	int numCat = 0;
 	printf("========== LISTADO DE CATEGORIAS ==========\n");
 	for(int i = 0; i < validos; i++)
-	{ 
-		numCat = i+1;
-		printf("[%d] Nombre: %s\n", numCat, lista[i].nombre);
+	{
+		printf(" -Nombre: %s\n", lista[i].nombre);
 		printf("----------------------------------\n");
 	}
 

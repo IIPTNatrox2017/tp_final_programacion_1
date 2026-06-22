@@ -46,15 +46,6 @@ int pedirOpcion(char string[])
 	return opcion;
 }
 
-int pedirOpcionModificarJuego()
-{
-	int opcion;
-
-	printf("Ingrese ID de juego a modificar\n >>> ");
-	opcion = scanInt();
-
-	return opcion;
-}
 
 void ejecutarOpcion(int opcion)
 {
@@ -210,25 +201,7 @@ void subMenuModificarJuego()
 	printf("3. Modificar Categoria.\n");
 }
 
-void opcionModificarJuego()
-{
-	subMenuModificarJuego();
-	int opcion = pedirOpcion("Seleccione un campo: ");
-	ejecutarMenuModificarJuego(opcion);
-}
 
-void ejecutarMenuModificarJuego(int opcion)
-{
-	switch (opcion)
-	{
-		case 1:
-		{
-			system("cls");
-			system("pause");
-			break;
-		}
-	}
-}
 void subMenuCategorias()
 {
 	int opcion;

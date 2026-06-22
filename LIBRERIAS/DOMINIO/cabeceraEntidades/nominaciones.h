@@ -15,8 +15,10 @@ typedef struct stNominacion
 }Nominacion;
 
 Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f);
+
+int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2);
+
 void modificarPuntajeNominacion(Nominacion* n, Puntaje nuevoPuntaje);
 void modificarFechaNominacion(Nominacion* n, FechaLanzamiento nuevaFecha);
-int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2);
 	
 #endif

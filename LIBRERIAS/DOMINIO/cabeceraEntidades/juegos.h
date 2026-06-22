@@ -13,9 +13,11 @@ typedef struct stJuego
 
 
 Juego crearJuego(int id, char nombre[], char estudio[], char categoria[]);
-void modificarNombreJuego(Juego* j, char nuevoNombre[]);
-void modificarEstudioJuego(Juego* j, char nuevoEstudio[]);
+
 int compararJuegosPorNombre(Juego j1, Juego j2);
 int compararJuegosPorId(Juego j1, Juego j2);
+
+void modificarNombreJuego(Juego* j, char nuevoNombre[]);
+void modificarEstudioJuego(Juego* j, char nuevoEstudio[]);
 
 #endif
