@@ -84,8 +84,7 @@ void mostrarListadoCategorias(Categoria lista[], int validos)
 	{
 		if (lista[i].estaActiva == 1)
 		{
-			printf(" -Nombre: %s\n", lista[i].nombre);
-			printf("----------------------------------\n");
+			mostrarCategoria(lista[i]);
 		}
 	}
 

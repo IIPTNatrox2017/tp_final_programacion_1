@@ -9,7 +9,7 @@ void mostrarRankingNominacionesUI();
 void mostrarListadoJuegosPorId(Juego* lista, int validos);
 void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos);
 void mostrarJuego(Juego aux);
-void mostrarNominacion(Nominacion aux);
+void mostrarCategoria(Categoria aux);
 
 void formularioExportarArchivos();
 
