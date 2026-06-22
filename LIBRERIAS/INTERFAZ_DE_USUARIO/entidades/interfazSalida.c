@@ -30,12 +30,11 @@ void mostrarListadoJuegos()
 	printf("========== LISTADO DE JUEGOS ==========\n");
 
 	for(int i=0; i < validos; i++)
-	{ 
-		printf("ID: %d\n", lista[i].idJuego);
-		printf("Nombre: %s\n", lista[i].nombre);
-		printf("Estudio: %s\n", lista[i].estudio);
-		printf("categoria: %s\n", lista[i].categoria);
-		printf("----------------------------------\n");
+	{
+		if (lista[i].estaActivo)
+		{
+			mostrarJuego(lista[i]);
+		}
 	}
 
 }
@@ -53,11 +52,10 @@ void mostrarListadoJuegosPorId(Juego* lista, int validos)
 
 	for (int i = 0; i < validos; i++)
 	{
-		printf("ID: %d\n", lista[i].idJuego);
-		printf("Nombre: %s\n", lista[i].nombre);
-		printf("Estudio: %s\n", lista[i].estudio);
-		printf("categoria: %s\n", lista[i].categoria);
-		printf("----------------------------------\n");
+		if (lista[i].estaActivo)
+		{
+			mostrarJuego(lista[i]);
+		}
 	}
 
 }

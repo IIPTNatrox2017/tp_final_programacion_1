@@ -4,7 +4,7 @@
 
 void abrirArchivoLimpio(char nombreArchivo[]);
 int validarNombres(char nombre[]);
-
+int generadorDeIdAutoIncremental(char nombreArchivo[], size_t size);
 
 
 #endif

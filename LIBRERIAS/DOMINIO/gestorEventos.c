@@ -41,3 +41,18 @@ int validarNombres(char nombre[])
 	return valido;
 }
 
+int generadorDeIdAutoIncremental(char nombreArchivo[], size_t size)
+{
+	FILE* fp = fopen(nombreArchivo, "ab+");
+
+	if (!fp)
+	{
+		return 0;
+	}
+	fseek(fp, 0, SEEK_END);
+
+	int cantRegistros = ftell(fp) / size;
+
+	fclose(fp);
+	return cantRegistros + 1;
+}

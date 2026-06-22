@@ -5,6 +5,7 @@
 #include <string.h>
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 #include "../../ARCHIVOS/archivos.h"
+#include "../../DOMINIO/gestorEventos.h"
 
 
 int cargarNuevaCategoria(char nombre[])
@@ -17,10 +18,7 @@ int cargarNuevaCategoria(char nombre[])
 		return 0;
 	}
 	
-	fseek(fp, 0, SEEK_END);
-
-	int cantCategorias = ftell(fp) / sizeof(Categoria);
-	int nuevoId = cantCategorias + 1;
+	int nuevoId = generadorDeIdAutoIncremental(ARCHIVO_CATEGORIAS, sizeof(Categoria));
 
 	Categoria nueva = crearCategoria(nuevoId, nombre);
 	
@@ -153,7 +151,7 @@ int bajaCategoria(int idCategoria)
 	Categoria aux;
 	int exito = -1;
 
-	while (fread(&aux, sizeof(Categoria), 1, fp) > 0 && exito == -1)
+	while (exito == -1 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
 	{
 		if (aux.idCategoria == idCategoria)
 		{
@@ -184,7 +182,7 @@ int modificarCategoria(int idCategoria, char nuevoNombre[])
 	Categoria aux;
 	int exito = -1;
 
-	while (fread(&aux, sizeof(Categoria), 1, fp) > 0 && exito == -1)
+	while (exito == -1 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
 	{
 		if (aux.idCategoria == idCategoria)
 		{
@@ -194,6 +192,7 @@ int modificarCategoria(int idCategoria, char nuevoNombre[])
 
 			fwrite(&aux, sizeof(Categoria), 1, fp);
 
+			fseek(fp, 0, SEEK_CUR);
 			exito = 1;
 		}
 	}

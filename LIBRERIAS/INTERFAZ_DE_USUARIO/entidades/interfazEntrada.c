@@ -392,3 +392,29 @@ void ejecutarModificacionCategoria(int idJuego, char nombreCategoria[], Juego* j
 	strcpy(juegoNuevo->categoria, nombreCategoria);
 }
 
+void ejecutarDarDeBajaUnJuego()
+{
+	int validos = 0;
+	Juego* lista = obtenerListadoJuegosDinamico(&validos);
+
+	mostrarListadoJuegosPorId(lista, validos);
+	int opcion = pedirOpcion();
+
+	int indice = opcion - 1;
+
+	mostrarJuego(lista[indice]);
+
+	int continuar = 1;
+
+	printf("Esta seguro que quiere eliminar este juego?\n >>> ");
+	continuar = confirmar('s');
+
+	if (continuar)
+	{
+		darDeBajaJuego(lista[indice].idJuego);
+	}
+
+	free(lista);
+	return;
+
+}

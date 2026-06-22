@@ -10,12 +10,13 @@
 #include "../../DOMINIO/cabeceraEntidades/puntajes.h"
 #include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
 #include <string.h>
-
+#include "../../DOMINIO/gestorEventos.h"
 #include "../../ARCHIVOS/archivos.h"
 
 
 int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria) 
 {
+	int idJuego = generadorDeIdAutoIncremental(ARCHIVO_JUEGOS, sizeof(Juego));
 	FILE* fp;
 	fp = fopen(ARCHIVO_JUEGOS, "ab+");
 
@@ -24,13 +25,8 @@ int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria)
 		return 0;
 	}
 
-	fseek(fp, 0, SEEK_END);
-	int cantidadRegistros = ftell(fp) / sizeof(Juego);
-
 	Juego nuevoJuego;
 
-	int idJuego = cantidadRegistros + 1;
-	
 	char categoria[50] = { 0 };
 
 	nuevoJuego = crearJuego(idJuego, nombre, estudio, categoria);
@@ -79,7 +75,7 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 
 	fseek(fp, 0, SEEK_END);
 
-	int totalRegistros = ftell(fp) / sizeof(Juego);
+	int totalRegistros = generadorDeIdAutoIncremental(ARCHIVO_JUEGOS, sizeof(Juego));
 
 	rewind(fp);
 
@@ -107,78 +103,58 @@ Juego* obtenerListadoJuegosDinamico(int* validos)
 	return arregloJuegos;
 }
 
-int buscarJuegoPorId(int id)
+Juego* buscarJuegoPorId(int id)
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+
 	if (fp == NULL)
 	{
-		return -1;
+		return NULL;
 	}
 	
-	int idDeseada = NULL;
+	int idDeseada = 0;
+
 	Juego juego;
+
 	while(fread(&juego, sizeof(juego), 1, fp) > 0)
 	{
-		if (juego.idJuego == id)
+		if (juego.idJuego == id && juego.estaActivo)
 		{
 			fclose(fp);
-			idDeseada = juego.idJuego;
-			return idDeseada;
+			return &juego;
 		}
-
 	}
+
 	fclose(fp);
-	return idDeseada;
+	return NULL;
 
 }
 
 int darDeBajaJuego(int id)
 {
-	
-	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "r+b");
 
-	if (fp == NULL)
+	if (!fp)
 	{
-		return -1;
-	}
-
-	int	pos = buscarJuegoPorId(id);
-	if (pos == -1)
-	{
-		fclose(fp);
-		return -1;
-	}
-	
-	Juego juego;
-	
-	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
-	{
-		fclose(fp);
-		return -1;
+		return 0;
 	}
 
-	if (fread(&juego, sizeof(Juego), 1, fp)  != 1)
-	{
-		fclose(fp);
-		return -1;
-	}
-	juego.idJuego = -1;
+	Juego aux;
+	int encontrado = 0;
 
-	if (fseek(fp, pos * sizeof(Juego), SEEK_SET) != 0)
+	while (encontrado == 0 && fread(&aux, sizeof(Juego), 1, fp) > 0)
 	{
-		fclose(fp);
-		return -1;
+		if (aux.idJuego == id && aux.estaActivo)
+		{
+			aux.estaActivo = 0;
+			encontrado = 1;
+			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
+			fwrite(&aux, sizeof(Juego), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
+		}
 	}
 
-	if(fwrite(&juego, sizeof(Juego), 1, fp) != 1)
-	{
-		fclose(fp);
-		return -1;
-	}
-	
 	fclose(fp);
-	return 1;
-
 }
 void ordenarJuegosAlfabeticamente(Juego arreglo[], int validos)
 {
@@ -278,6 +254,7 @@ void modificarJuegoPorNombre(int idJuego, char nombre[])
 	Juego juegoAux;
 
 	int encontrado = 0;
+	
 
 	while (encontrado == 0 && fread(&juegoAux, sizeof(Juego), 1, fp) > 0)
 	{
@@ -305,7 +282,7 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 		if (juegoAux.idJuego == idJuego)
 		{
 			modificarEstudioJuego(&juegoAux, estudio);
-			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
+			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&juegoAux, sizeof(Juego), 1, fp);
 			fseek(fp, 0, SEEK_CUR);
 			encontrado = 1;

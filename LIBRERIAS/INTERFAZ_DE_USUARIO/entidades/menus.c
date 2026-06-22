@@ -132,6 +132,7 @@ void mostrarSubMenuJuegos()
 	printf("3. Ordenar juegos por ID.\n");
 	printf("4. Vaciar Archivo juegos.\n");
 	printf("5. Modificar Juego.\n");
+	printf("6. Dar de Baja un Juego.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -173,6 +174,13 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		{
 			system("cls");
 			modificarJuegoArchivo();
+			system("pause");
+			break;
+		}
+		case 6:
+		{
+			system("cls");
+			ejecutarDarDeBajaUnJuego();
 			system("pause");
 			break;
 		}
@@ -381,9 +389,4 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 			printf("\n");
 		}
 	}
-	/*
-	printf("============================================\n");
-	printf("Presione \"Y\" para agregar una nueva categoria.\n");
-	printf("Presione \"Q\" para salir.\n");
-	printf("============================================\n");*///[WIP]
 }
