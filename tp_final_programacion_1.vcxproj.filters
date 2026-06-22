@@ -16,6 +16,7 @@
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazEntrada.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazSalida.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\menus.c" />
+    <ClCompile Include="LIBRERIAS\multiusos\includesLibrerias.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LIBRERIAS\DOMINIO\gestorEventos.h" />

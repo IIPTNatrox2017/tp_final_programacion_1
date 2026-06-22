@@ -1,11 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "../cabeceraEntidades/logicaCategoria.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "../../DOMINIO/cabeceraEntidades/categoria.h"
-#include "../../ARCHIVOS/archivos.h"
-#include "../../DOMINIO/gestorEventos.h"
+
+#include "../../multiusos/includesLibrerias.h"
 
 
 int cargarNuevaCategoria(char nombre[])

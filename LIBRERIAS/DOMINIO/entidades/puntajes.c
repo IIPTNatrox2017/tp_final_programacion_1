@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "../cabeceraEntidades/puntajes.h"
+
+#include "../../multiusos/includesLibrerias.h"
 
 #define VAL_MIN 0
 #define VAL_MAX 100

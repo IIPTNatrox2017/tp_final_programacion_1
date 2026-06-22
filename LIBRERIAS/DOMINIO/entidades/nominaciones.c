@@ -1,9 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include "../cabeceraEntidades/nominaciones.h"
-#include "../cabeceraEntidades/juegos.h"
-#include "../../Librerias Externas/scanner.h"
-#include <stdio.h>
+#include "../../multiusos/includesLibrerias.h"
 
 Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f)
 {

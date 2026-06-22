@@ -1,20 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdlib.h>
-#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
-#include "../cabeceraEntidades/menus.h"
-#include <stdio.h>
-#include "../../Librerias Externas/scanner.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
-#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
-#include "../../DOMINIO/gestorEventos.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
-#include "../cabeceraEntidades/interfazEntrada.h"
+#include "../../multiusos/includesLibrerias.h"
 
 #define DIM_MAX_NOMBRES 50
-#define ARCHIVO_JUEGOS "juegos.bin"
-#define ARCHIVO_CATEGORIAS "categorias.bin"
-#define ARCHIVO_NOMINACIONES "nominaciones.bin"
+
 
 //ESTA CAPA SERA LA UNICA ENCARGADA DE SOLICITAR DATOS AL USUARIO.
 // SE RECOMIENDA EL USO RESPONSABLE DE IA.

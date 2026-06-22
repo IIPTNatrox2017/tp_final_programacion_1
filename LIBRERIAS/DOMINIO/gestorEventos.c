@@ -1,8 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
-#include "gestorEventos.h"
 #include <string.h>
+
+#include "gestorEventos.h"
 
 
 #define DIM_MAX_NOMBRES 50

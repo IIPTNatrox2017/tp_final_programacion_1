@@ -1,18 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdio.h>
-#include <string.h>
-#include "../cabeceraEntidades/interfazEntrada.h"
-#include "../cabeceraEntidades/interfazSalida.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
-#include "../../DOMINIO/cabeceraEntidades/categoria.h"
-#include "../../Librerias Externas/scanner.h"
-#include "../../DOMINIO/gestorEventos.h"
-#include "../cabeceraEntidades/menus.h"
-#include <ctype.h>
-#include <time.h>
+#include "../../multiusos/includesLibrerias.h"
 
 #define DIM_MAX_NOMBRES 50
 
@@ -36,13 +24,15 @@ void formularioAltaJuego()
 	char estudio[DIM_MAX_NOMBRES];
 
 	int esValido = 0;
+	int stringRepetido = 0;
 
 	do
 	{ 
 		printf("Ingrese Nombre Juego\n >>> ");
 		scanString(nombre, DIM_MAX_NOMBRES);
 	
-		 esValido = validarNombres(nombre);
+		esValido = validarNombres(nombre);
+		stringRepetido = verificarNombreJuegoNuevo(nombre);
 
 		if (!esValido)
 		{
@@ -50,10 +40,18 @@ void formularioAltaJuego()
 			system("pause");
 			system("cls");
 		}
+		if (stringRepetido == 1)
+		{
+			printf("Nombre ya existe.\n");
+			system("pause");
+			system("cls");
+		}
 
-	} while (!esValido);
+	} while (!esValido || stringRepetido == 1);
 
 	esValido = 0;
+	stringRepetido = 0;
+
 	system("cls");
 	mostrarDatosJuegosCargados(nombre, estudio);
 
@@ -63,12 +61,12 @@ void formularioAltaJuego()
 		scanString(estudio, DIM_MAX_NOMBRES);
 
 		esValido = validarNombres(estudio);
-
 		if (!esValido)
 		{
 			printf("Estudio no valido.\n");
 			system("pause");
-
+			system("cls");
+			mostrarDatosJuegosCargados(nombre, estudio);
 		}
 
 	} while (!esValido);
@@ -371,17 +369,44 @@ void modificarJuegoArchivo()
 
 void ejecutarModificacionEstudio(int idJuego, Juego* nuevoJuego)
 {
+	int esValido = 0;
 	char estudio[DIM_MAX_NOMBRES];
-	printf("Ingrese Nuevo Estudio: ");
-	scanString(estudio, DIM_MAX_NOMBRES);
+	do
+	{
+		printf("Ingrese Nuevo Estudio: ");
+		scanString(estudio, DIM_MAX_NOMBRES);
+		esValido = validarNombres(estudio);
+		if (!esValido)
+		{
+			printf("Nombre no valido. Ingrese otro.\n");
+			system("pause");
+			system("cls");
+			mostrarJuego(*nuevoJuego);
+		}
+
+	} while (!esValido);
+
 	modificarJuegoPorEstudio(idJuego, estudio);
 	strcpy(nuevoJuego->estudio, estudio);
 }
 void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
 {
+	int esValido = 0;
 	char nombre[DIM_MAX_NOMBRES];
-	printf("Ingrese Nuevo Nombre: ");
-	scanString(nombre, DIM_MAX_NOMBRES);
+	do
+	{
+		printf("Ingrese Nuevo Nombre: ");
+		scanString(nombre, DIM_MAX_NOMBRES);
+		esValido = validarNombres(nombre);
+		if (!esValido)
+		{
+			printf("Nombre no valido. Ingrese otro.\n");
+			system("pause");
+			system("cls");
+			mostrarJuego(*juegoNuevo);
+		}
+
+	} while (!esValido);
 	modificarJuegoPorNombre(idJuego, nombre);
 	strcpy(juegoNuevo->nombre, nombre);
 }

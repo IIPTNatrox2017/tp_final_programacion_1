@@ -1,16 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "../cabeceraEntidades/logicaNominaciones.h"
-#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
-#include "../cabeceraEntidades/logicaCategoria.h"
-#include "../../ARCHIVOS/archivos.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
-
-
-
+#include "../../multiusos/includesLibrerias.h"
 
 int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, int m, int a)
 {

@@ -1,9 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdio.h>
-#include "../cabeceraEntidades/categoria.h"
-#include <string.h>
-
+#include "../../multiusos/includesLibrerias.h"
 
 Categoria crearCategoria(int id, char nombre[])
 {

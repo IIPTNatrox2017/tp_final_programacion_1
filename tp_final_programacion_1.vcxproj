@@ -30,6 +30,7 @@
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\menus.c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\pila .c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\scanner.c" />
+    <ClCompile Include="LIBRERIAS\multiusos\includesLibrerias.h" />
     <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaJuego.c" />
     <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaCategoria.c" />
     <ClCompile Include="LIBRERIAS\SERVICIO\entidades\logicaNominaciones.c" />

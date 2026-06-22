@@ -1,17 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "../cabeceraEntidades/logicaJuego.h"
-#include "../../DOMINIO/cabeceraEntidades/categoria.h"
-#include "../../DOMINIO/cabeceraEntidades/juegos.h"
-#include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
-#include "../../DOMINIO/cabeceraEntidades/puntajes.h"
-#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazSalida.h"
-#include <string.h>
-#include "../../DOMINIO/gestorEventos.h"
-#include "../../ARCHIVOS/archivos.h"
+#include "../../multiusos/includesLibrerias.h"
 
 
 int cargarNuevoJuego(char nombre[], char estudio[], int idCategoria) 
@@ -302,6 +291,11 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
 
+	if (!fp)
+	{
+		return;
+	}
+
 	Juego juegoAux;
 	int encontrado = 0;
 
@@ -324,6 +318,11 @@ void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
 
+	if (!fp)
+	{
+		return;
+	}
+
 	Juego auxJuego;
 	int encontrado = 0;
 	
@@ -340,4 +339,30 @@ void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[])
 
 	fclose(fp);
 	
+}
+
+int verificarNombreJuegoNuevo(char nombreNuevo[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Juego aux;
+	int encontrado = 0;
+	int nombreRepetido = 0;
+
+	while (encontrado == 0 && fread(&aux, sizeof(Juego), 1, fp) > 0)
+	{
+		if (_strcmpi(aux.nombre, nombreNuevo) == 0 && aux.estaActivo == 1)
+		{
+			nombreRepetido = 1;
+			encontrado = 1;
+		}
+	}
+
+	fclose(fp);
+	return nombreRepetido;
 }

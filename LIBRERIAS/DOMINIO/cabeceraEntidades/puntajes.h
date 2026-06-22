@@ -16,7 +16,7 @@ typedef struct stFechaLanzamiento
 } FechaLanzamiento;
 
 
-Puntaje crearPuntaje(float valor);
+Puntaje crearPuntaje(int valor);
 FechaLanzamiento crearFecha(int dia, int mes, int anio);
 
 #endif

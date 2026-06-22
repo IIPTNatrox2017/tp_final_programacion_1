@@ -1,18 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../cabeceraEntidades/interfazSalida.h"
-#include "../../DOMINIO/cabeceraEntidades/juegos.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaJuego.h"
-#include "../../DOMINIO/cabeceraEntidades/categoria.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaCategoria.h"
-#include "../../SERVICIO/cabeceraEntidades/logicaNominaciones.h"
-#include "../../Librerias Externas/scanner.h"
-#include <string.h>
-#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/menus.h"
-#include "../../INTERFAZ_DE_USUARIO/cabeceraEntidades/interfazEntrada.h"
-#include <time.h>
+#include "../../multiusos/includesLibrerias.h"
 
 void mostrarListadoJuegos()
 {
