@@ -76,14 +76,11 @@ void formularioAltaJuego()
 	system("cls");
 	mostrarDatosJuegosCargados(nombre, estudio);
 
-	// ACA VA LA MUESTRA DE CATEGORIAS.
-
 	int opcion = 0;
 	esValido = 0;
 
 	do
 	{
-		
 		menuCategoriasDisponibles(categorias, cantCategorias);
 		printf("\n");
 		opcion = pedirOpcion();
@@ -280,7 +277,7 @@ void modificarJuegoArchivo()
 	do
 	{
 		system("cls");
-		mostrarListadoJuegosPorId();
+		mostrarListadoJuegosPorId(juegos, cantJuegos);
 		opcion = pedirOpcionModificarJuego();
 
 		if (opcion < 1 || opcion > cantJuegos)
@@ -288,7 +285,7 @@ void modificarJuegoArchivo()
 			printf("Opcion no valida. Intente de nuevo por favor.\n");
 			system("pause");
 			system("cls");
-			mostrarListadoJuegosPorId();
+			mostrarListadoJuegosPorId(juegos, cantJuegos);
 		}
 		else
 		{
@@ -302,72 +299,96 @@ void modificarJuegoArchivo()
 	
 
 	system("cls");
-	mostrarJuego(juegos[indice]);
-	subMenuModificarJuego();
-	opcion = pedirOpcion();
 
-	switch (opcion)
+	int terminar = 1;
+
+	do
 	{
-		case 1:
-		{
+		mostrarJuego(juegos[indice]);
+		subMenuModificarJuego();
+		opcion = pedirOpcion();
 
-			ejecutarModificacionNombreJuego(juegos[indice].idJuego);
-			break;
-		}
-		case 2:
+		switch (opcion)
 		{
-			ejecutarModificacionEstudio(juegos[indice].idJuego);
-			break;
-		}
-		case 3:
-		{
-			int opcion1 = 0;
-			do
+			case 1:
 			{
-				system("cls");
-				menuCategoriasDisponibles(categorias, cantCategorias);
-				opcion1 = pedirOpcion();
 
-				if (opcion1 < 1 || opcion1 > cantCategorias)
+				ejecutarModificacionNombreJuego(juegos[indice].idJuego, &juegos[indice]);
+				printf("Datos Modificados con Exito!\n");
+				break;
+			}
+			case 2:
+			{
+				ejecutarModificacionEstudio(juegos[indice].idJuego, &juegos[indice]);
+				printf("Datos Modificados con Exito!\n");
+				break;
+			}
+			case 3:
+			{
+				int opcion1 = 0;
+				do
 				{
-					printf("Opcion no valida. Intente de nuevo por favor.\n");
-					system("pause");
 					system("cls");
 					menuCategoriasDisponibles(categorias, cantCategorias);
-				}
-				else
-				{
-					esValido = 1;
-				}
+					opcion1 = pedirOpcion();
 
-			} while (!esValido);
+					if (opcion1 < 1 || opcion1 > cantCategorias)
+					{
+						printf("Opcion no valida. Intente de nuevo por favor.\n");
+						system("pause");
+						system("cls");
+						menuCategoriasDisponibles(categorias, cantCategorias);
+					}
+					else
+					{
+						esValido = 1;
+					}
 
-			int indiceCat = opcion1 - 1;
-			ejecutarModificacionCategoria(juegos[indice].idJuego, categorias[indiceCat].idCategoria);
-			break;
+				} while (!esValido);
+
+				int indiceCat = opcion1 - 1;
+				ejecutarModificacionCategoria(juegos[indice].idJuego, categorias[indiceCat].nombre, &juegos[indice]);
+				printf("\nDatos Modificados con Exito!\n");
+				break;
+			}
+			default:
+			{
+				printf("Opcion no valida. Seleccione otra\n");
+				break;
+			}
 		}
-	}
+
+		printf("\nDesea seguir Modificando Datos?\n >>> ");
+		terminar = confirmar('s');
+
+		system("cls");
+
+	} while (terminar != 0);
+
 	free(juegos);
+	free(categorias);
 }
 
-void ejecutarModificacionEstudio(int idJuego)
+void ejecutarModificacionEstudio(int idJuego, Juego* nuevoJuego)
 {
 	char estudio[DIM_MAX_NOMBRES];
 	printf("Ingrese Nuevo Estudio: ");
 	scanString(estudio, DIM_MAX_NOMBRES);
 	modificarJuegoPorEstudio(idJuego, estudio);
+	strcpy(nuevoJuego->estudio, estudio);
 }
-void ejecutarModificacionNombreJuego(int idJuego)
+void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
 {
 	char nombre[DIM_MAX_NOMBRES];
 	printf("Ingrese Nuevo Nombre: ");
 	scanString(nombre, DIM_MAX_NOMBRES);
 	modificarJuegoPorNombre(idJuego, nombre);
+	strcpy(juegoNuevo->nombre, nombre);
 }
 
-void ejecutarModificacionCategoria(int idJuego, int idCategoria)
+void ejecutarModificacionCategoria(int idJuego, char nombreCategoria[], Juego* juegoNuevo)
 {
-
-	modificarJuegoPorCategoria(idJuego, idCategoria);
+	modificarJuegoPorCategoria(idJuego, nombreCategoria);
+	strcpy(juegoNuevo->categoria, nombreCategoria);
 }
 

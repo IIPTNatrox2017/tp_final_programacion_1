@@ -39,11 +39,8 @@ void mostrarListadoJuegos()
 	}
 
 }
-void mostrarListadoJuegosPorId()
+void mostrarListadoJuegosPorId(Juego* lista, int validos)
 {
-	int validos = 0;
-	Juego* lista = obtenerListadoJuegosDinamico(&validos);
-
 	if (validos <= 0)
 	{
 		printf("\nNo hay Juegos cargados!.\n");

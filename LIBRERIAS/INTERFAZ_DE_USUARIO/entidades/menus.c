@@ -156,7 +156,9 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		case 3:
 		{
 			system("cls");
-			mostrarListadoJuegosPorId();
+			int validos = 0;
+			Juego* juegos = obtenerListadoJuegosDinamico(&validos);
+			mostrarListadoJuegosPorId(juegos, validos);
 			system("pause");
 			break;
 		}

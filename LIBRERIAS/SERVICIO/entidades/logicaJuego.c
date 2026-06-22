@@ -269,7 +269,7 @@ void exportarJuegosATexto(char rutaTexto[])
 
 void modificarJuegoPorNombre(int idJuego, char nombre[])
 {
-	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "r+b");
 
 	if (!fp)
 	{
@@ -279,13 +279,14 @@ void modificarJuegoPorNombre(int idJuego, char nombre[])
 
 	int encontrado = 0;
 
-	while (fread(&juegoAux, sizeof(Juego), 1, fp) > 0 && encontrado == 0)
+	while (encontrado == 0 && fread(&juegoAux, sizeof(Juego), 1, fp) > 0)
 	{
 		if (juegoAux.idJuego == idJuego)
 		{
 			modificarNombreJuego(&juegoAux, nombre);
-			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
+			fseek(fp, -1 * sizeof(Juego), SEEK_CUR);
 			fwrite(&juegoAux, sizeof(Juego), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
 			encontrado = 1;
 		}
 	}
@@ -299,13 +300,14 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 	Juego juegoAux;
 	int encontrado = 0;
 
-	while (fread(&juegoAux, sizeof(Juego), 1, fp) > 0 && encontrado == 0)
+	while (encontrado == 0 && fread(&juegoAux, sizeof(Juego), 1, fp) > 0)
 	{
 		if (juegoAux.idJuego == idJuego)
 		{
 			modificarEstudioJuego(&juegoAux, estudio);
 			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&juegoAux, sizeof(Juego), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
 			encontrado = 1;
 
 		}
@@ -313,37 +315,18 @@ void modificarJuegoPorEstudio(int idJuego, char estudio[])
 	fclose(fp);
 }
 
-void modificarJuegoPorCategoria(int idJuego, int idCategoria)
+void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[])
 {
-	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
-
-	Categoria auxCategoria;
-
-	int encontrado = 0;
-	char categoriaBuscada[DIM_MAX_NOMRBES];
-
-
-	while (fread(&auxCategoria, sizeof(Categoria), 1, fp) > 0 && encontrado == 0)
-	{
-		if (auxCategoria.idCategoria == idCategoria)
-		{
-			strcpy(categoriaBuscada, auxCategoria.nombre);
-			encontrado = 1;
-		}
-	}
-
-	fclose(fp);
-
-	fp = fopen(ARCHIVO_JUEGOS, "rb+");
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb+");
 
 	Juego auxJuego;
-	encontrado = 0;
+	int encontrado = 0;
 	
-	while (fread(&auxJuego, sizeof(Juego), 1, fp) > 0 && encontrado == 0)
+	while (encontrado == 0 && fread(&auxJuego, sizeof(Juego), 1, fp) > 0)
 	{
 		if (auxJuego.idJuego == idJuego)
 		{
-			strcpy(auxJuego.categoria, categoriaBuscada);
+			strcpy(auxJuego.categoria, nombreCategoria);
 			fseek(fp, (long)sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&auxJuego, sizeof(Juego), 1, fp);
 			encontrado = 1;

@@ -15,7 +15,7 @@ void cargarCategoriaAjuego(int idCategoria, Juego* juego);
 
 void modificarJuegoPorNombre(int idJuego, char nombre[]);
 void modificarJuegoPorEstudio(int idJuego, char estudio[]);
-void modificarJuegoPorCategoria(int idJuego, int idCategoria);
+void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[]);
 
 #endif
 	
