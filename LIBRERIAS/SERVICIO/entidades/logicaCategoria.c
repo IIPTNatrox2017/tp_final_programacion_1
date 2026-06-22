@@ -106,7 +106,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 		*validos = 0;
 		return 0;
 	}
-	int indice; 
+	int indice;
 
 	Categoria* arregloCategorias;
 
@@ -115,7 +115,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 	*validos = ftell(fp) / sizeof(Categoria);
 
 	arregloCategorias = (Categoria*)malloc((*validos) * sizeof(Categoria));
-	if(arregloCategorias == NULL)
+	if (arregloCategorias == NULL)
 	{
 		fclose(fp);
 		*validos = 0;
@@ -136,7 +136,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 
 int bajaCategoria(int idCategoria)
 {
-	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb+");
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "r+b");
 
 	if (!fp)
 	{
@@ -165,9 +165,9 @@ int bajaCategoria(int idCategoria)
 	return exito;
 }
 
-int modificarCategoria(int idCategoria, char nuevoNombre[])
+void modificarCategoria(int idCategoria, char nuevoNombre[])
 {
-	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb+");
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "r+b");
 
 	if (!fp)
 	{
@@ -175,25 +175,39 @@ int modificarCategoria(int idCategoria, char nuevoNombre[])
 	}
 
 	Categoria aux;
-	int exito = -1;
+	char nombreViejo[DIM_MAX_NOMRBES];
 
-	while (exito == -1 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
+	while (fread(&aux, sizeof(Categoria), 1, fp) > 0)
 	{
 		if (aux.idCategoria == idCategoria)
 		{
+			strcpy(nombreViejo, aux.nombre);
+
 			strcpy(aux.nombre, nuevoNombre);
-
 			fseek(fp, sizeof(Categoria), SEEK_CUR);
-
 			fwrite(&aux, sizeof(Categoria), 1, fp);
-
 			fseek(fp, 0, SEEK_CUR);
-			exito = 1;
 		}
 	}
 
 	fclose(fp);
 
-	return exito;
-}
+	fp = fopen(ARCHIVO_JUEGOS, "r+b");
 
+	if (!fp)
+	{
+		return;
+	}
+
+	Juego auxJuego;
+
+	while (fread((&auxJuego), sizeof(Juego), 1, fp) > 0)
+	{
+		if (_strcmpi(auxJuego.nombre, nombreViejo) == 0)
+		{
+			strcpy(auxJuego.nombre, nombreViejo);
+		}
+	}
+
+	fclose(fp);
+}

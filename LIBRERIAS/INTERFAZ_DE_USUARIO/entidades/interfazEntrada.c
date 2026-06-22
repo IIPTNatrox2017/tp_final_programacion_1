@@ -521,3 +521,49 @@ void ejecutarReactivarUnJuego()
 	free(lista);
 	return;
 }
+
+void ejecutarModificacionCategoriaArchivo()
+{
+	int cantCategorias = 0;
+	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
+
+	if (lista == NULL)
+	{
+		printf("Aun no hay Categorias Cargadas.\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	int opcion = 0;
+	int esValido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoCategorias(lista, cantCategorias);
+		opcion = pedirOpcion("Seleccione una Categoria:");
+
+		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 1)
+		{
+			printf("Opcion no valida. Por favor Ingrese otra.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoCategorias(lista, cantCategorias);
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	} while (!esValido);
+
+	int indice = opcion - 1;
+
+	system("cls");
+	
+	int continuar = 1;
+
+	printf("Esta seguro que desea modificar esta Categoria?[s/n]\n");
+	continuar = confirmar('s');
+}

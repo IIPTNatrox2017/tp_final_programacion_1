@@ -5,6 +5,7 @@ typedef struct stCategoria
 {
 	int idCategoria;
 	char nombre[50];
+	int estaActiva;
 } Categoria;
 
 

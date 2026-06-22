@@ -8,7 +8,7 @@ Categoria crearCategoria(int id, char nombre[])
 	
 	nuevaCategoria.idCategoria = id;
 	strcpy(nuevaCategoria.nombre, nombre);
-
+	nuevaCategoria.estaActiva = 1;
 	return nuevaCategoria;
 }
 void modificarNombreCategoria(Categoria* c, char nuevoNombre[])

@@ -19,7 +19,7 @@ void mostrarListadoJuegos()
 
 	for(int i=0; i < validos; i++)
 	{
-		if (lista[i].estaActivo)
+		if (lista[i].estaActivo && lista[i].catActiva)
 		{
 			mostrarJuego(lista[i]);
 		}
@@ -40,7 +40,7 @@ void mostrarListadoJuegosPorId(Juego* lista, int validos)
 
 	for (int i = 0; i < validos; i++)
 	{
-		if (lista[i].estaActivo)
+		if (lista[i].estaActivo && lista[i].catActiva)
 		{
 			mostrarJuego(lista[i]);
 		}
@@ -61,17 +61,15 @@ void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos)
 
 	for (int i = 0; i < validos; i++)
 	{
-		if (lista[i].estaActivo == 0)
+		if (lista[i].estaActivo == 0 && lista[i].catActiva == 1)
 		{
 			mostrarJuego(lista[i]);
 		}
 	}
 
 }
-void mostrarListadoCategorias()
+void mostrarListadoCategorias(Categoria lista[], int validos)
 {
-	int validos = 0;
-	Categoria* lista = obtenerListadoCategoriasDinamico(&validos);
 
 	if(lista == NULL)
 	{
@@ -84,11 +82,13 @@ void mostrarListadoCategorias()
 	printf("========== LISTADO DE CATEGORIAS ==========\n");
 	for(int i = 0; i < validos; i++)
 	{
-		printf(" -Nombre: %s\n", lista[i].nombre);
-		printf("----------------------------------\n");
+		if (lista[i].estaActiva == 1)
+		{
+			printf(" -Nombre: %s\n", lista[i].nombre);
+			printf("----------------------------------\n");
+		}
 	}
 
-	free(lista);
 }
 
 void mostrarRankingNominacionesUI()

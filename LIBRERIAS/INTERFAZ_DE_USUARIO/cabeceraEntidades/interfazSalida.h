@@ -4,11 +4,12 @@
 #include "../../DOMINIO/cabeceraEntidades/juegos.h"
 
 void mostrarListadoJuegos();
-void mostrarListadoCategorias();
+void mostrarListadoCategorias(Categoria lista[], int validos);
 void mostrarRankingNominacionesUI();
 void mostrarListadoJuegosPorId(Juego* lista, int validos);
 void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos);
 void mostrarJuego(Juego aux);
+void mostrarNominacion(Nominacion aux);
 
 void formularioExportarArchivos();
 

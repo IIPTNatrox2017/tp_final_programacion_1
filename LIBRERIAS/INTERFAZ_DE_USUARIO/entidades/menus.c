@@ -223,6 +223,9 @@ void mostrarSubMenuCategorias()
 	printf("1. Cargar una Categoria al archivo.\n");
 	printf("2. Listado Categorias.\n");
 	printf("3. Abrir archivo limpio.\n");
+	printf("4. Modificar Categoria.[WIP]\n");
+	printf("5. Dar de baja una Categoria.[WIP]\n");
+	printf("6. ");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -241,7 +244,9 @@ void ejecutarOpcionSubMenuCategorias(int opcion)
 		case 2:
 		{
 			system("cls");
-			mostrarListadoCategorias();
+			int validos = 0;
+			Categoria* lista = obtenerListadoCategoriasDinamico(&validos);
+			mostrarListadoCategorias(lista, validos);
 			system("pause");
 			system("cls");
 			break;
@@ -254,7 +259,11 @@ void ejecutarOpcionSubMenuCategorias(int opcion)
 			system("cls");
 			break;
 		}
+		case 4:
+		{
 
+			break;
+		}
 		case 0:
 		{
 			system("cls");

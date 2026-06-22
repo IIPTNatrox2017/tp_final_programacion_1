@@ -8,6 +8,7 @@ typedef struct stJuego
 	char estudio[50];
 	char categoria[50];
 	int estaActivo;
+	int catActiva;
 
 } Juego;
 

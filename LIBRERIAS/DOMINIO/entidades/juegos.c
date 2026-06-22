@@ -13,6 +13,7 @@ Juego crearJuego(int id, char nombre[], char estudio[], char categoria[])
 	strcpy(nuevoJuego.estudio, estudio);
 	strcpy(nuevoJuego.categoria, categoria);
 	nuevoJuego.estaActivo = 1;
+	nuevoJuego.catActiva = 1;
 
 	return nuevoJuego;
 }
