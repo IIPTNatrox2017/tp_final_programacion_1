@@ -192,3 +192,9 @@ void mostrarNominacion(Nominacion aux)
 	printf("%d\n", aux.fecha.anio);
 	printf("----------------------------------\n");
 }
+
+void mostrarCategoria(Categoria aux)
+{
+	printf(" -Nombre: %s\n", aux.nombre);
+	printf("----------------------------------\n");
+}
