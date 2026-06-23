@@ -36,7 +36,7 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 
 	int idNominacion = obtenerMayorIdNominacion() + 1;
 
-	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje, FechaLanzamiento);
+	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje);
 
 	if (fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp) != 1)
 	{

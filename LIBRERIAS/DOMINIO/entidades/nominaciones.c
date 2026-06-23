@@ -2,7 +2,7 @@
 
 #include "../../multiusos/includesLibrerias.h"
 
-Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f)
+Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p)
 {
 	Nominacion n = { 0 };
 
