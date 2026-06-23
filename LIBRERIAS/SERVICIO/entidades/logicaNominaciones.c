@@ -303,4 +303,4 @@ void exportarNominacionesACsv(char rutaCSV[])
 	}
 	fclose(fp);
 	fclose(fc);
-})
+}

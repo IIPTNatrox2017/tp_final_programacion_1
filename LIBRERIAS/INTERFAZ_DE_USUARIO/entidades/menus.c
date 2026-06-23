@@ -567,11 +567,13 @@ void ejecutarSubMenuExportarDatosNominacion(int opcion)
 	{
 	case 1:
 		{
+			exportarNominacionesATexto("reporteNominacion.txt");
 			printf("\nExportacion Exitosa!\n");
 			break;
 		}
 		case 2:
 		{
+			exportarNominacionesACsv("reporteNominacion.csv");
 			printf("\nExportacion Exitosa!\n");
 			break;
 		}
