@@ -502,63 +502,63 @@ void ejecutarReactivarUnJuego()
 	return;
 }
 
-void modificarCategoriaArchivo()
-{
-	int cantCategorias = 0;
-	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
-
-	if (cantCategorias == 0)
+	void modificarCategoriaArchivo()
 	{
-		printf("Aun no hay Categorias Cargadas.\n");
-		system("pause");
-		system("cls");
-		return;
-	}
+		int cantCategorias = 0;
+		Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
 
-	int opcion = 0;
-	int esValido = 0;
-
-	do
-	{
-		system("cls");
-		mostrarListadoCategorias(lista, cantCategorias);
-		opcion = pedirOpcion("Seleccione una Categoria:");
-
-		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
+		if (cantCategorias == 0)
 		{
-			printf("Opcion no valida. Por favor Ingrese otra.\n");
+			printf("Aun no hay Categorias Cargadas.\n");
 			system("pause");
 			system("cls");
-			mostrarListadoCategorias(lista, cantCategorias);
+			return;
 		}
-		else
+
+		int opcion = 0;
+		int esValido = 0;
+
+		do
 		{
-			esValido = 1;
+			system("cls");
+			mostrarListadoCategorias(lista, cantCategorias);
+			opcion = pedirOpcion("Seleccione una Categoria:");
+
+			if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
+			{
+				printf("Opcion no valida. Por favor Ingrese otra.\n");
+				system("pause");
+				system("cls");
+				mostrarListadoCategorias(lista, cantCategorias);
+			}
+			else
+			{
+				esValido = 1;
+			}
+
+		} while (!esValido);
+
+		int indice = opcion - 1;
+
+		system("cls");
+		mostrarCategoria(lista[indice]);
+
+		char nombreNuevo[DIM_MAX_NOMBRES];
+
+		printf("Ingrese nuevo Nombre de Categoria: ");
+		scanString(nombreNuevo, DIM_MAX_NOMBRES);
+
+		int continuar = 1;
+		printf("Esta seguro que desea modificar esta Categoria?[s/n]\n >>> ");
+		continuar = confirmar('s');
+
+		if (continuar)
+		{
+			modificarCategoria(lista[indice].idCategoria, nombreNuevo);
 		}
 
-	} while (!esValido);
-
-	int indice = opcion - 1;
-
-	system("cls");
-	mostrarCategoria(lista[indice]);
-
-	char nombreNuevo[DIM_MAX_NOMBRES];
-
-	printf("Ingrese nuevo Nombre de Categoria: ");
-	scanString(nombreNuevo, DIM_MAX_NOMBRES);
-
-	int continuar = 1;
-	printf("Esta seguro que desea modificar esta Categoria?[s/n]\n >>> ");
-	continuar = confirmar('s');
-
-	if (continuar)
-	{
-		modificarCategoria(lista[indice].idCategoria, nombreNuevo);
+		free(lista);
 	}
-
-	free(lista);
-}
 
 void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
 {
