@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# archivos utilizados en el proyecto
+juegos.bin
+categorias.bin
+nominacion.bin
+
+*.txt
+*.csv
