@@ -1,0 +1,15 @@
+ID: 1
+Nombre: Monte
+Estudio: Montes
+categoria: PUREEEEEEEEEE
+
+ID: 2
+Nombre: god of war
+Estudio: santillana
+categoria: PUREEEEEEEEEE
+
+ID: 3
+Nombre: locuramix
+Estudio: nashei
+categoria: PUREEEEEEEEEE
+

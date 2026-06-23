@@ -366,3 +366,32 @@ int verificarNombreJuegoNuevo(char nombreNuevo[])
 	fclose(fp);
 	return nombreRepetido;
 }
+void exportarJuegosACsv(char rutaCSV[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+		if (fp == NULL)
+		{
+			return;
+	
+		}
+	FILE* csv = fopen(rutaCSV, "w");
+	if (csv == NULL)
+	{
+		return;
+	}
+	Juego juego;
+	while(fread(&juego, sizeof(Juego), 1, fp) == 1)
+	{
+		if (juego.idJuego == -1)
+		{
+			continue;
+		}
+
+		fprintf(csv, "%d,%s,%s,%s\n", juego.idJuego, juego.nombre, juego.estudio, juego.categoria);
+	}
+	
+	
+	fclose(fp);
+	fclose(csv);
+
+}
