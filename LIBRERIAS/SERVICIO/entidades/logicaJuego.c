@@ -366,7 +366,7 @@ int verificarNombreJuegoNuevo(char nombreNuevo[])
 	fclose(fp);
 	return nombreRepetido;
 }
-void importarjuegosAcsv(char rutaCSV[])
+void exportarJuegosACsv(char rutaCSV[])
 {
 	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
 		if (fp == NULL)

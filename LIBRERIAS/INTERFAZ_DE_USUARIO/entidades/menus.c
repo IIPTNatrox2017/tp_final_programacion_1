@@ -277,7 +277,7 @@ void subMenuExportarDatos()
 	printf("===========================\n");
 
 	printf("1. Exportacion por txt.\n");
-	printf("2. Exportacion por sb.\n");
+	printf("2. Exportacion por csv.\n");
 	opcion = pedirOpcion(">> ");
 
 	switch(opcion)
@@ -290,7 +290,8 @@ void subMenuExportarDatos()
 		}
 		case 2:
 		{
-
+			exportarJuegosACsv("juegosExportados.csv");
+			printf("\nExportacion Exitosa!");
 			break;
 		}
 	

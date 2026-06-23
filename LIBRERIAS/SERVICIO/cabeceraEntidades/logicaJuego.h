@@ -17,7 +17,7 @@ void modificarJuegoPorNombre(int idJuego, char nombre[]);
 void modificarJuegoPorEstudio(int idJuego, char estudio[]);
 void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[]);
 int verificarNombreJuegoNuevo(char nombreNuevo[]);
-void importarJuegosAcsv(char rutaCSV[]);
+void exportarJuegosACsv(char rutaCSV[]);
 
 #endif
 	
