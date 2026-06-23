@@ -21,7 +21,6 @@ int compararCategoriasPorNombre(Categoria c1, Categoria c2)
 	resultado = _strcmpi(c1.nombre, c2.nombre);
 	return resultado;
 }
-
 void modificarIDcategoria(Categoria* c, int idNuevo)
 {
 	c->idCategoria = idNuevo;

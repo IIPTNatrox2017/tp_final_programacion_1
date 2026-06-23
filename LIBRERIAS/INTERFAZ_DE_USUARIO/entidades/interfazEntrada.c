@@ -516,7 +516,7 @@ void ejecutarReactivarUnJuego()
 	return;
 }
 
-	void modificarCategoriaArchivo()
+void modificarCategoriaArchivo()
 	{
 		int cantCategorias = 0;
 		Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
@@ -694,47 +694,5 @@ void ejecutarReactivarUnaCategoria()
 	}
 
 	free(lista);
-}
-
-void exportarNominacionJuego()
-{
-	int cantJuegos = 0;
-	Juego* juegos = obtenerListadoJuegosDinamico(&cantJuegos);
-
-	if (cantJuegos == 0)
-	{
-		printf("Aun no hay juego cargados. Por favor ingrese uno.\n");
-		return;
-	}
-
-	int opcion = 0;
-	int valido = 0;
-
-	do
-	{
-		system("cls");
-		mostrarListadoJuegosPorId(juegos, cantJuegos);
-		opcion = pedirOpcion("Seleccione id de juego a exportar: ");
-
-		if (opcion < 1 || opcion > cantJuegos || juegos[opcion - 1].estaActivo == 0)
-		{
-			printf("Opcion no valida. Intente de nuevo por favor.\n");
-			system("pause");
-			system("cls");
-			mostrarListadoJuegosPorId(juegos, cantJuegos);
-		}
-		else
-		{
-			valido = 1;
-		}
-
-	} while (!valido);
-
-	system("cls");
-
-	int indice = opcion;
-	
-	printf("\nJuego exportado con exito!\n");
-
 }
 

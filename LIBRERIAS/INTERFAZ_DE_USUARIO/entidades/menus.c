@@ -78,12 +78,6 @@ void pantallaBienvenida()
 	hidecursor(1);
 }
 
-
-
-
-
-
-
 void menuPrincipal()
 {
 	pantallaBienvenida();
@@ -109,7 +103,8 @@ void mostrarMenu()
 	printf("3. Nominaciones.\n");
 	printf("0. Salir.\n");
 }
- 
+
+
 int pedirOpcion(char string[])
 {
 	int opcion;
@@ -191,6 +186,7 @@ void mostrarSubMenuJuegos()
 	printf("6. Dar de Baja un Juego.\n");
 	printf("7. Reactivar Un Juego.\n");
 	printf("8. Exportar Datos.\n");
+	printf("9. Mostrar juegos de una categoria.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -253,6 +249,13 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		{
 			system("cls");
 			subMenuExportarDatosJuegos();
+			system("pause");
+			break;
+		}
+		case 9:
+		{
+			system("cls");
+
 			system("pause");
 			break;
 		}
@@ -479,9 +482,7 @@ void mostrarSubMenuNominaciones()
 	printf("1. Registrar Nominacion.\n");
 	printf("2. Ranking Nominaciones.\n");
 	printf("3. Abrir archivo limpio.\n");
-	printf("4. Exportar Nominaciones por juego.\n");
-	printf("5. Exportar Nominaciones por categoria.\n");
-	printf("6. Exportar Ranking por Nominacion.\n");
+	printf("4. Exportar datos.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -517,22 +518,6 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 		{
 			system("cls");
 			subMenuExportarDatosNominacion();
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 5:
-		{
-			system("cls");
-			printf("FUNCION NO IMPLEMENTADA.\n");
-			system("pause");
-			system("cls");
-			break;
-		}
-		case 6:
-		{
-			system("cls");
-			printf("FUNCION NO IMPLEMENTADA.\n");
 			system("pause");
 			system("cls");
 			break;
