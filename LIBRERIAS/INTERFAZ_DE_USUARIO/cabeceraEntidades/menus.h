@@ -21,6 +21,9 @@ void ejecutarSubMenuExportarDatosJuegos(int opcion);
 void subMenuCategorias();
 void ejecutarOpcionSubMenuCategorias(int opcion);
 void mostrarSubMenuCategorias();
+void mostrarSubMenuExportarDatosCategoria();
+void ejecutarSubMenuExportarDatosCategoria(int opcion);
+void subMenuExportarDatosCategorias();
 
 void subMenuNominaciones();
 void ejecutarOpcionSubMenuNominaciones(int opcion);
