@@ -285,13 +285,13 @@ void subMenuExportarDatos()
 		case 1:
 		{
 			exportarJuegosATexto("reporteJuegos.txt");
-			printf("\nExportacion Exitosa!");
+			printf("\nExportacion Exitosa!\n");
 			break;
 		}
 		case 2:
 		{
 			exportarJuegosACsv("juegosExportados.csv");
-			printf("\nExportacion Exitosa!");
+			printf("\nExportacion Exitosa!\n");
 			break;
 		}
 	

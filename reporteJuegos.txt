@@ -4,7 +4,12 @@ Estudio: Montes
 categoria: PUREEEEEEEEEE
 
 ID: 2
-Nombre: gogo
-Estudio: gege
-categoria: cat
+Nombre: god of war
+Estudio: santillana
+categoria: PUREEEEEEEEEE
+
+ID: 3
+Nombre: locuramix
+Estudio: nashei
+categoria: PUREEEEEEEEEE
 
