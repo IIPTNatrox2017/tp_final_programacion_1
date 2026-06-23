@@ -210,9 +210,6 @@ void mostrarNominacion(Nominacion aux)
 {
 	printf("ID: %d\n", aux.idNominacion);
 	printf("FECHA LANZAMIENTO: ");
-	printf("%d", aux.fecha.dia);
-	printf("%d", aux.fecha.mes);
-	printf("%d\n", aux.fecha.anio);
 	printf("----------------------------------\n");
 }
 

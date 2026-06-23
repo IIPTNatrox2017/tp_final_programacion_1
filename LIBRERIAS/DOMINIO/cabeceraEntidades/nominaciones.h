@@ -13,7 +13,7 @@ typedef struct stNominacion
 	Puntaje puntaje;
 }Nominacion;
 
-Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f);
+Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p);
 
 int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2);
 
