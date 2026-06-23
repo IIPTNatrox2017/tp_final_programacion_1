@@ -8,7 +8,7 @@ typedef struct stRankingJuego
 	int cantidad;
 }RankingJuego;
 
-int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, int m, int a);
+int registrarNominacion(int idJuego, int idCategoria, int puntajeValor);
 int existeNominacionDuplicada(int idJuego, int idCategoria);
 int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a);
 int bajaNominacion(int idNominacion);

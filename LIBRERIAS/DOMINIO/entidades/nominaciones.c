@@ -10,7 +10,7 @@ Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, Fech
 	n.idJuego = idJuego;
 	n.idCategoria = idCategoria;
 	n.puntaje = p;
-	n.fecha = f;
+	
 
 	return n;
 }
@@ -20,7 +20,7 @@ void modificarPuntajeNominacion(Nominacion* n, Puntaje nuevoPuntaje)
 }
 void modificarFechaNominacion(Nominacion* n, FechaLanzamiento nuevaFecha)
 {
-	n->fecha = nuevaFecha;
+	
 }
 int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2)
 {
