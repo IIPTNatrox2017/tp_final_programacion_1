@@ -136,10 +136,10 @@ void darDeBajaJuego(int id)
 		if (aux.idJuego == id && aux.estaActivo)
 		{
 			aux.estaActivo = 0;
-			encontrado = 1;
 			fseek(fp, sizeof(Juego) * (-1), SEEK_CUR);
 			fwrite(&aux, sizeof(Juego), 1, fp);
 			fseek(fp, 0, SEEK_CUR);
+			encontrado = 1;
 		}
 	}
 

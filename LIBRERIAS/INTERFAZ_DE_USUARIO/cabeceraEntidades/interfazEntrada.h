@@ -15,9 +15,11 @@ void modificarJuegoArchivo();
 void ejecutarModificacionEstudio(int idJuego, Juego* nuevoJuego);
 void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo);
 void ejecutarModificacionCategoria(int idJuego, char nombreCategoria[], Juego* juegoNuevo);
+void ejecutarDarDeBajaUnaCategoria();
+void ejecutarReactivarUnaCategoria();
 void ejecutarDarDeBajaUnJuego();
 void ejecutarReactivarUnJuego();
-void ejecutarModificacionCategoriaArchivo();
+void modificarCategoriaArchivo();
 
 #endif // !1
 

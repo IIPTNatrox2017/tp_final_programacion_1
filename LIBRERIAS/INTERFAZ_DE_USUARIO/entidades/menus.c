@@ -295,9 +295,9 @@ void mostrarSubMenuCategorias()
 	printf("1. Cargar una Categoria al archivo.\n");
 	printf("2. Listado Categorias.\n");
 	printf("3. Abrir archivo limpio.\n");
-	printf("4. Modificar Categoria.[WIP]\n");
-	printf("5. Dar de baja una Categoria.[WIP]\n");
-	printf("6. ");
+	printf("4. Modificar Categoria.\n");
+	printf("5. Dar de baja una Categoria.\n");
+	printf("6. Reactivar una Categoria.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -333,7 +333,20 @@ void ejecutarOpcionSubMenuCategorias(int opcion)
 		}
 		case 4:
 		{
-
+			system("cls");
+			modificarCategoriaArchivo();
+			break;
+		}
+		case 5:
+		{
+			system("cls");
+			ejecutarDarDeBajaUnaCategoria();
+			break;
+		}
+		case 6:
+		{
+			system("cls");
+			ejecutarReactivarUnaCategoria();
 			break;
 		}
 		case 0:
