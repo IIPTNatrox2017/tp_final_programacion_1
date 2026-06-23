@@ -18,10 +18,6 @@ void modificarPuntajeNominacion(Nominacion* n, Puntaje nuevoPuntaje)
 {
 	n->puntaje = nuevoPuntaje;
 }
-void modificarFechaNominacion(Nominacion* n, FechaLanzamiento nuevaFecha)
-{
-	
-}
 int sonNominacionesDuplicadas(Nominacion n1, Nominacion n2)
 {
 	int encontrado = 0;
