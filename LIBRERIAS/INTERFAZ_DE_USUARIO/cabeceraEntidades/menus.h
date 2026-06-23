@@ -34,6 +34,10 @@ void mostrarSubMenuNominaciones();
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
 void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias);
 
+void mostrarSubMenuExportarDatosNominacion();
+void ejecutarSubMenuExportarDatosNominacion(int opcion);
+void subMenuExportarDatosNominacion();
+
 void pantallaBienvenida();
 int anchoConsola();
 int altoConsola();

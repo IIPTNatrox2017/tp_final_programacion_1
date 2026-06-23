@@ -516,7 +516,7 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 		case 4:
 		{
 			system("cls");
-			exportarNominacionJuego();
+			subMenuExportarDatosNominacion();
 			system("pause");
 			system("cls");
 			break;
@@ -552,6 +552,40 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 			break;
 		}
 	}
+}
+void subMenuExportarDatosNominacion()
+{
+	int opcion; 
+	mostrarSubMenuExportarDatosNominacion();
+	opcion = pedirOpcion("Seleccion una opcion:");
+	ejecutarSubMenuExportarDatosNominacion(opcion);
+}
+
+void ejecutarSubMenuExportarDatosNominacion(int opcion)
+{
+	switch (opcion)
+	{
+	case 1:
+		{
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
+		case 2:
+		{
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
+	}
+}
+
+void mostrarSubMenuExportarDatosNominacion()
+{
+	printf("===========================\n");
+	printf("      OPCIONES EXPORTAR\n");
+	printf("===========================\n");
+
+	printf("1. Exportacion por txt.\n");
+	printf("2. Exportacion por csv.\n");
 }
 
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[])
