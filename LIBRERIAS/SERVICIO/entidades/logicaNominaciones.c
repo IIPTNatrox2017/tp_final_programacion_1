@@ -277,6 +277,10 @@ void exportarNominacionesATexto(char rutaTexto[])
 
 	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
 	{
+		if (nominacion.idNominacion == -1)
+		{
+			continue;
+		}
 		fprintf(ft, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
 	}
 
@@ -299,6 +303,10 @@ void exportarNominacionesACsv(char rutaCSV[])
 	Nominacion nominacion;
 	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
 	{
+		if (nominacion.idNominacion == -1)
+		{
+			continue;
+		}
 		fprintf(fc, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
 	}
 	fclose(fp);
