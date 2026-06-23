@@ -9,6 +9,7 @@ int cargarNuevaCategoria(char nombre[]);
 Categoria* obtenerListadoCategoriasDinamico(int* validos);
 int buscarCategoriaPorId(int id);
 void modificarCategoria(int idCategoria, char nuevoNombre[]);
+char* conseguirCategoriaPorId(int idCategoria);
 void reactivarCategoria(int idCategoria);
 void darDeBajaCategoria(int idCategoria);
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos);

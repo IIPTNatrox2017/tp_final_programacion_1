@@ -221,3 +221,4 @@ void mostrarCategoria(Categoria aux)
 	printf(" -Nombre: %s\n", aux.nombre);
 	printf("----------------------------------\n");
 }
+

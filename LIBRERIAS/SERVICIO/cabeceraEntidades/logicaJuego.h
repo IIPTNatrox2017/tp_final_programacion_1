@@ -13,6 +13,8 @@ void exportarJuegosATexto(char rutaTexto[]);
 void ordenarJuegosPorId(Juego arreglo[], int validos);
 void cargarCategoriaAjuego(int idCategoria, Juego* juego);
 
+void listadoJuegosSegunCategoria(char categoriaDeseada[]);
+
 void modificarJuegoPorNombre(int idJuego, char nombre[]);
 void modificarJuegoPorEstudio(int idJuego, char estudio[]);
 void modificarJuegoPorCategoria(int idJuego, char nombreCategoria[]);
