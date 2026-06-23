@@ -11,7 +11,6 @@ typedef struct stNominacion
 	int idJuego;
 	int idCategoria;
 	Puntaje puntaje;
-	FechaLanzamiento fecha;
 }Nominacion;
 
 Nominacion crearNominacion(int id, int idJuego, int idCategoria, Puntaje p, FechaLanzamiento f);

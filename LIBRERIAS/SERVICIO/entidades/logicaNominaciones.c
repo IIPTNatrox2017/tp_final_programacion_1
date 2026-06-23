@@ -139,28 +139,6 @@ Pila obtenerRankingNominaciones()
 
 	return p;
 }
-void exportarNominacionesATexto(char rutaTexto[])
-{
-	FILE *fp = fopen(ARCHIVO_NOMINACIONES, "rb");
-
-	FILE* fTxt = fopen(rutaTexto, "w");
-
-	Nominacion nominacion;
-
-	if (fp != NULL && fTxt != NULL)
-	{
-		fprintf(fTxt, "========================================================\n");
-		fprintf(fTxt, "ID Nominacion | ID Juego | ID Categoria | Puntaje | Fecha \n");
-		fprintf(fTxt, "========================================================\n");
-	}
-	while(fread(&nominacion, sizeof(Nominacion), 1 , fp)> 0)
-	{
-		fprintf(fTxt, "%d | %d | %02d/%02d/%04d\n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor, nominacion.fecha.dia, nominacion.fecha.mes, nominacion.fecha.anio);
-	}
-
-	fclose(fp);
-	fclose(fTxt);
-}
 
 int obtenerMayorIdNominacion(void)
 {
@@ -280,4 +258,57 @@ int contarNominacionesJuego(int idJuego)
 	int puntaje = (rand() % 10000) + 1;
 
 	return puntaje;
+}
+
+void exportarNominacionesATexto(char rutaTexto[])
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+	if (fp == NULL)
+	{
+		return;
+	}
+	FILE* ft = fopen(rutaTexto, "w");
+	if (ft == NULL)
+	{
+		fclose(fp);
+		return;
+	}
+	Nominacion nominacion;
+
+	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
+	{
+		if (nominacion.idNominacion == -1)
+		{
+			continue;
+		}
+		fprintf(ft, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
+	}
+
+	fclose(fp);
+	fclose(ft);
+}
+void exportarNominacionesACsv(char rutaCSV[])
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+	if (fp == NULL)
+	{
+		return;
+	}
+	FILE* fc = fopen(rutaCSV, "w");
+	if (fc == NULL)
+	{
+		fclose(fp);
+		return;
+	}
+	Nominacion nominacion;
+	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
+	{
+		if (nominacion.idNominacion == -1)
+		{
+			continue;
+		}
+		fprintf(fc, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
+	}
+	fclose(fp);
+	fclose(fc);
 }

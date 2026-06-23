@@ -301,8 +301,8 @@ void modificarJuegoArchivo()
 	} while (!esValido);
 
 
-	int indice = opcion - 1;
-	
+	int indice = opcion;
+	 
 
 	system("cls");
 
@@ -505,63 +505,63 @@ void ejecutarReactivarUnJuego()
 	return;
 }
 
-void modificarCategoriaArchivo()
-{
-	int cantCategorias = 0;
-	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
-
-	if (cantCategorias == 0)
+	void modificarCategoriaArchivo()
 	{
-		printf("Aun no hay Categorias Cargadas.\n");
-		system("pause");
-		system("cls");
-		return;
-	}
+		int cantCategorias = 0;
+		Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
 
-	int opcion = 0;
-	int esValido = 0;
-
-	do
-	{
-		system("cls");
-		mostrarListadoCategorias(lista, cantCategorias);
-		opcion = pedirOpcion("Seleccione una Categoria:");
-
-		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
+		if (cantCategorias == 0)
 		{
-			printf("Opcion no valida. Por favor Ingrese otra.\n");
+			printf("Aun no hay Categorias Cargadas.\n");
 			system("pause");
 			system("cls");
-			mostrarListadoCategorias(lista, cantCategorias);
+			return;
 		}
-		else
+
+		int opcion = 0;
+		int esValido = 0;
+
+		do
 		{
-			esValido = 1;
+			system("cls");
+			mostrarListadoCategorias(lista, cantCategorias);
+			opcion = pedirOpcion("Seleccione una Categoria:");
+
+			if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
+			{
+				printf("Opcion no valida. Por favor Ingrese otra.\n");
+				system("pause");
+				system("cls");
+				mostrarListadoCategorias(lista, cantCategorias);
+			}
+			else
+			{
+				esValido = 1;
+			}
+
+		} while (!esValido);
+
+		int indice = opcion - 1;
+
+		system("cls");
+		mostrarCategoria(lista[indice]);
+
+		char nombreNuevo[DIM_MAX_NOMBRES];
+
+		printf("Ingrese nuevo Nombre de Categoria: ");
+		scanString(nombreNuevo, DIM_MAX_NOMBRES);
+
+		int continuar = 1;
+		printf("Esta seguro que desea modificar esta Categoria?[s/n]\n >>> ");
+		continuar = confirmar('s');
+
+		if (continuar)
+		{
+			modificarCategoria(lista[indice].idCategoria, nombreNuevo);
 		}
 
-	} while (!esValido);
-
-	int indice = opcion - 1;
-
-	system("cls");
-	mostrarCategoria(lista[indice]);
-
-	char nombreNuevo[DIM_MAX_NOMBRES];
-
-	printf("Ingrese nuevo Nombre de Categoria: ");
-	scanString(nombreNuevo, DIM_MAX_NOMBRES);
-
-	int continuar = 1;
-	printf("Esta seguro que desea modificar esta Categoria?[s/n]\n >>> ");
-	continuar = confirmar('s');
-
-	if (continuar)
-	{
-		modificarCategoria(lista[indice].idCategoria, nombreNuevo);
+		free(lista);
 	}
-
-	free(lista);
-}
 
 void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
 {
@@ -684,3 +684,46 @@ void ejecutarReactivarUnaCategoria()
 
 	free(lista);
 }
+
+void exportarNominacionJuego()
+{
+	int cantJuegos = 0;
+	Juego* juegos = obtenerListadoJuegosDinamico(&cantJuegos);
+
+	if (cantJuegos == 0)
+	{
+		printf("Aun no hay juego cargados. Por favor ingrese uno.\n");
+		return;
+	}
+
+	int opcion = 0;
+	int valido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoJuegosPorId(juegos, cantJuegos);
+		opcion = pedirOpcion("Seleccione id de juego a exportar: ");
+
+		if (opcion < 1 || opcion > cantJuegos || juegos[opcion - 1].estaActivo == 0)
+		{
+			printf("Opcion no valida. Intente de nuevo por favor.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosPorId(juegos, cantJuegos);
+		}
+		else
+		{
+			valido = 1;
+		}
+
+	} while (!valido);
+
+	system("cls");
+
+	int indice = opcion;
+	
+	printf("\nJuego exportado con exito!\n");
+
+}
+

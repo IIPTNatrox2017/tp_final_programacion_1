@@ -11,6 +11,7 @@
 
 void pantallaBienvenida()
 {
+	hidecursor(0);
 	int inicioX = 0;
 	int inicioY = 0;
 
@@ -73,6 +74,8 @@ void pantallaBienvenida()
 		Sleep(100);
 	}
 	system("cls");
+
+	hidecursor(1);
 }
 
 
@@ -394,6 +397,13 @@ void ejecutarOpcionSubMenuCategorias(int opcion)
 			ejecutarReactivarUnaCategoria();
 			break;
 		}
+		case 7: 
+		{
+			system("cls");
+			subMenuExportarDatosCategorias();
+			system("pause");
+			break;
+		}
 		case 0:
 		{
 			system("cls");
@@ -408,6 +418,43 @@ void ejecutarOpcionSubMenuCategorias(int opcion)
 			system("cls");
 		}
 
+	}
+}
+void subMenuExportarDatosCategorias()
+{
+	int opcion;
+	mostrarSubMenuExportarDatosCategoria();
+	opcion = pedirOpcion("seleccione una opcion: ");
+	ejecutarSubMenuExportarDatosCategoria(opcion);
+}
+
+
+void mostrarSubMenuExportarDatosCategoria()
+{
+	printf("===========================\n");
+	printf("      OPCIONES EXPORTAR\n");
+	printf("===========================\n");
+
+	printf("1. Exportacion por txt.\n");
+	printf("2. Exportacion por csv.\n");
+}
+
+void ejecutarSubMenuExportarDatosCategoria(int opcion)
+{
+	switch (opcion)
+	{
+		case 1:
+		{
+			exportarCategoriasATexto("reporteCategorias.txt");
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
+		case 2:
+		{
+			exportarCategoriaACsv("reporteCategorias.csv");
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
 	}
 }
 
@@ -431,6 +478,10 @@ void mostrarSubMenuNominaciones()
 
 	printf("1. Registrar Nominacion.\n");
 	printf("2. Ranking Nominaciones.\n");
+	printf("3. Abrir archivo limpio.\n");
+	printf("4. Exportar Nominaciones por juego.\n");
+	printf("5. Exportar Nominaciones por categoria.\n");
+	printf("6. Exportar Ranking por Nominacion.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -462,6 +513,30 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 			system("cls");
 			break;
 		}
+		case 4:
+		{
+			system("cls");
+			subMenuExportarDatosNominacion();
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 5:
+		{
+			system("cls");
+			printf("FUNCION NO IMPLEMENTADA.\n");
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 6:
+		{
+			system("cls");
+			printf("FUNCION NO IMPLEMENTADA.\n");
+			system("pause");
+			system("cls");
+			break;
+		}
 		case 0:
 		{
 			system("cls");
@@ -477,6 +552,42 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 			break;
 		}
 	}
+}
+void subMenuExportarDatosNominacion()
+{
+	int opcion; 
+	mostrarSubMenuExportarDatosNominacion();
+	opcion = pedirOpcion("Seleccion una opcion:");
+	ejecutarSubMenuExportarDatosNominacion(opcion);
+}
+
+void ejecutarSubMenuExportarDatosNominacion(int opcion)
+{
+	switch (opcion)
+	{
+	case 1:
+		{
+			exportarNominacionesATexto("reporteNominacion.txt");
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
+		case 2:
+		{
+			exportarNominacionesACsv("reporteNominacion.csv");
+			printf("\nExportacion Exitosa!\n");
+			break;
+		}
+	}
+}
+
+void mostrarSubMenuExportarDatosNominacion()
+{
+	printf("===========================\n");
+	printf("      OPCIONES EXPORTAR\n");
+	printf("===========================\n");
+
+	printf("1. Exportacion por txt.\n");
+	printf("2. Exportacion por csv.\n");
 }
 
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[])
