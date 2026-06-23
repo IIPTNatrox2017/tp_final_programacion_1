@@ -68,6 +68,7 @@ void mostrarListadoJuegosDescativadosPorId(Juego* lista, int validos)
 	}
 
 }
+
 void mostrarListadoCategorias(Categoria lista[], int validos)
 {
 
@@ -84,6 +85,29 @@ void mostrarListadoCategorias(Categoria lista[], int validos)
 	{
 		if (lista[i].estaActiva == 1)
 		{
+			printf("[%d] ", i+1);
+			mostrarCategoria(lista[i]);
+		}
+	}
+
+}
+
+void mostrarListadoCategoriasInactivas(Categoria lista[], int validos)
+{
+	if (lista == NULL)
+	{
+		printf("\nNo hay categorias para mostrar.\n");
+		return;
+	}
+
+	ordenarCategoriasAlfabeticamente(lista, validos);
+
+	printf("========== LISTADO DE CATEGORIAS INACTIVAS ==========\n");
+	for (int i = 0; i < validos; i++)
+	{
+		if (lista[i].estaActiva == 0)
+		{
+			printf("[%d] ", i + 1);
 			mostrarCategoria(lista[i]);
 		}
 	}

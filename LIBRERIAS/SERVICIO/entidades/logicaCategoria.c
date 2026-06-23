@@ -134,7 +134,7 @@ Categoria* obtenerListadoCategoriasDinamico(int* validos)
 	return arregloCategorias;
 }
 
-int bajaCategoria(int idCategoria)
+void darDeBajaCategoria(int idCategoria)
 {
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "r+b");
 
@@ -144,26 +144,52 @@ int bajaCategoria(int idCategoria)
 	}
 
 	Categoria aux;
-	int exito = -1;
+	int encontrado = 0;
 
-	while (exito == -1 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
+	while (encontrado == 0 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
 	{
-		if (aux.idCategoria == idCategoria)
+		if (aux.idCategoria == idCategoria && aux.estaActiva)
 		{
-			aux.idCategoria = -1;
+			aux.estaActiva = 0;
 
-			fseek(fp, sizeof(Categoria), SEEK_CUR);
-
+			fseek(fp, sizeof(Categoria) * -1, SEEK_CUR);
 			fwrite(&aux, sizeof(Categoria), 1, fp);
-
-			exito = 1;
+			fseek(fp,0 , SEEK_CUR);
+			encontrado = 1;
 		}
 	}
 
 	fclose(fp);
-
-	return exito;
 }
+
+void reactivarCategoria(int idCategoria)
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "r+b");
+
+	if (!fp)
+	{
+		return 0;
+	}
+
+	Categoria aux;
+	int encontrado = 0;
+
+	while (encontrado == 0 && fread(&aux, sizeof(Categoria), 1, fp) > 0)
+	{
+		if (aux.idCategoria == idCategoria && aux.estaActiva == 0)
+		{
+			aux.estaActiva = 1;
+
+			fseek(fp, sizeof(Categoria) * -1, SEEK_CUR);
+			fwrite(&aux, sizeof(Categoria), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
+			encontrado = 1;
+		}
+	}
+
+	fclose(fp);
+}
+
 
 void modificarCategoria(int idCategoria, char nuevoNombre[])
 {
@@ -171,7 +197,7 @@ void modificarCategoria(int idCategoria, char nuevoNombre[])
 
 	if (!fp)
 	{
-		return 0;
+		return ;
 	}
 
 	Categoria aux;
@@ -184,7 +210,7 @@ void modificarCategoria(int idCategoria, char nuevoNombre[])
 			strcpy(nombreViejo, aux.nombre);
 
 			strcpy(aux.nombre, nuevoNombre);
-			fseek(fp, sizeof(Categoria), SEEK_CUR);
+			fseek(fp, sizeof(Categoria) * -1, SEEK_CUR);
 			fwrite(&aux, sizeof(Categoria), 1, fp);
 			fseek(fp, 0, SEEK_CUR);
 		}
@@ -203,9 +229,12 @@ void modificarCategoria(int idCategoria, char nuevoNombre[])
 
 	while (fread((&auxJuego), sizeof(Juego), 1, fp) > 0)
 	{
-		if (_strcmpi(auxJuego.nombre, nombreViejo) == 0)
+		if (_strcmpi(auxJuego.categoria, nombreViejo) == 0)
 		{
-			strcpy(auxJuego.nombre, nombreViejo);
+			strcpy(auxJuego.categoria, nuevoNombre);
+			fseek(fp, sizeof(Juego) * -1, SEEK_CUR);
+			fwrite(&auxJuego, sizeof(Juego), 1, fp);
+			fseek(fp, 0, SEEK_CUR);
 		}
 	}
 

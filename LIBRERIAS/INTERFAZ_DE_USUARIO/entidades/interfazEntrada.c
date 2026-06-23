@@ -392,27 +392,6 @@ void ejecutarModificacionEstudio(int idJuego, Juego* nuevoJuego)
 	modificarJuegoPorEstudio(idJuego, estudio);
 	strcpy(nuevoJuego->estudio, estudio);
 }
-void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
-{
-	int esValido = 0;
-	char nombre[DIM_MAX_NOMBRES];
-	do
-	{
-		printf("Ingrese Nuevo Nombre: ");
-		scanString(nombre, DIM_MAX_NOMBRES);
-		esValido = validarNombres(nombre);
-		if (!esValido)
-		{
-			printf("Nombre no valido. Ingrese otro.\n");
-			system("pause");
-			system("cls");
-			mostrarJuego(*juegoNuevo);
-		}
-
-	} while (!esValido);
-	modificarJuegoPorNombre(idJuego, nombre);
-	strcpy(juegoNuevo->nombre, nombre);
-}
 
 void ejecutarModificacionCategoria(int idJuego, char nombreCategoria[], Juego* juegoNuevo)
 {
@@ -463,7 +442,6 @@ void ejecutarDarDeBajaUnJuego()
 	}
 
 	free(lista);
-	return;
 
 }
 
@@ -522,12 +500,12 @@ void ejecutarReactivarUnJuego()
 	return;
 }
 
-void ejecutarModificacionCategoriaArchivo()
+void modificarCategoriaArchivo()
 {
 	int cantCategorias = 0;
 	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
 
-	if (lista == NULL)
+	if (cantCategorias == 0)
 	{
 		printf("Aun no hay Categorias Cargadas.\n");
 		system("pause");
@@ -544,7 +522,7 @@ void ejecutarModificacionCategoriaArchivo()
 		mostrarListadoCategorias(lista, cantCategorias);
 		opcion = pedirOpcion("Seleccione una Categoria:");
 
-		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 1)
+		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
 		{
 			printf("Opcion no valida. Por favor Ingrese otra.\n");
 			system("pause");
@@ -561,9 +539,143 @@ void ejecutarModificacionCategoriaArchivo()
 	int indice = opcion - 1;
 
 	system("cls");
-	
+	mostrarCategoria(lista[indice]);
+
+	char nombreNuevo[DIM_MAX_NOMBRES];
+
+	printf("Ingrese nuevo Nombre de Categoria: ");
+	scanString(nombreNuevo, DIM_MAX_NOMBRES);
+
+	int continuar = 1;
+	printf("Esta seguro que desea modificar esta Categoria?[s/n]\n >>> ");
+	continuar = confirmar('s');
+
+	if (continuar)
+	{
+		modificarCategoria(lista[indice].idCategoria, nombreNuevo);
+	}
+
+	free(lista);
+}
+
+void ejecutarModificacionNombreJuego(int idJuego, Juego* juegoNuevo)
+{
+	int esValido = 0;
+	char nombre[DIM_MAX_NOMBRES];
+	do
+	{
+		printf("Ingrese Nuevo Nombre: ");
+		scanString(nombre, DIM_MAX_NOMBRES);
+		esValido = validarNombres(nombre);
+		if (!esValido)
+		{
+			printf("Nombre no valido. Ingrese otro.\n");
+			system("pause");
+			system("cls");
+			mostrarJuego(*juegoNuevo);
+		}
+
+	} while (!esValido);
+	modificarJuegoPorNombre(idJuego, nombre);
+	strcpy(juegoNuevo->nombre, nombre);
+}
+
+void ejecutarDarDeBajaUnaCategoria()
+{
+	int cantCategorias = 0;
+	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
+
+	if (cantCategorias == 0)
+	{
+		printf("No hay categorias cargadas.\n");
+		return;
+	}
+
+	int opcion = 0;
+	int esValido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoCategorias(lista, cantCategorias);
+		opcion = pedirOpcion("Seleccione una ID para dar de baja: ");
+
+		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 0)
+		{
+			printf("Opcion No valida. Elija otra.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosPorId(lista, cantCategorias);
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	} while (!esValido);
+
+	int indice = opcion - 1;
+
+	system("cls");
+	mostrarCategoria(lista[indice]);
 	int continuar = 1;
 
-	printf("Esta seguro que desea modificar esta Categoria?[s/n]\n");
+	printf("Esta seguro que quiere eliminar esta Categoria?[s/n]\n >>> ");
 	continuar = confirmar('s');
+	if (continuar)
+	{
+		darDeBajaCategoria(lista[indice].idCategoria);
+	}
+
+	free(lista);
+}
+
+void ejecutarReactivarUnaCategoria()
+{
+	int cantCategorias = 0;
+	Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);
+
+	if (cantCategorias == 0)
+	{
+		printf("No hay categorias cargadas.\n");
+		return;
+	}
+
+	int opcion = 0;
+	int esValido = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoCategoriasInactivas(lista, cantCategorias);
+		opcion = pedirOpcion("Seleccione una ID para dar de baja: ");
+
+		if (opcion < 1 || opcion > cantCategorias || lista[opcion - 1].estaActiva == 1)
+		{
+			printf("Opcion No valida. Elija otra.\n");
+			system("pause");
+			system("cls");
+			mostrarListadoJuegosPorId(lista, cantCategorias);
+		}
+		else
+		{
+			esValido = 1;
+		}
+
+	} while (!esValido);
+
+	int indice = opcion - 1;
+
+	system("cls");
+	mostrarCategoria(lista[indice]);
+	int continuar = 1;
+
+	printf("Esta seguro que quiere eliminar esta Categoria?[s/n]\n >>> ");
+	continuar = confirmar('s');
+	if (continuar)
+	{
+		reactivarCategoria(lista[indice].idCategoria);
+	}
+
+	free(lista);
 }
