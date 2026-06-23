@@ -466,4 +466,18 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 	}
 }
 
+int anchoConsola()
+{
+	CONSOLE_SCREEN_BUFFER_INFO sbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
 
+	return sbi.dwMaximumWindowSize.X;
+}
+
+int altoConsola()
+{
+	CONSOLE_SCREEN_BUFFER_INFO sbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
+
+	return sbi.dwMaximumWindowSize.Y;
+}
