@@ -82,6 +82,7 @@ void ejecutarReactivarUnJuego();
  * @brief Modifica una categoría existente.
  */
 void modificarCategoriaArchivo();
+void exportarNominacionJuego();
 
 #endif // !1
 
