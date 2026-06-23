@@ -11,6 +11,7 @@ void mostrarMenu();
 
 void subMenuJuegos();
 void subMenuModificarJuego();
+void subMenuExportarDatos();
 
 void ejecutarOpcionSubMenuJuegos(int opcion);
 void mostrarSubMenuJuegos();

@@ -187,6 +187,7 @@ void mostrarSubMenuJuegos()
 	printf("5. Modificar Juego.\n");
 	printf("6. Dar de Baja un Juego.\n");
 	printf("7. Reactivar Un Juego.\n");
+	printf("8. Exportar Datos.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -245,6 +246,11 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 			system("pause");
 			break;
 		}
+		case 8:
+		{
+			system("cls");
+			subMenuExportarDatos();
+		}
 		case 0:
 		{
 			system("cls");
@@ -260,6 +266,10 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		}	
 
 	}
+}
+void subMenuExportarDatos()
+{
+
 }
 
 void subMenuModificarJuego()
@@ -457,18 +467,3 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 }
 
 
-int anchoConsola()
-{
-	CONSOLE_SCREEN_BUFFER_INFO sbi;
-	GetConsoleScreenBufferInfo (GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
-
-	return sbi.dwMaximumWindowSize.X;
-}
-
-int altoConsola()
-{
-	CONSOLE_SCREEN_BUFFER_INFO sbi;
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
-
-	return sbi.dwMaximumWindowSize.Y;
-}
