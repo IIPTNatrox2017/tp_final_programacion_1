@@ -4,6 +4,9 @@
 #include "../../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 
+/**
+* @brief 
+*/
 void menuPrincipal();
 int pedirOpcion(char string[]);
 void ejecutarOpcion(int opcion);

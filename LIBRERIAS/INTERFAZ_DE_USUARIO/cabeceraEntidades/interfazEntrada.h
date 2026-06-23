@@ -82,6 +82,10 @@ void ejecutarReactivarUnJuego();
  * @brief Modifica una categoría existente.
  */
 void modificarCategoriaArchivo();
+
+/**
+* @brief Exporta las nominaciones de un juego seleccionado.
+*/
 void exportarNominacionJuego();
 
 #endif // !1
