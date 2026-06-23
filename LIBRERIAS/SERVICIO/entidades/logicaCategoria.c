@@ -78,23 +78,20 @@ void exportarCategoriasATexto(char rutaTexto[])
 	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
 	if(!fp)
 	{ 
-		printf("ERROR! No se pudo abrir el archivo de categorías.\n");
 		return;
 	}
-	FILE* fpTexto = fopen(rutaTexto, "w");
-	if(!fpTexto)
+	FILE* ft = fopen(rutaTexto, "w");
+	if(ft == NULL)
 	{ 
-		printf("ERROR! No se pudo abrir el archivo de texto.\n");
 		fclose(fp);
 		return;
 	}
 	while (fread(&aux, sizeof(Categoria), 1, fp) == 1)
 	{
-		fprintf(fpTexto, "=================================\n");
-		fprintf(fpTexto, "ID: %d, Nombre: %s\n", aux.idCategoria, aux.nombre);
+		fprintf(ft, "ID: %d, Nombre: %s\n", aux.idCategoria, aux.nombre);
 	}
 	fclose(fp);
-	fclose(fpTexto);
+	fclose(ft);
 }
 
 Categoria* obtenerListadoCategoriasDinamico(int* validos)
@@ -239,4 +236,35 @@ void modificarCategoria(int idCategoria, char nuevoNombre[])
 	}
 
 	fclose(fp);
+}
+void exportarCategoriaACsv(char rutaCSV[])
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
+	if (fp == NULL)
+	{
+		return;
+
+	}
+	FILE* csv = fopen(rutaCSV, "w");
+	if (csv == NULL)
+	{
+		return;
+	}
+
+	Categoria categoria;
+	
+	while (fread(&categoria, sizeof(Categoria), 1, fp) == 1)
+	{
+		if (categoria.idCategoria == -1)
+		{
+			continue;
+		}
+
+		fprintf(csv, "%s,%d\n", categoria.nombre, categoria.idCategoria);
+	}
+
+
+	fclose(fp);
+	fclose(csv);
+
 }
