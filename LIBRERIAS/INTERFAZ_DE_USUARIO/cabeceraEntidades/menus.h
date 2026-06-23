@@ -141,4 +141,8 @@ int anchoConsola();
  */
 int altoConsola();
 
+void ejecutarSubMenuExportarDatosNominacion(int opcion);
+void subMenuExportarDatosNominacion();
+void mostrarSubMenuExportarDatosNominacion();
+
 #endif // !1
