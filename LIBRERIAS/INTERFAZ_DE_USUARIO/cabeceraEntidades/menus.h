@@ -141,8 +141,19 @@ int anchoConsola();
  */
 int altoConsola();
 
+/**
+* @brief Muestra y ejecuta el submenu de exportacion de datos de nominaciones.
+*/
 void ejecutarSubMenuExportarDatosNominacion(int opcion);
+
+/*
+* @brief Muestra el submenu de exportacion de datos de dominaciones y ejecuta la opcion seleccionada.
+*/
 void subMenuExportarDatosNominacion();
+
+/*
+* @brief Muestra el submenu de opciones para exportar datos de nominaciones.
+*/
 void mostrarSubMenuExportarDatosNominacion();
 
 #endif // !1
