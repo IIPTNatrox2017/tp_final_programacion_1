@@ -383,3 +383,4 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 		}
 	}
 }
+

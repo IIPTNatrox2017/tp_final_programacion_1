@@ -150,82 +150,70 @@ void formularioAltaCategoria()
 
 void formularioRegistrarNominacion()
 {
-	
-	srand(time(NULL));
-	int idJuego = 1;
-	int idCategoria = 1;
-	int puntaje = (rand() % 10000) + 1;
-	int dia = 0;
-	int	mes = 0;
-	int	anio = 0;
+	int cantJuegos = 0;
+	int cantCategorias = 0;
 
+	Juego* listaJuegos = obtenerListadoJuegosDinamico(&cantJuegos);
+	Categoria* listaCategorias = obtenerListadoCategoriasDinamico(&cantCategorias);
 
-	while (dia <= 0 || dia >= 32)
+	if (cantJuegos == 0)
 	{
-		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
-		printf("DIA: >>> ");
-		scanf("%d", &dia);
-		if (dia <= 0 || dia >= 32)
+		printf("Todavia no hay juegos cargados. Por favor ingrese uno.\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+	if (cantCategorias == 0)
+	{
+		printf("Todavia no hay categorias cargadas. Por favor Ingrese una.\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	int esValido = 0;
+	int opcion = 0;
+
+	do
+	{
+		system("cls");
+		mostrarListadoCategorias(listaCategorias, cantCategorias);
+		opcion = pedirOpcion("Seleccione un ID de Categoria para la Nominacion:");
+
+		if (!esValido)
 		{
-			printf("--Dia no valido.\n");
+			printf("Seleccione un juego Valido.\n");
 			system("pause");
 			system("cls");
+			mostrarListadoCategorias(listaCategorias, cantCategorias);
 		}
 
-	}
+	} while (!esValido);
 
-	printf("Dia cargado con exito!\n");
-	system("pause");
-	system("cls");
+	int idCategoria = listaCategorias[opcion - 1].idCategoria;
 
-	while (mes <= 0 || mes >= 13)
+	int esValido = 0;
+	int opcion = 0;
+
+	do
 	{
-		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
-		printf("MES: >>> ");
-		scanf("%d", &mes);
-		if (mes <= 0 || mes >= 13)
+		system("cls");
+		mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
+		//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
+		opcion = pedirOpcion("Seleccione un ID de Juego para la Nominacion:");
+
+		if (!esValido)
 		{
-			printf("--Mes no valido.\n");
+			printf("Seleccione un juego Valido.\n");
 			system("pause");
 			system("cls");
+			//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
+			mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
 		}
-	}
 
-	printf("Mes cargado con exito!\n");
-	system("pause");
-	system("cls");
+	} while (!esValido);
 
-	while (anio <= 1950 || anio >= 2051)
-	{
-		printf("Ingrese fecha de nominacion (dd/mm/aaaa)\n");
-		printf("ANIO: >>> ");
-		scanf("%d", &anio);
-		if (anio <= 1950 || anio >= 2051)
-		{
-			printf("--Anio no valido.\n");
-			system("pause");
-			system("cls");
-		}
-	}
-
-	printf("Anio cargado con exito!\n");
-	system("pause");
-	system("cls");
-
-	int control = registrarNominacion(idJuego, idCategoria, puntaje, dia, mes, anio);
-
-	if (control == -2)
-	{
-		printf("\nAlerta: La nominacion ya existe.\n");
-	}
-	else if(control == 1)
-	{
-		printf("\nNominacion registrada con exito!\n");
-	}
-	else
-	{
-		printf("\nError al intentar registrar la nominacion.\n");
-	}
+	int idJuego = listaJuegos[opcion - 1].idJuego;
 }
 
 void mostrarDatosJuegosCargados(char nombre[], char estudio[])
