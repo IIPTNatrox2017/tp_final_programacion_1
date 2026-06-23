@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "LIBRERIAS/DOMINIO/cabeceraEntidades/puntajes.h"
+
 #include "LIBRERIAS/DOMINIO/cabeceraEntidades/juegoS.h"
 #include "LIBRERIAS/DOMINIO/cabeceraEntidades/categoria.h"
 #include "LIBRERIAS/DOMINIO/cabeceraEntidades/nominaciones.h"

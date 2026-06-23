@@ -8,13 +8,13 @@ typedef struct stRankingJuego
 	int cantidad;
 }RankingJuego;
 
-int registrarNominacion(int idJuego, int idCategoria, int puntajeValor);
+int registrarNominacion(int idJuego, int idCategoria, Juego juegoDeseado, Categoria categoriaDeseada);
 int existeNominacionDuplicada(int idJuego, int idCategoria);
 int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a);
 int bajaNominacion(int idNominacion);
 void mostrarNominacionesPorCategoria(int idCategoria);
 Pila obtenerRankingNominaciones();
-int contarNominacionesJuego(int idJuego);
+int generarNumeroVotosNominacion();
 void exportarNominacionesATexto(char rutaTexto[]);
 void exportarNominacionesACsv(char rutaCSV[]);
 

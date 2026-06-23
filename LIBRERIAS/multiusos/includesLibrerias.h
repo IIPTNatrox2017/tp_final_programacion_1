@@ -17,7 +17,6 @@
 
 // LIBRERIAS ENTIDADES
 #include "../DOMINIO/gestorEventos.h"
-#include "../DOMINIO/cabeceraEntidades/puntajes.h"
 #include "../DOMINIO/cabeceraEntidades/nominaciones.h"
 #include "../DOMINIO/cabeceraEntidades/juegos.h"
 #include "../DOMINIO/cabeceraEntidades/categoria.h"

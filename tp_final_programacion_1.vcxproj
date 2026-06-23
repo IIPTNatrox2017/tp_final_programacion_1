@@ -23,7 +23,6 @@
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\categoria.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\juegos.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\entidades\nominaciones.c" />
-    <ClCompile Include="LIBRERIAS\DOMINIO\entidades\puntajes.c" />
     <ClCompile Include="LIBRERIAS\DOMINIO\gestorEventos.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazEntrada.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazSalida.c" />
@@ -41,7 +40,6 @@
     <ClInclude Include="LIBRERIAS\ARCHIVOS\archivos.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\juegos.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\nominaciones.h" />
-    <ClInclude Include="LIBRERIAS\DOMINIO\cabeceraEntidades\puntajes.h" />
     <ClInclude Include="LIBRERIAS\DOMINIO\gestorEventos.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazEntrada.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazSalida.h" />

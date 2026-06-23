@@ -2,47 +2,21 @@
 
 #include "../../multiusos/includesLibrerias.h"
 
-int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, int m, int a)
+int registrarNominacion(int idJuego, int idCategoria, Juego juegoDeseado, Categoria categoriaDeseada)
 {
-	if (buscarJuegoPorId(idJuego) == -1)
-	{
-		return -3;
-	}
-
-	if (buscarCategoriaPorId(idCategoria) == -1)
-	{
-		return -4;
-	}
-
-	if (existeNominacionDuplicada(idJuego, idCategoria))
-	{
-		return -2;
-	}
-	Puntaje nuevoPuntaje = crearPuntaje(puntajeValor);
-
-	if (!nuevoPuntaje.esValido)
-	{
-		return -5;
-	}
-
-	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "ab");
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "ab+");
 
 	if (!fp)
 	{
 		return 0;
 	}
 
-	fseek(fp, 0, SEEK_END);
+	Nominacion nuevaNominacion;
+	int idNominacion = generadorDeIdAutoIncremental(ARCHIVO_NOMINACIONES, sizeof(Nominacion));
+	int puntaje = generarNumeroVotosNominacion();
+	nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, puntaje, juegoDeseado, categoriaDeseada);
 
-	int idNominacion = obtenerMayorIdNominacion() + 1;
-
-	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje);
-
-	if (fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp) != 1)
-	{
-		fclose(fp);
-		return 0;
-	}
+	fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp);
 
 	fclose(fp);
 	return 1;
@@ -73,21 +47,20 @@ int existeNominacionDuplicada(int idJuego, int idCategoria)
 
 Pila obtenerRankingNominaciones()
 {
+	/*
 	Pila p;
 	inicpila(&p);
 
 	int juegosTotales = 0;
 
-	Juego* listaJuegos =
-		obtenerListadoJuegosDinamico(&juegosTotales);
+	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
 
 	if (listaJuegos == NULL)
 	{
 		return p;
 	}
 
-	RankingJuego* ranking =
-		(RankingJuego*)malloc(sizeof(RankingJuego) * juegosTotales);
+	RankingJuego* ranking = (RankingJuego*)malloc(sizeof(RankingJuego) * juegosTotales);
 
 	if (ranking == NULL)
 	{
@@ -102,12 +75,11 @@ Pila obtenerRankingNominaciones()
 	{
 		ranking[i].idJuego = listaJuegos[i].idJuego;
 
-		ranking[i].cantidad =
-			contarNominacionesJuego(listaJuegos[i].idJuego);
+		ranking[i].cantidad = contarNominacionesJuego(listaJuegos[i].idJuego);
 	}
 
 	RankingJuego aux;
-
+	 
 	for (i = 0; i < juegosTotales - 1; i++)
 	{
 		for (j = i + 1; j < juegosTotales; j++)
@@ -131,6 +103,7 @@ Pila obtenerRankingNominaciones()
 	free(listaJuegos);
 
 	return p;
+	*/
 }
 
 int obtenerMayorIdNominacion(void)
@@ -162,34 +135,7 @@ int obtenerMayorIdNominacion(void)
 int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a)
 
 {
-	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb+");
 
-	if (!fp)
-	{
-		return 0;
-	}
-
-	Nominacion aux;
-	int exito = -1;
-
-	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0 && exito == -1)
-	{
-		if (aux.idNominacion == idNominacion)
-		{
-			aux.puntaje = crearPuntaje(nuevoPuntaje);
-			
-
-			fseek(fp, sizeof(Nominacion), SEEK_CUR);
-
-			fwrite(&aux, sizeof(Nominacion), 1, fp);
-
-			exito = 1;
-		}
-	}
-
-	fclose(fp);
-
-	return exito;
 }
 
 int bajaNominacion(int idNominacion)
@@ -245,7 +191,7 @@ void mostrarNominacionesPorCategoria(int idCategoria)
 	fclose(fp);
 }
 
-int contarNominacionesJuego(int idJuego)
+int generarNumeroVotosNominacion()
 {
 	srand(time(NULL));
 	int puntaje = (rand() % 10000) + 1;
@@ -274,7 +220,7 @@ void exportarNominacionesATexto(char rutaTexto[])
 		{
 			continue;
 		}
-		fprintf(ft, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
+		fprintf(ft, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje);
 	}
 
 	fclose(fp);
@@ -294,14 +240,14 @@ void exportarNominacionesACsv(char rutaCSV[])
 		return;
 	}
 	Nominacion nominacion;
-	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
+	while (fread(&nominacion, sizeof(Nominacion), 1, fp) == 1)
 	{
 		if (nominacion.idNominacion == -1)
 		{
 			continue;
 		}
-		fprintf(fc, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
+		fprintf(fc, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje);
+		fclose(fp);
+		fclose(fc);
 	}
-	fclose(fp);
-	fclose(fc);
 }
