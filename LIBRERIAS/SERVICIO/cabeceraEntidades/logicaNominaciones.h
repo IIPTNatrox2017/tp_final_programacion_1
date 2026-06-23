@@ -16,7 +16,7 @@ void mostrarNominacionesPorCategoria(int idCategoria);
 Pila obtenerRankingNominaciones();
 int contarNominacionesJuego(int idJuego);
 void exportarNominacionesATexto(char rutaTexto[]);
-
+void exportarNominacionesACsv(char rutaCSV[]);
 
 #endif
 

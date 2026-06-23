@@ -84,6 +84,9 @@ void ejecutarOpcionSubMenuCategorias(int opcion);
  * @brief Muestra el submenú de categorías.
  */
 void mostrarSubMenuCategorias();
+void mostrarSubMenuExportarDatosCategoria();
+void ejecutarSubMenuExportarDatosCategoria(int opcion);
+void subMenuExportarDatosCategorias();
 
 /**
  * @brief Ejecuta el submenú de nominaciones.
