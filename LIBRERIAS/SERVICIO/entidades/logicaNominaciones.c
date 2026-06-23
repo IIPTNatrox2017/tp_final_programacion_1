@@ -47,7 +47,6 @@ int existeNominacionDuplicada(int idJuego, int idCategoria)
 
 Pila obtenerRankingNominaciones()
 {
-	/*
 	Pila p;
 	inicpila(&p);
 
@@ -62,6 +61,7 @@ Pila obtenerRankingNominaciones()
 
 	RankingJuego* ranking = (RankingJuego*)malloc(sizeof(RankingJuego) * juegosTotales);
 
+	int cantidadVotos = generarNumeroVotosNominacion();
 	if (ranking == NULL)
 	{
 		free(listaJuegos);
@@ -74,8 +74,7 @@ Pila obtenerRankingNominaciones()
 	for (i = 0; i < juegosTotales; i++)
 	{
 		ranking[i].idJuego = listaJuegos[i].idJuego;
-
-		ranking[i].cantidad = contarNominacionesJuego(listaJuegos[i].idJuego);
+		ranking[i].cantVotos = cantidadVotos;
 	}
 
 	RankingJuego aux;
@@ -84,8 +83,7 @@ Pila obtenerRankingNominaciones()
 	{
 		for (j = i + 1; j < juegosTotales; j++)
 		{
-			if (ranking[j].cantidad >
-				ranking[i].cantidad)
+			if (ranking[j].cantVotos >ranking[i].cantVotos)
 			{
 				aux = ranking[i];
 				ranking[i] = ranking[j];
@@ -103,7 +101,7 @@ Pila obtenerRankingNominaciones()
 	free(listaJuegos);
 
 	return p;
-	*/
+	
 }
 
 int obtenerMayorIdNominacion(void)
@@ -250,4 +248,28 @@ void exportarNominacionesACsv(char rutaCSV[])
 		fclose(fp);
 		fclose(fc);
 	}
+}
+
+int contarNominacionesJuego(int idJuego)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (fp == NULL)
+	{
+		return 0;
+	}
+
+	Nominacion aux;
+	int contador = 0;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		if (aux.idJuego == idJuego)
+		{
+			contador++;
+		}
+	}
+
+	fclose(fp); 
+	return contador;
 }

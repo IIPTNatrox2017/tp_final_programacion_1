@@ -150,6 +150,7 @@ void formularioAltaCategoria()
 
 void formularioRegistrarNominacion()
 {
+
 	int cantJuegos = 0;
 	int cantCategorias = 0;
 
@@ -201,6 +202,7 @@ void formularioRegistrarNominacion()
 	int indiceCategoria = opcionCategoria - 1;
 	int idCategoria = listaCategorias[indiceCategoria].idCategoria;
 	char categoriaDeseada[DIM_MAX_NOMBRES]; 
+
 	strcpy(categoriaDeseada,conseguirCategoriaPorId(idCategoria));
 
 	do
@@ -226,7 +228,7 @@ void formularioRegistrarNominacion()
 	int indiceJuego = opcionJuego - 1;
 	int idJuego = listaJuegos[indiceJuego].idJuego;
 
-
+	system("cls");
 	printf("---------------------------------------\n");
 	mostrarCategoria(listaCategorias[indiceCategoria]);
 	mostrarJuego(listaJuegos[indiceJuego]);

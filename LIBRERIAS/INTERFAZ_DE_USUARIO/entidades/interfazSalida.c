@@ -128,10 +128,12 @@ void mostrarRankingNominacionesUI()
 	}
 
 	int juegosTotales = 0;
+	int categoriasTotales = 0;
 
-	Nominacion* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
+	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
+	Categoria* listaCategoria = obtenerListadoCategoriasDinamico(&categoriasTotales);
 
-	if (listaJuegos == NULL)
+	if (juegosTotales == 0 || categoriasTotales == 0)
 	{
 		return;
 	}
@@ -140,17 +142,19 @@ void mostrarRankingNominacionesUI()
 
 	while (!pilavacia(&rankings))
 	{
-		/*
+		
 		int idJuegoBuscado = desapilar(&rankings);
 		char nombreJuego[50] = "";
 		char estudioJuego[50] = "";
+		char nombreCategoria[50] = "";
+
+		int cantidad = contarNominacionesJuego(idJuegoBuscado);
 
 		for (int i = 0; i < juegosTotales; i++)
 		{
 			if (listaJuegos[i].idJuego == idJuegoBuscado)
 			{
 				strcpy(nombreJuego,listaJuegos[i].nombre);
-
 				strcpy(estudioJuego,listaJuegos[i].estudio);
 
 				break;
@@ -165,7 +169,7 @@ void mostrarRankingNominacionesUI()
 		printf("\n-------------------------\n");
 
 		puesto++;
-		*/
+		
 	}
 
 	free(listaJuegos);

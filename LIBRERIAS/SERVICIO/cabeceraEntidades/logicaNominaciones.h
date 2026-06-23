@@ -5,7 +5,7 @@
 typedef struct stRankingJuego
 {
 	int idJuego;
-	int cantidad;
+	int cantVotos;
 }RankingJuego;
 
 /**
@@ -15,13 +15,8 @@ typedef struct stRankingJuego
 * @param idCategoria ID de la categoria.
 * @param puntajeValor Valor del puntaje asignado.
 * @return 1 Si la nominacion se registro completamente.
-* @return 0 Si ocurrio un error al abrir o escirbir el archivo.
-* @return -2 Si la nominacion ya existe.
-* @return -3 Si el juego no exixte.
-* @return -4 Si la categoria no existe.
-* @return -5 Si el puntaje no es valido.
 */
-int registrarNominacion(int idJuego, int idCategoria, int puntajeValor);
+int registrarNominacion(int idJuego, int idCategoria, Juego juegoDeseado, Categoria categoriaDeseada);
 
 /**
 * @brief Verifica si ya existe una dominacion para un juego y categoria.
