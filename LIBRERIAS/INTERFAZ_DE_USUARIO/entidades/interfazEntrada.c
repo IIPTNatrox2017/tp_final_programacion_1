@@ -180,12 +180,16 @@ void formularioRegistrarNominacion()
 		mostrarListadoCategorias(listaCategorias, cantCategorias);
 		opcion = pedirOpcion("Seleccione un ID de Categoria para la Nominacion:");
 
-		if (!esValido)
+		if (opcion < 1 || opcion > cantCategorias || listaCategorias[opcion - 1].estaActiva == 0)
 		{
 			printf("Seleccione un juego Valido.\n");
 			system("pause");
 			system("cls");
 			mostrarListadoCategorias(listaCategorias, cantCategorias);
+		}
+		else
+		{
+			esValido = 1;
 		}
 
 	} while (!esValido);
@@ -200,20 +204,30 @@ void formularioRegistrarNominacion()
 		system("cls");
 		mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
 		//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
-		opcion = pedirOpcion("Seleccione un ID de Juego para la Nominacion:");
+		opcion = pedirOpcion("Seleccione una ID de Juego para la Nominacion:");
 
-		if (!esValido)
+		if (opcion < 1 || opcion > cantJuegos || listaJuegos[opcion - 1].estaActivo == 0)
 		{
 			printf("Seleccione un juego Valido.\n");
 			system("pause");
 			system("cls");
 			//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
 			mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
+			
+		}
+		else
+		{
+			esValido = 1;
 		}
 
 	} while (!esValido);
 
 	int idJuego = listaJuegos[opcion - 1].idJuego;
+
+	int indice = opcion - 1;
+
+	mostrarCategoria(listaCategorias[idCategoria]);
+	mostrarJuego(listaJuegos[idJuego]);
 }
 
 void mostrarDatosJuegosCargados(char nombre[], char estudio[])
