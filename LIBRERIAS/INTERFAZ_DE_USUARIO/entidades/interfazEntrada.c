@@ -231,6 +231,17 @@ void formularioRegistrarNominacion()
 	mostrarCategoria(listaCategorias[indiceCategoria]);
 	mostrarJuego(listaJuegos[indiceJuego]);
 
+	int control = registrarNominacion(idJuego, idCategoria, listaJuegos[indiceJuego], listaCategorias[indiceCategoria]);
+
+	if (control == 1)
+	{
+		printf("Nominacion Cargada con Exito\n");
+	}
+	else
+	{
+		printf("No se logro cargar la nominacion");
+	}
+
 }
 
 void mostrarDatosJuegosCargados(char nombre[], char estudio[])

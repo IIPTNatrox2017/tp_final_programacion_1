@@ -3,14 +3,18 @@
 
 #include "juegos.h"
 #include "categoria.h"
-#include "puntajes.h"
+
 
 typedef struct stNominacion
 {
 	int idNominacion;
 	int idJuego;
 	int idCategoria;
-	Puntaje puntaje;
+	int puntaje;
+	int esValido;
+	Juego juego;
+	Categoria categoria;
+
 }Nominacion;
 
 /**

@@ -129,7 +129,7 @@ void mostrarRankingNominacionesUI()
 
 	int juegosTotales = 0;
 
-	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
+	Nominacion* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
 
 	if (listaJuegos == NULL)
 	{
@@ -140,7 +140,7 @@ void mostrarRankingNominacionesUI()
 
 	while (!pilavacia(&rankings))
 	{
-		srand(time(NULL));
+		/*
 		int idJuegoBuscado = desapilar(&rankings);
 		char nombreJuego[50] = "";
 		char estudioJuego[50] = "";
@@ -149,17 +149,13 @@ void mostrarRankingNominacionesUI()
 		{
 			if (listaJuegos[i].idJuego == idJuegoBuscado)
 			{
-				strcpy(nombreJuego,
-					listaJuegos[i].nombre);
+				strcpy(nombreJuego,listaJuegos[i].nombre);
 
-				strcpy(estudioJuego,
-					listaJuegos[i].estudio);
+				strcpy(estudioJuego,listaJuegos[i].estudio);
 
 				break;
 			}
 		}
-		int cantidad = contarNominacionesJuego(idJuegoBuscado);
-
 
 		printf("\nNro Nominacion: [%d]", puesto);
 		printf("\nJuego %s", nombreJuego);
@@ -168,8 +164,8 @@ void mostrarRankingNominacionesUI()
 		
 		printf("\n-------------------------\n");
 
-
 		puesto++;
+		*/
 	}
 
 	free(listaJuegos);
@@ -236,7 +232,9 @@ void mostrarJuego(Juego aux)
 void mostrarNominacion(Nominacion aux)
 {
 	printf("ID: %d\n", aux.idNominacion);
-	printf("FECHA LANZAMIENTO: ");
+	printf("Nombre Juego: %s\n", aux.juego.nombre);
+	printf("Estudio: %s\n", aux.categoria.nombre);
+	printf("Cantidad de Votos: %d", aux.puntaje);
 	printf("----------------------------------\n");
 }
 
