@@ -262,23 +262,45 @@ int contarNominacionesJuego(int idJuego)
 
 void exportarNominacionesATexto(char rutaTexto[])
 {
-	FILE *fp = fopen(ARCHIVO_NOMINACIONES, "rb");
-
-	FILE* fTxt = fopen(rutaTexto, "w");
-
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+	if (fp == NULL)
+	{
+		return;
+	}
+	FILE* ft = fopen(rutaTexto, "w");
+	if (ft == NULL)
+	{
+		fclose(fp);
+		return;
+	}
 	Nominacion nominacion;
 
-	if (fp != NULL && fTxt != NULL)
+	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
 	{
-		fprintf(fTxt, "========================================================\n");
-		fprintf(fTxt, "ID Nominacion | ID Juego | ID Categoria | Puntaje | Fecha \n");
-		fprintf(fTxt, "========================================================\n");
-	}
-	while(fread(&nominacion, sizeof(Nominacion), 1 , fp)> 0)
-	{
-		fprintf(fTxt, "%d | %d | %02d/%02d/%04d\n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor, nominacion.fecha.dia, nominacion.fecha.mes, nominacion.fecha.anio);
+		fprintf(ft, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
 	}
 
 	fclose(fp);
-	fclose(fTxt);
+	fclose(ft);
 }
+void exportarNominacionesACsv(char rutaCSV[])
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+	if (fp == NULL)
+	{
+		return;
+	}
+	FILE* fc = fopen(rutaCSV, "w");
+	if (fc == NULL)
+	{
+		fclose(fp);
+		return;
+	}
+	Nominacion nominacion;
+	while(fread(&nominacion, sizeof(Nominacion), 1 , fp) == 1)
+	{
+		fprintf(fc, "%d, %d, %d, %d \n", nominacion.idNominacion, nominacion.idJuego, nominacion.idCategoria, nominacion.puntaje.valor);
+	}
+	fclose(fp);
+	fclose(fc);
+})
