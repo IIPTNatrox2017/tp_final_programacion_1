@@ -41,7 +41,7 @@ void mostrarListadoJuegosPorId(Juego* lista, int validos)
 	for (int i = 0; i < validos; i++)
 	{
 		if (lista[i].estaActivo && lista[i].catActiva)
-		{
+		{			
 			mostrarJuego(lista[i]);
 		}
 	}

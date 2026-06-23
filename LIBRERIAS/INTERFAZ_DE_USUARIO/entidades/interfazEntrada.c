@@ -298,8 +298,8 @@ void modificarJuegoArchivo()
 	} while (!esValido);
 
 
-	int indice = opcion - 1;
-	
+	int indice = opcion;
+	 
 
 	system("cls");
 
@@ -700,7 +700,7 @@ void exportarNominacionJuego()
 	{
 		system("cls");
 		mostrarListadoJuegosPorId(juegos, cantJuegos);
-		opcion = pedirOpcion("Seleccione un juego a exportar: ");
+		opcion = pedirOpcion("Seleccione id de juego a exportar: ");
 
 		if (opcion < 1 || opcion > cantJuegos || juegos[opcion - 1].estaActivo == 0)
 		{
@@ -716,8 +716,10 @@ void exportarNominacionJuego()
 
 	} while (!valido);
 
+	system("cls");
 
-
-
+	int indice = opcion;
+	
+	printf("\nJuego exportado con exito!\n");
 
 }

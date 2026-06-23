@@ -472,7 +472,7 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 		case 4:
 		{
 			system("cls");
-			printf("FUNCION NO IMPLEMENTADA.\n");
+			exportarNominacionJuego();
 			system("pause");
 			system("cls");
 			break;
