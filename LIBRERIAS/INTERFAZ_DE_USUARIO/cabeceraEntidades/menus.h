@@ -5,137 +5,137 @@
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 
 /**
-* @brief Ejecuta el menu principal del sistema.
-*/
+ * @brief Ejecuta el menú principal del sistema.
+ */
 void menuPrincipal();
 
 /**
-* @brief Solicita una opcion al usuario y la devuelve.
-* 
-* @param string Mensaje a mostrar en pantalla.
-* @return Opcion ingresada por el usuario.
-*/
+ * @brief Solicita una opción al usuario y la devuelve.
+ *
+ * @param string Mensaje a mostrar en pantalla.
+ * @return Opción ingresada por el usuario.
+ */
 int pedirOpcion(char string[]);
 
 /**
-* @brief Ejecuta la opcion seleccionada del menu principal.
-* 
-* @param opcion Opcion ingresada por el usuario.
-*/
+ * @brief Ejecuta la opción seleccionada del menú principal.
+ *
+ * @param opcion Opción ingresada por el usuario.
+ */
 void ejecutarOpcion(int opcion);
 
 /**
-* @brief Muestra el menu principal del sistema.
-*/
+ * @brief Muestra el menú principal del sistema.
+ */
 void mostrarMenu();
 
 /**
-* @brief Ejecuta el submenu de juegos.
-*/
+ * @brief Ejecuta el submenú de juegos.
+ */
 void subMenuJuegos();
 
 /**
-* @brief Muestra el submenu de opciones para modificar un juego.
-*/
+ * @brief Muestra el submenú de opciones para modificar un juego.
+ */
 void subMenuModificarJuego();
 
 /**
-* @brief Ejecuta el submenu de exportacion de datos de juegos.
-*/
+ * @brief Ejecuta el submenú de exportación de datos de juegos.
+ */
 void subMenuExportarDatosJuegos();
 
 /**
-* @brief Ejecuta la opcion seleccionada del submenu de juegos.
-* 
-* @param opcion opcion ingresada por el usuario.
-*/
+ * @brief Ejecuta la opción seleccionada del submenú de juegos.
+ *
+ * @param opcion Opción ingresada por el usuario.
+ */
 void ejecutarOpcionSubMenuJuegos(int opcion);
 
 /**
-* @brief Muestra el submenu de juegos. 
-*/
+ * @brief Muestra el submenú de juegos.
+ */
 void mostrarSubMenuJuegos();
 
 /**
-* @brief Muestra el submenu de exportacion de datos del juego.
-*/
+ * @brief Muestra el submenú de exportación de datos de juegos.
+ */
 void mostrarSubMenuExportarDatosJuegos();
 
 /**
-* @brief Ejecuta la opcion seleccionada del submenu de exportacion de juegos.
-* 
-* @param opcion Opcion ingresada por el usuario.
-*/
+ * @brief Ejecuta la opción seleccionada del submenú de exportación de juegos.
+ *
+ * @param opcion Opción ingresada por el usuario.
+ */
 void ejecutarSubMenuExportarDatosJuegos(int opcion);
 
 /**
-* @brief Ejecuta el submenu de categorias. 
-*/
+ * @brief Ejecuta el submenú de categorías.
+ */
 void subMenuCategorias();
 
 /**
-* @brief Ejecuta la opcion seleccionada del submenu de categorias
-* 
-* @param opcion Opcion ingresada por el usuario.
-*/
+ * @brief Ejecuta la opción seleccionada del submenú de categorías.
+ *
+ * @param opcion Opción ingresada por el usuario.
+ */
 void ejecutarOpcionSubMenuCategorias(int opcion);
 
 /**
-* @brief Ejecuta el submenu de categorias del sistema.
-*/
+ * @brief Muestra el submenú de categorías.
+ */
 void mostrarSubMenuCategorias();
 
 /**
-* @brief Ejecuta el sub menu de nominaciones del sistema.
-*/
+ * @brief Ejecuta el submenú de nominaciones.
+ */
 void subMenuNominaciones();
 
 /**
-* @brief Ejecuta la opcion seleccionada del submenu de nominaciones.
-* 
-* @param opcion Opcion ingresada por el usuario.
-*/
+ * @brief Ejecuta la opción seleccionada del submenú de nominaciones.
+ *
+ * @param opcion Opción ingresada por el usuario.
+ */
 void ejecutarOpcionSubMenuNominaciones(int opcion);
 
 /**
-* @brief Muestra el submenu de nominaciones.
-*/
+ * @brief Muestra el submenú de nominaciones.
+ */
 void mostrarSubMenuNominaciones();
 
 /**
-* @brief Muestra un puesto del ranking de nominaciones.
-* 
-* @param puesto apaosicion en el ranking.
-* @param nombreJuego Nombre del juego.
-* @param estudioJuego Nombre del estudio del juego.
-*/
+ * @brief Muestra un puesto del ranking de nominaciones.
+ *
+ * @param puesto Posición en el ranking.
+ * @param nombreJuego Nombre del juego.
+ * @param estudioJuego Nombre del estudio del juego.
+ */
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
 
 /**
-* @brief Muestra las categorias disponibles para que el usuario seleccione una.
-* 
-* @param categorias Arreglo de categorias a mostrar.
-* @param cantCategorias Cantidad de categorias en el arreglo.
-*/
+ * @brief Muestra las categorías disponibles para que el usuario seleccione una.
+ *
+ * @param categorias Arreglo de categorías a mostrar.
+ * @param cantCategorias Cantidad de categorías en el arreglo.
+ */
 void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias);
 
 /**
-* @brief Muestra una pantalla de bienvenida con animacion de carga.
-*/
+ * @brief Muestra una pantalla de bienvenida con animación de carga.
+ */
 void pantallaBienvenida();
 
 /**
-* @brief Obtiene el ancho de la consola.
-* 
-* @return Ancho de la ventana de consola en caracteres.
-*/
+ * @brief Obtiene el ancho de la consola.
+ *
+ * @return Ancho de la ventana de consola en caracteres.
+ */
 int anchoConsola();
 
 /**
-* @@brief Obtiene el alto de la consola.
-* 
-* @return alto de la ventana de la consola en filas.
-*/
+ * @brief Obtiene el alto de la consola.
+ *
+ * @return Alto de la ventana de consola en filas.
+ */
 int altoConsola();
 
 #endif // !1
