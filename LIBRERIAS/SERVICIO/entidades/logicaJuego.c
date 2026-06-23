@@ -374,7 +374,7 @@ void importarjuegosAcsv(char rutaCSV[])
 			return;
 	
 		}
-	FILE* csv = fopen(rutaCSV, "rb");
+	FILE* csv = fopen(rutaCSV, "w");
 	if (csv == NULL)
 	{
 		return;
