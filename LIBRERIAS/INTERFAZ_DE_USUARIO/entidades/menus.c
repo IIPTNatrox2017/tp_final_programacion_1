@@ -249,7 +249,7 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		case 8:
 		{
 			system("cls");
-			subMenuExportarDatos();
+			subMenuExportarDatosJuegos();
 			system("pause");
 			break;
 		}
@@ -269,19 +269,29 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 
 	}
 }
-void subMenuExportarDatos()
+
+void subMenuExportarDatosJuegos()
 {
-	int opcion = 0;
+	int opcion;
+	mostrarSubMenuExportarDatosJuegos();
+	opcion = pedirOpcion(">> ");
+	ejecutarSubMenuExportarDatosJuegos(opcion);
+}
+
+void mostrarSubMenuExportarDatosJuegos()
+{
 	printf("===========================\n");
 	printf("      OPCIONES EXPORTAR\n");
 	printf("===========================\n");
 
 	printf("1. Exportacion por txt.\n");
 	printf("2. Exportacion por csv.\n");
-	opcion = pedirOpcion(">> ");
+}
 
-	switch(opcion)
-	{ 
+void ejecutarSubMenuExportarDatosJuegos(int opcion)
+{
+	switch (opcion)
+	{
 		case 1:
 		{
 			exportarJuegosATexto("reporteJuegos.txt");
@@ -290,11 +300,10 @@ void subMenuExportarDatos()
 		}
 		case 2:
 		{
-			exportarJuegosACsv("juegosExportados.csv");
+			exportarJuegosACsv("reporteJuegos.csv");
 			printf("\nExportacion Exitosa!\n");
 			break;
 		}
-	
 	}
 }
 
@@ -308,7 +317,6 @@ void subMenuModificarJuego()
 	printf("2. Modificar Estudio.\n");
 	printf("3. Modificar Categoria.\n");
 }
-
 
 void subMenuCategorias()
 {

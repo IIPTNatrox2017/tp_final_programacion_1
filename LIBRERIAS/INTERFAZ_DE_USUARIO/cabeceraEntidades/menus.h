@@ -11,10 +11,12 @@ void mostrarMenu();
 
 void subMenuJuegos();
 void subMenuModificarJuego();
-void subMenuExportarDatos();
+void subMenuExportarDatosJuegos();
 
 void ejecutarOpcionSubMenuJuegos(int opcion);
 void mostrarSubMenuJuegos();
+void mostrarSubMenuExportarDatosJuegos();
+void ejecutarSubMenuExportarDatosJuegos(int opcion);
 
 void subMenuCategorias();
 void ejecutarOpcionSubMenuCategorias(int opcion);
