@@ -4,7 +4,9 @@
 #include "../../DOMINIO/cabeceraEntidades/juegos.h"
 #include "../../DOMINIO/cabeceraEntidades/categoria.h"
 
-
+/**
+* 
+*/
 int cargarNuevaCategoria(char nombre[]);
 Categoria* obtenerListadoCategoriasDinamico(int* validos);
 int buscarCategoriaPorId(int id);
