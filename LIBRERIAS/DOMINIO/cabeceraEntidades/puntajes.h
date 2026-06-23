@@ -15,8 +15,21 @@ typedef struct stFechaLanzamiento
     int esValido;
 } FechaLanzamiento;
 
-
+/**
+* @brief Crea un puntaje validando su rango
+* 
+* @param valor Valor nuemerico del puntaje.
+* @return Puntaje Puntaje creado, indicando si es valido o no.
+*/
 Puntaje crearPuntaje(int valor);
+
+/**
+* @brief Crea una fecha de lanzamiento validando sus valores.
+* 
+* @param dia Dia de la fecha de lanzamiento.
+* @param mes Mes de la fecha de lanzamiento.
+* @param anio Año de la fecha de lanzamiento.
+*/
 FechaLanzamiento crearFecha(int dia, int mes, int anio);
 
 #endif
