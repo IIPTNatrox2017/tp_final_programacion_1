@@ -41,66 +41,35 @@ int existeNominacionDuplicada(int idJuego, int idCategoria)
 			nominacionEncontrada = 1;
 		}
 	}
+
 	fclose(fp);
 	return nominacionEncontrada;
 }
 
-Pila obtenerRankingNominaciones()
+Pila obtenerRankingNominaciones(Pila p, Nominacion listaNominaciones[], int nominacionesTotales)
 {
-	Pila p;
-	inicpila(&p);
 
-	int juegosTotales = 0;
-
-	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
-
-	if (listaJuegos == NULL)
+	if (nominacionesTotales == 0)
 	{
 		return p;
 	}
 
-	RankingJuego* ranking = (RankingJuego*)malloc(sizeof(RankingJuego) * juegosTotales);
-
-	int cantidadVotos = generarNumeroVotosNominacion();
-	if (ranking == NULL)
+	for (int i = 0; i < nominacionesTotales; i++)
 	{
-		free(listaJuegos);
-		return p;
+		apilar(&p, listaNominaciones[i].idNominacion);
 	}
 
-	int i;
-	int j;
+	Pila aux;
+	inicpila(&aux);
 
-	for (i = 0; i < juegosTotales; i++)
+	while (!pilavacia(&p))
 	{
-		ranking[i].idJuego = listaJuegos[i].idJuego;
-		ranking[i].cantVotos = cantidadVotos;
+		apilar(&aux, desapilar(&p));
 	}
 
-	RankingJuego aux;
-	 
-	for (i = 0; i < juegosTotales - 1; i++)
-	{
-		for (j = i + 1; j < juegosTotales; j++)
-		{
-			if (ranking[j].cantVotos >ranking[i].cantVotos)
-			{
-				aux = ranking[i];
-				ranking[i] = ranking[j];
-				ranking[j] = aux;
-			}
-		}
-	}
 
-	for (i = juegosTotales - 1; i >= 0; i--)
-	{
-		apilar(&p, ranking[i].idJuego);
-	}
 
-	free(ranking);
-	free(listaJuegos);
-
-	return p;
+	return aux;
 	
 }
 
@@ -130,11 +99,6 @@ int obtenerMayorIdNominacion(void)
 	return mayor;
 }
 
-int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a)
-
-{
-
-}
 
 int bajaNominacion(int idNominacion)
 {
@@ -191,8 +155,8 @@ void mostrarNominacionesPorCategoria(int idCategoria)
 
 int generarNumeroVotosNominacion()
 {
-	srand(time(NULL));
-	int puntaje = (rand() % 10000) + 1;
+
+	int puntaje = (rand() % 10000 + 1);
 
 	return puntaje;
 }
@@ -273,3 +237,60 @@ int contarNominacionesJuego(int idJuego)
 	fclose(fp); 
 	return contador;
 }
+
+int conseguirPuntajeDeNominacion(int idNominacion)
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Nominacion aux;
+	int puntaje = 0;
+	while (fread(&aux, sizeof(Categoria), 1, fp) > 0)
+	{
+		if (aux.idNominacion == idNominacion && aux.esValido == 0)
+		{
+			puntaje = aux.puntaje;
+		}
+	}
+
+	fclose(fp);
+	return puntaje;
+}
+
+void mostrarNominacioneArchivo()
+{
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Nominacion aux;
+
+	while (fread(&aux, sizeof(Nominacion), 1, fp) > 0)
+	{
+		mostrarNominacion(aux);
+	}
+
+	fclose(fp);
+}
+
+int contarRegistrosArchivo(char nombreArchivo[], size_t size)
+{
+	FILE* fp = fopen(nombreArchivo, "rb");
+
+	if (!fp)
+	{
+		return 0;
+	}
+	int cantRegistros = ftell(fp) / size;
+
+	fclose(fp);
+	return cantRegistros;
+}
+

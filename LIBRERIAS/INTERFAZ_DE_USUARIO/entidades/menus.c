@@ -80,6 +80,7 @@ void pantallaBienvenida()
 
 void menuPrincipal()
 {
+	srand(time(NULL));
 	pantallaBienvenida();
 
 	int opcion;

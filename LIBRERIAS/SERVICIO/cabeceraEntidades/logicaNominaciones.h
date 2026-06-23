@@ -58,8 +58,7 @@ void mostrarNominacionesPorCategoria(int idCategoria);
 * 
 * @return Pila Pila con los IDs de los juegos ordenados por ranking.
 */
-Pila obtenerRankingNominaciones();
-
+Pila obtenerRankingNominaciones(Pila p, Nominacion listaNominaciones[], int nominacionesTotales);
 /**
 * @brief Cuenta la cantidad de nominaciones de un juego.
 * 
@@ -81,6 +80,10 @@ void exportarNominacionesATexto(char rutaTexto[]);
 * @param rutaCSV Ruta del archivo CSV donde se exportaran las nominaciones.
 */
 void exportarNominacionesACsv(char rutaCSV[]);
+int generarNumeroVotosNominacion();
+int conseguirPuntajeDeNominacion(int idNominacion);
+void mostrarNominacioneArchivo();
+int contarRegistrosArchivo(char nombreArchivo[], size_t size);
 
 #endif
 

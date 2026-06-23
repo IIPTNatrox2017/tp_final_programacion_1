@@ -119,7 +119,9 @@ void mostrarRankingNominacionesUI()
 	Pila rankings;
 	inicpila(&rankings);
 
-	rankings = obtenerRankingNominaciones();
+	int cantNominaciones = 0;
+	Nominacion* listaNominaciones = obtenerListadoNominacionesDinamico(&cantNominaciones);
+	rankings = obtenerRankingNominaciones(rankings, listaNominaciones, cantNominaciones);
 
 	if (pilavacia(&rankings))
 	{
@@ -127,52 +129,32 @@ void mostrarRankingNominacionesUI()
 		return;
 	}
 
-	int juegosTotales = 0;
-	int categoriasTotales = 0;
-
-	Juego* listaJuegos = obtenerListadoJuegosDinamico(&juegosTotales);
-	Categoria* listaCategoria = obtenerListadoCategoriasDinamico(&categoriasTotales);
-
-	if (juegosTotales == 0 || categoriasTotales == 0)
-	{
-		return;
-	}
-
-	int puesto = 1;
-
 	while (!pilavacia(&rankings))
 	{
 		
-		int idJuegoBuscado = desapilar(&rankings);
-		char nombreJuego[50] = "";
-		char estudioJuego[50] = "";
-		char nombreCategoria[50] = "";
+		int idNominacion = desapilar(&rankings);
 
-		int cantidad = contarNominacionesJuego(idJuegoBuscado);
-
-		for (int i = 0; i < juegosTotales; i++)
+		for (int i = 0; i < cantNominaciones; i++)
 		{
-			if (listaJuegos[i].idJuego == idJuegoBuscado)
+			if (listaNominaciones[i].idNominacion == idNominacion)
 			{
-				strcpy(nombreJuego,listaJuegos[i].nombre);
-				strcpy(estudioJuego,listaJuegos[i].estudio);
-
-				break;
+				mostrarUnaNominacion(listaNominaciones[i].idNominacion, listaNominaciones[i].juego.nombre, listaNominaciones[i].juego.estudio, listaNominaciones[i].puntaje);
 			}
 		}
-
-		printf("\nNro Nominacion: [%d]", puesto);
-		printf("\nJuego %s", nombreJuego);
-		printf("\nEstudio: %s", estudioJuego);
-		printf("\nCantidad Nominaciones %d\n", cantidad);
-		
-		printf("\n-------------------------\n");
-
-		puesto++;
 		
 	}
 
-	free(listaJuegos);
+	free(listaNominaciones);
+}
+
+void mostrarUnaNominacion(int puesto, char nombreJuego[], char estudioJuego[], int puntaje)
+{
+	printf("NOMINACION\n");
+	printf("\nNro Nominacion: [%d]\n", puesto);
+	printf("\nJuego %s", nombreJuego);
+	printf("\nEstudio: %s", estudioJuego);
+	printf("\nCantidad Nominaciones %d\n", puntaje);
+	printf("\n-------------------------\n");
 }
 
 
@@ -238,7 +220,7 @@ void mostrarNominacion(Nominacion aux)
 	printf("ID: %d\n", aux.idNominacion);
 	printf("Nombre Juego: %s\n", aux.juego.nombre);
 	printf("Estudio: %s\n", aux.categoria.nombre);
-	printf("Cantidad de Votos: %d", aux.puntaje);
+	printf("Cantidad de Votos: %d\n", aux.puntaje);
 	printf("----------------------------------\n");
 }
 
@@ -248,3 +230,41 @@ void mostrarCategoria(Categoria aux)
 	printf("----------------------------------\n");
 }
 
+Nominacion* obtenerListadoNominacionesDinamico(int* validos)
+{
+
+	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "rb");
+
+	if (fp == NULL)
+	{
+		*validos = 0;
+		return NULL;
+	}
+	
+	fseek(fp, 0, SEEK_END);
+	int totalRegistros = ftell(fp) / sizeof(Nominacion);
+	rewind(fp);
+
+	if (totalRegistros <= 0)
+	{
+		fclose(fp);
+		*validos = 0;
+		return NULL;
+	}
+	Nominacion* arregloNominaciones = (Nominacion*)malloc(totalRegistros * sizeof(Nominacion));
+
+	if (arregloNominaciones == NULL)
+	{
+		fclose(fp);
+		*validos = 0;
+		return NULL;
+	}
+
+	fread(arregloNominaciones, sizeof(Juego), totalRegistros, fp);
+
+	fclose(fp);
+
+	*validos = totalRegistros;
+
+	return arregloNominaciones;
+}

@@ -4,12 +4,13 @@
 
 Nominacion crearNominacion(int id, int idJuego, int idCategoria, int puntaje, Juego juegoDeseado, Categoria categoriaDeseada)
 {
-	Nominacion n;
+	Nominacion n = { 0 };
 	n.idNominacion = id;
 	n.idJuego = idJuego;
 	n.idCategoria = idCategoria;
 	n.puntaje = puntaje;
 	strcpy(n.juego.nombre, juegoDeseado.nombre);
+	strcpy(n.juego.estudio, juegoDeseado.estudio);
 	strcpy(n.categoria.nombre, categoriaDeseada.nombre);
 	n.esValido = 1;
 	return n;

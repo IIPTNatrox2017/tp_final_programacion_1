@@ -66,3 +66,6 @@ void formularioExportarArchivos();
 
 #endif // !SALIDA_H_INCLUDE
 
+void mostrarUnaNominacion(int puesto, char nombreJuego[], char estudioJuego[], int puntaje);
+void mostrarNominacion(Nominacion aux);
+Nominacion* obtenerListadoNominacionesDinamico(int* validos);
