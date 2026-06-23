@@ -28,6 +28,7 @@
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazEntrada.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\interfazSalida.c" />
     <ClCompile Include="LIBRERIAS\INTERFAZ_DE_USUARIO\entidades\menus.c" />
+    <ClCompile Include="LIBRERIAS\Librerias Externas\gotoxy.c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\pila .c" />
     <ClCompile Include="LIBRERIAS\Librerias Externas\scanner.c" />
     <ClCompile Include="LIBRERIAS\multiusos\includesLibrerias.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazEntrada.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\interfazSalida.h" />
     <ClInclude Include="LIBRERIAS\INTERFAZ_DE_USUARIO\cabeceraEntidades\menus.h" />
+    <ClInclude Include="LIBRERIAS\Librerias Externas\gotoxy.h" />
     <ClInclude Include="LIBRERIAS\Librerias Externas\pila .h" />
     <ClInclude Include="LIBRERIAS\Librerias Externas\scanner.h" />
     <ClInclude Include="LIBRERIAS\SERVICIO\cabeceraEntidades\logicaJuego.h" />

@@ -192,8 +192,8 @@ void formularioRegistrarNominacion()
 
 	int idCategoria = listaCategorias[opcion - 1].idCategoria;
 
-	int esValido = 0;
-	int opcion = 0;
+	esValido = 0;
+	opcion = 0;
 
 	do
 	{

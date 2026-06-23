@@ -8,10 +8,12 @@
 
 // OTROS
 #include <time.h>
+#include <windows.h>
 
 // LIBRERIAS EXTERNAS
 #include "../Librerias Externas/pila .h"
 #include "../Librerias Externas/scanner.h"
+#include "../Librerias Externas/gotoxy.h"
 
 // LIBRERIAS ENTIDADES
 #include "../DOMINIO/gestorEventos.h"
