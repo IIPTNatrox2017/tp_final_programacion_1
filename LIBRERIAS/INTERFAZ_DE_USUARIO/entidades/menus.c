@@ -11,6 +11,7 @@
 
 void pantallaBienvenida()
 {
+	hidecursor(0);
 	int inicioX = 0;
 	int inicioY = 0;
 
@@ -73,6 +74,8 @@ void pantallaBienvenida()
 		Sleep(100);
 	}
 	system("cls");
+
+	hidecursor(1);
 }
 
 
@@ -431,6 +434,10 @@ void mostrarSubMenuNominaciones()
 
 	printf("1. Registrar Nominacion.\n");
 	printf("2. Ranking Nominaciones.\n");
+	printf("3. Abrir archivo limpio.\n");
+	printf("4. Exportar Nominaciones por juego.\n");
+	printf("5. Exportar Nominaciones por categoria.\n");
+	printf("6. Exportar Ranking por Nominacion.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -458,6 +465,30 @@ void ejecutarOpcionSubMenuNominaciones(int opcion)
 		{
 			system("cls");
 			abrirArchivoLimpio(ARCHIVO_NOMINACIONES);
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 4:
+		{
+			system("cls");
+			printf("FUNCION NO IMPLEMENTADA.\n");
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 5:
+		{
+			system("cls");
+			printf("FUNCION NO IMPLEMENTADA.\n");
+			system("pause");
+			system("cls");
+			break;
+		}
+		case 6:
+		{
+			system("cls");
+			printf("FUNCION NO IMPLEMENTADA.\n");
 			system("pause");
 			system("cls");
 			break;

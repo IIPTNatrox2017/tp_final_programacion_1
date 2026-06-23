@@ -20,6 +20,7 @@ void ejecutarReactivarUnaCategoria();
 void ejecutarDarDeBajaUnJuego();
 void ejecutarReactivarUnJuego();
 void modificarCategoriaArchivo();
+void exportarNominacionJuego();
 
 #endif // !1
 
