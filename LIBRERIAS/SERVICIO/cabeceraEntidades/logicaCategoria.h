@@ -14,6 +14,7 @@ void darDeBajaCategoria(int idCategoria);
 void ordenarCategoriasAlfabeticamente(Categoria arreglo[], int validos);
 void exportarCategoriasATexto(char rutaTexto[]);
 int obtenerMayorIdNominacion(void);
+void exportarCategoriaACsv(char rutaCSV[]);
 
 
 #endif
