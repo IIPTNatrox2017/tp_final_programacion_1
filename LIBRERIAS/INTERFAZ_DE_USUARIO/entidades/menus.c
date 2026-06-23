@@ -9,10 +9,82 @@
 // SE RECOMIENDA EL USO RESPONSABLE DE IA.
 // TODO EL CODIGO ENTREGADO DEBE PODER SER DEFENDIDO POR CUALQUIER INTEGRANTE DEL GRUPO.
 
+void pantallaBienvenida()
+{
+	int inicioX = 0;
+	int inicioY = 0;
+
+	char letraE[8][13] = {
+	   "EEEEEEEEEEEE",
+	   "EEE",
+	   "EEE",
+	   "EEEEEEEEEE",
+	   "EEEEEEEEEE",
+	   "EEE",
+	   "EEE",
+	   "EEEEEEEEEEEE"
+	};
+	char numero[8][14] =
+	{
+		 " 3333333333 ",
+		"33        33",
+		"          33",
+		"    3333333 ",
+		"          33",
+		"          33",
+		"33        33",
+		" 3333333333 "
+	};
+
+	int anchoE = 12;
+	int anchoN = 13;
+	int separacion = 6;
+
+	int anchoTotal = anchoE + separacion + anchoN;
+
+	inicioX = (anchoConsola() - anchoTotal) / 2;
+	inicioY = (altoConsola() - 8) / 2;
+
+	for (int i = 0; i < 8; i++)
+	{
+		gotoxy(inicioX, inicioY + i);
+		printf("\033[0;33m");
+		printf("%s", letraE[i]);
+	}
+	Sleep(500); 
+	for (int i = 0; i < 8; i++)
+	{
+		gotoxy(inicioX + anchoE + separacion - 5, inicioY + i + 2);
+		printf("\033[0;31m");
+		printf("%s", numero[i]);
+		printf("\033[0m");
+	}
+
+	Sleep(1000);
+
+	gotoxy(inicioX, inicioY + 11);
+	printf("Cargando Programa: [                    ]");
+
+	gotoxy(inicioX + 20, inicioY + 11);
+
+	for (int i = 0; i < 20; i++)
+	{
+		printf("#");
+		Sleep(100);
+	}
+	system("cls");
+}
+
+
+
+
+
 
 
 void menuPrincipal()
 {
+	pantallaBienvenida();
+
 	int opcion;
 	do
 	{
@@ -369,4 +441,21 @@ void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias)
 			printf("\n");
 		}
 	}
+}
+
+
+int anchoConsola()
+{
+	CONSOLE_SCREEN_BUFFER_INFO sbi;
+	GetConsoleScreenBufferInfo (GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
+
+	return sbi.dwMaximumWindowSize.X;
+}
+
+int altoConsola()
+{
+	CONSOLE_SCREEN_BUFFER_INFO sbi;
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &sbi);
+
+	return sbi.dwMaximumWindowSize.Y;
 }

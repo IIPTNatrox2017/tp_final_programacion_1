@@ -25,6 +25,8 @@ void mostrarSubMenuNominaciones();
 void menuPuestosPila(int puesto, char nombreJuego[], char estudioJuego[]);
 void menuCategoriasDisponibles(Categoria categorias[], int cantCategorias);
 
-
+void pantallaBienvenida();
+int anchoConsola();
+int altoConsola();
 
 #endif // !1
