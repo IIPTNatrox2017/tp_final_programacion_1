@@ -314,7 +314,7 @@ void modificarJuegoArchivo()
 	} while (!esValido);
 
 
-	int indice = opcion;
+	int indice = opcion-1;
 	 
 
 	system("cls");
