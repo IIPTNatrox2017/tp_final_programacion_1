@@ -380,7 +380,7 @@ void exportarJuegosACsv(char rutaCSV[])
 		return;
 	}
 	Juego juego;
-	while(fread(&juego, sizeof(Juego), 1, csv) == 1)
+	while(fread(&juego, sizeof(Juego), 1, fp) == 1)
 	{
 		if (juego.idJuego == -1)
 		{
