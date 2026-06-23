@@ -25,13 +25,6 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 		return -5;
 	}
 
-	FechaLanzamiento nuevaFecha = crearFecha(d, m, a);
-
-	if (!nuevaFecha.esValido)
-	{
-		return -6;
-	}
-
 	FILE* fp = fopen(ARCHIVO_NOMINACIONES, "ab");
 
 	if (!fp)
@@ -43,7 +36,7 @@ int registrarNominacion(int idJuego, int idCategoria, int puntajeValor, int d, i
 
 	int idNominacion = obtenerMayorIdNominacion() + 1;
 
-	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje, nuevaFecha);
+	Nominacion nuevaNominacion = crearNominacion(idNominacion, idJuego, idCategoria, nuevoPuntaje);
 
 	if (fwrite(&nuevaNominacion, sizeof(Nominacion), 1, fp) != 1)
 	{
@@ -184,7 +177,7 @@ int modificarNominacion(int idNominacion, int nuevoPuntaje, int d, int m, int a)
 		if (aux.idNominacion == idNominacion)
 		{
 			aux.puntaje = crearPuntaje(nuevoPuntaje);
-			aux.fecha = crearFecha(d, m, a);
+			
 
 			fseek(fp, sizeof(Nominacion), SEEK_CUR);
 

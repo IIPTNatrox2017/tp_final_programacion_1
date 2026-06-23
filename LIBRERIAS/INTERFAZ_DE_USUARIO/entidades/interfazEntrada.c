@@ -172,15 +172,15 @@ void formularioRegistrarNominacion()
 	}
 
 	int esValido = 0;
-	int opcion = 0;
+	int opcionCategoria = 0;
 
 	do
 	{
 		system("cls");
 		mostrarListadoCategorias(listaCategorias, cantCategorias);
-		opcion = pedirOpcion("Seleccione un ID de Categoria para la Nominacion:");
+		opcionCategoria = pedirOpcion("Seleccione un ID de Categoria para la Nominacion:");
 
-		if (opcion < 1 || opcion > cantCategorias || listaCategorias[opcion - 1].estaActiva == 0)
+		if (opcionCategoria < 1 || opcionCategoria > cantCategorias || listaCategorias[opcionCategoria - 1].estaActiva == 0)
 		{
 			printf("Seleccione un juego Valido.\n");
 			system("pause");
@@ -194,26 +194,27 @@ void formularioRegistrarNominacion()
 
 	} while (!esValido);
 
-	int idCategoria = listaCategorias[opcion - 1].idCategoria;
 
 	esValido = 0;
-	opcion = 0;
+	int opcionJuego = 0;
+
+	int indiceCategoria = opcionCategoria - 1;
+	int idCategoria = listaCategorias[indiceCategoria].idCategoria;
+	char categoriaDeseada[DIM_MAX_NOMBRES]; 
+	strcpy(categoriaDeseada,conseguirCategoriaPorId(idCategoria));
 
 	do
 	{
 		system("cls");
-		mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
-		//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
-		opcion = pedirOpcion("Seleccione una ID de Juego para la Nominacion:");
+		listadoJuegosSegunCategoria(categoriaDeseada);
+		opcionJuego = pedirOpcion("Seleccione un ID de Juego para la Nominacion:");
 
-		if (opcion < 1 || opcion > cantJuegos || listaJuegos[opcion - 1].estaActivo == 0)
+		if (opcionJuego < 1 || opcionJuego > cantJuegos || listaJuegos[opcionJuego - 1].estaActivo == 0)
 		{
 			printf("Seleccione un juego Valido.\n");
 			system("pause");
 			system("cls");
-			//MOSTRAR JUEGOS DE LA CATEGORIA SELECCIONADA.
-			mostrarListadoJuegosPorId(listaJuegos, cantJuegos);
-			
+			listadoJuegosSegunCategoria(categoriaDeseada);
 		}
 		else
 		{
@@ -222,12 +223,14 @@ void formularioRegistrarNominacion()
 
 	} while (!esValido);
 
-	int idJuego = listaJuegos[opcion - 1].idJuego;
+	int indiceJuego = opcionJuego - 1;
+	int idJuego = listaJuegos[indiceJuego].idJuego;
 
-	int indice = opcion - 1;
 
-	mostrarCategoria(listaCategorias[idCategoria]);
-	mostrarJuego(listaJuegos[idJuego]);
+	printf("---------------------------------------\n");
+	mostrarCategoria(listaCategorias[indiceCategoria]);
+	mostrarJuego(listaJuegos[indiceJuego]);
+
 }
 
 void mostrarDatosJuegosCargados(char nombre[], char estudio[])

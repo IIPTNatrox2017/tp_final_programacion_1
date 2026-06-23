@@ -395,3 +395,25 @@ void exportarJuegosACsv(char rutaCSV[])
 	fclose(csv);
 
 }
+
+void listadoJuegosSegunCategoria(char categoriaDeseada[])
+{
+	FILE* fp = fopen(ARCHIVO_JUEGOS, "rb");
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Juego auxJuego;
+
+	while (fread(&auxJuego, sizeof(Juego), 1, fp) > 0)
+	{
+		if (_strcmpi(auxJuego.categoria, categoriaDeseada) == 0)
+		{
+			mostrarJuego(auxJuego);
+		}
+	}
+
+	fclose(fp);
+}

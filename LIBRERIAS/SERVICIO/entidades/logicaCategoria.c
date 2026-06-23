@@ -265,6 +265,30 @@ void exportarCategoriaACsv(char rutaCSV[])
 
 
 	fclose(fp);
-	fclose(csv);
+}
 
+char* conseguirCategoriaPorId(int idCategoria)
+{
+	FILE* fp = fopen(ARCHIVO_CATEGORIAS, "rb");
+
+	char string[DIM_MAX_NOMRBES];
+
+	if (!fp)
+	{
+		return;
+	}
+
+	Categoria auxCategoria;
+	int encontrado = 0;
+
+	while (encontrado == 0 &&  fread(&auxCategoria, sizeof(Categoria), 1, fp) > 0)
+	{
+		if (auxCategoria.idCategoria == idCategoria)
+		{
+			strcpy(string, auxCategoria.nombre);
+			encontrado = 1;
+		}
+	}
+	fclose(fp);
+	return _strdup(string);
 }
