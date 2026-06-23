@@ -505,7 +505,7 @@ void ejecutarReactivarUnJuego()
 	return;
 }
 
-	void modificarCategoriaArchivo()
+void modificarCategoriaArchivo()
 	{
 		int cantCategorias = 0;
 		Categoria* lista = obtenerListadoCategoriasDinamico(&cantCategorias);

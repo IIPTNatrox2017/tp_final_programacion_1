@@ -78,12 +78,6 @@ void pantallaBienvenida()
 	hidecursor(1);
 }
 
-
-
-
-
-
-
 void menuPrincipal()
 {
 	pantallaBienvenida();
@@ -192,6 +186,7 @@ void mostrarSubMenuJuegos()
 	printf("6. Dar de Baja un Juego.\n");
 	printf("7. Reactivar Un Juego.\n");
 	printf("8. Exportar Datos.\n");
+	printf("9. Mostrar juegos de una categoria.\n");
 	printf("0. Volver al Menu Principal\n");
 }
 
@@ -254,6 +249,13 @@ void ejecutarOpcionSubMenuJuegos(int opcion)
 		{
 			system("cls");
 			subMenuExportarDatosJuegos();
+			system("pause");
+			break;
+		}
+		case 9:
+		{
+			system("cls");
+
 			system("pause");
 			break;
 		}

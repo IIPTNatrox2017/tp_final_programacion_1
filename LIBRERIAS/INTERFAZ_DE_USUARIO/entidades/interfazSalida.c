@@ -197,14 +197,41 @@ void formularioExportarArchivos()
 	}
 }
 
+
+
 void mostrarJuego(Juego aux)
 {
-	printf("ID: %d\n", aux.idJuego);
-	printf("Nombre: %s\n", aux.nombre);
-	printf("Estudio: %s\n",aux.estudio);
-	printf("categoria: %s\n",aux.categoria);
-	printf("----------------------------------\n");
+	int ancho = 75;
+	char renglonId[100];
+	char renglonNombre[150];
+	char renglonEstudio[150];
+	char renglonCategoria[150];
+
+	sprintf(renglonId, "ID: %d", aux.idJuego);
+	sprintf(renglonNombre, "Nombre: %s", aux.nombre);
+	sprintf(renglonEstudio, "Estudio: %s", aux.estudio);
+	sprintf(renglonCategoria, "Categoria: %s", aux.categoria);
+
+	printf("+");
+	for (int i = 0; i < ancho; i++)
+	{
+		printf("=");
+	}
+	printf("+\n");
+
+	printf("| %-*s |\n", ancho - 2, renglonId);
+	printf("| %-*s |\n", ancho - 2, renglonNombre);
+	printf("| %-*s |\n", ancho - 2, renglonEstudio);
+	printf("| %-*s |\n", ancho - 2, renglonCategoria);
+
+	printf("+");
+	for (int i = 0; i < ancho; i++)
+	{
+		printf("=");
+	}
+	printf("+\n");
 }
+
 
 void mostrarNominacion(Nominacion aux)
 {
